@@ -1,0 +1,247 @@
+challenge_id,challenge_name,status,prize,days_length,reg_start,reg_end,reg_date,no_of_reg
+30042576,"TopCoder Competition Engine - Web Socket Listener - Add configuration for using SSL or not",Completed,60,31,2014-05-07,2014-06-06,2014-05-07,3
+30043472,"Create Demo For Practice Room Actions",Completed,200,31,2014-06-14,2014-07-14,2014-06-14,11
+30043472,"Create Demo For Practice Room Actions",Completed,200,31,2014-06-14,2014-07-14,2014-06-15,5
+30043484,"TopCoder Competition Engine - Create Practice Rooms",Completed,100,31,2014-06-16,2014-07-16,2014-06-16,1
+30043514,"TopCoder Competition Engine - Algorithm Contest Creation Analysis",Completed,100,31,2014-06-17,2014-07-17,2014-06-17,7
+30043514,"TopCoder Competition Engine - Algorithm Contest Creation Analysis",Completed,100,31,2014-06-17,2014-07-17,2014-06-18,5
+30043514,"TopCoder Competition Engine - Algorithm Contest Creation Analysis",Completed,100,31,2014-06-17,2014-07-17,2014-06-19,1
+30043666,"Web Arena UI - Add Timeout logic for Login",Completed,80,31,2014-06-23,2014-07-23,2014-06-24,5
+30043666,"Web Arena UI - Add Timeout logic for Login",Completed,80,31,2014-06-23,2014-07-23,2014-06-25,1
+30044078,"Find Way to Create Invitional SRM",Completed,80,31,2014-07-09,2014-08-08,2014-07-09,1
+30044078,"Find Way to Create Invitional SRM",Completed,80,31,2014-07-09,2014-08-08,2014-07-11,1
+30044687,"TC API - Update SRM related Routes",Completed,100,31,2014-08-02,2014-09-01,2014-08-02,4
+30045035,"Web Arena - Fix Login Problem with Safari",Completed,100,31,2015-01-15,2015-02-14,2015-01-15,8
+30045035,"Web Arena - Fix Login Problem with Safari",Completed,100,31,2015-01-15,2015-02-14,2015-01-16,2
+30045035,"Web Arena - Fix Login Problem with Safari",Completed,100,31,2015-01-15,2015-02-14,2015-01-17,1
+30045035,"Web Arena - Fix Login Problem with Safari",Completed,100,31,2015-01-15,2015-02-14,2015-01-18,1
+30045066,"Web Arena UI - Use Custom Scrollbar for Coder Info Dialog",Completed,50,31,2014-08-15,2014-09-14,2014-08-15,6
+30045066,"Web Arena UI - Use Custom Scrollbar for Coder Info Dialog",Completed,50,31,2014-08-15,2014-09-14,2014-08-18,2
+30045067,"Web Arena UI - Member Photo Display",Completed,100,31,2014-08-20,2014-09-19,2014-08-20,4
+30045067,"Web Arena UI - Member Photo Display",Completed,100,31,2014-08-20,2014-09-19,2014-08-25,1
+30045175,"Web Arena UI - Registrants Dialog Improvement",Completed,200,31,2014-09-03,2014-10-03,2014-09-03,5
+30045175,"Web Arena UI - Registrants Dialog Improvement",Completed,200,31,2014-09-03,2014-10-03,2014-09-04,1
+30045212,"Approach Research - Generate Image file for Source Code",Completed,100,31,2014-08-20,2014-09-19,2014-08-20,5
+30045585,"SRM Round Configuration APIs - Set Round Segments API",Completed,200,31,2014-09-04,2014-10-04,2014-09-04,3
+30045585,"SRM Round Configuration APIs - Set Round Segments API",Completed,200,31,2014-09-04,2014-10-04,2014-09-05,1
+30045585,"SRM Round Configuration APIs - Set Round Segments API",Completed,200,31,2014-09-04,2014-10-04,2014-09-07,1
+30045643,"Web Arena - Add Grunt Jslint Task",Completed,30,31,2014-09-05,2014-10-05,2014-09-06,4
+30045699,"Create SRM Contest API Update",Completed,50,31,2014-09-09,2014-10-09,2014-09-09,5
+30045700,"Create Round API Update",Completed,50,31,2014-09-09,2014-10-09,2014-09-09,1
+30045724,"Web Arena - Play Sounds for Whisper and Reply to messages",Completed,50,31,2014-09-10,2014-10-10,2014-09-10,5
+30045724,"Web Arena - Play Sounds for Whisper and Reply to messages",Completed,50,31,2014-09-10,2014-10-10,2014-09-11,1
+30045725,"Web Arena - Fix Constraints Display Problem in Problem Statement Section",Completed,50,31,2014-09-10,2014-10-10,2014-09-10,5
+30045725,"Web Arena - Fix Constraints Display Problem in Problem Statement Section",Completed,50,31,2014-09-10,2014-10-10,2014-09-11,1
+30045725,"Web Arena - Fix Constraints Display Problem in Problem Statement Section",Completed,50,31,2014-09-10,2014-10-10,2014-09-13,1
+30045726,"Web Arena - Limit the Number Messages in the Chat Widget",Completed,80,31,2014-09-10,2014-10-10,2014-09-10,6
+30045741,"Web Arena - Contest Creation Wizard Update",Completed,50,31,2014-09-11,2014-10-11,2014-09-11,4
+30046175,"Web Arena - Division Leaderboard Pagination",Completed,500,31,2014-10-01,2014-10-31,2014-10-01,2
+30046175,"Web Arena - Division Leaderboard Pagination",Completed,500,31,2014-10-01,2014-10-31,2014-10-02,7
+30046175,"Web Arena - Division Leaderboard Pagination",Completed,500,31,2014-10-01,2014-10-31,2014-10-03,2
+30046194,"Web Arena - Match Clock Visibility",Completed,500,31,2014-10-02,2014-11-01,2014-10-02,4
+30046194,"Web Arena - Match Clock Visibility",Completed,500,31,2014-10-02,2014-11-01,2014-10-03,5
+30046220,"Web Arena - Standarize Names in Web Arena",Completed,50,31,2014-10-05,2014-11-04,2014-10-05,1
+30046221,"Web Arena - Update Sprite New Header",Completed,30,31,2014-10-05,2014-11-04,2014-10-05,2
+30046221,"Web Arena - Update Sprite New Header",Completed,30,31,2014-10-05,2014-11-04,2014-10-11,1
+30046361,"Build Arena Ideas Page",Completed,300,31,2014-10-09,2014-11-08,2014-10-09,9
+30046361,"Build Arena Ideas Page",Completed,300,31,2014-10-09,2014-11-08,2014-10-10,1
+30046361,"Build Arena Ideas Page",Completed,300,31,2014-10-09,2014-11-08,2014-10-12,1
+30046484,"Web Arena - Sprite Image Change",Completed,100,31,2014-10-14,2014-11-13,2014-10-14,8
+30046484,"Web Arena - Sprite Image Change",Completed,100,31,2014-10-14,2014-11-13,2014-10-15,6
+30046555,"TC API - Pratice Problems API - Query Improvement",Completed,150,31,2014-10-18,2014-11-17,2014-10-18,3
+30046555,"TC API - Pratice Problems API - Query Improvement",Completed,150,31,2014-10-18,2014-11-17,2014-10-19,1
+30046555,"TC API - Pratice Problems API - Query Improvement",Completed,150,31,2014-10-18,2014-11-17,2014-10-20,3
+30046555,"TC API - Pratice Problems API - Query Improvement",Completed,150,31,2014-10-18,2014-11-17,2014-10-21,1
+30046656,"TC API - Get Round Term API",Completed,80,31,2014-10-22,2014-11-21,2014-10-22,2
+30046656,"TC API - Get Round Term API",Completed,80,31,2014-10-22,2014-11-21,2014-10-23,1
+30046781,"Web Arena - Update Social Feature UI",Completed,100,31,2014-10-28,2014-11-27,2014-10-28,6
+30046781,"Web Arena - Update Social Feature UI",Completed,100,31,2014-10-28,2014-11-27,2014-10-29,2
+30046888,"Web Arena - Practice Problem Loading Issue",Completed,200,31,2014-10-31,2014-11-30,2014-10-31,5
+30047136,"Web Arena - Remove Type Column for Practice Problem Listing Page",Completed,100,31,2014-11-10,2014-12-10,2014-11-10,3
+30047136,"Web Arena - Remove Type Column for Practice Problem Listing Page",Completed,100,31,2014-11-10,2014-12-10,2014-11-11,2
+30047174,"Web Arena - Update Nav Icons",Completed,50,31,2014-11-11,2014-12-11,2014-11-11,3
+30047174,"Web Arena - Update Nav Icons",Completed,50,31,2014-11-11,2014-12-11,2014-11-12,2
+30047205,"Web Arena UI - Update Practice Problem Coding Page to show Match Editorial Link",Completed,60,31,2015-01-05,2015-02-04,2015-01-05,6
+30047205,"Web Arena UI - Update Practice Problem Coding Page to show Match Editorial Link",Completed,60,31,2015-01-05,2015-02-04,2015-01-06,1
+30047212,"TC API - Create SRM Contest Round API Update",Completed,50,31,2014-12-24,2015-01-23,2014-12-25,3
+30047212,"TC API - Create SRM Contest Round API Update",Completed,50,31,2014-12-24,2015-01-23,2014-12-26,3
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-24,3
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-25,5
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-26,2
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-27,1
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-28,1
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-11-30,3
+30047401,"Web Arena New Relic Monitoring",Completed,200,31,2014-11-24,2014-12-24,2014-12-02,2
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-05,3
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-07,4
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-13,1
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-19,1
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-24,1
+30047630,"Web Arena Fix - Problem Statement area sometimes gets empty when the area is expand or collapsed","Cancelled - Requirem",200,31,2014-12-05,2015-01-04,2014-12-29,1
+30047632,"TopCoder Competition Engine - Add Editorial Link For Matches",Completed,150,31,2015-01-05,2015-02-04,2015-01-05,8
+30047632,"TopCoder Competition Engine - Add Editorial Link For Matches",Completed,150,31,2015-01-05,2015-02-04,2015-01-06,1
+30047633,"Web Arena UI  - Add Settings Panel for Chat Widget",Completed,200,31,2014-12-05,2015-01-04,2014-12-05,6
+30047633,"Web Arena UI  - Add Settings Panel for Chat Widget",Completed,200,31,2014-12-05,2015-01-04,2014-12-07,2
+30047633,"Web Arena UI  - Add Settings Panel for Chat Widget",Completed,200,31,2014-12-05,2015-01-04,2014-12-08,2
+30047633,"Web Arena UI  - Add Settings Panel for Chat Widget",Completed,200,31,2014-12-05,2015-01-04,2014-12-10,1
+30047851,"Web Arena - Bug Fix I-131627",Completed,75,31,2014-12-08,2015-01-07,2014-12-09,3
+30047851,"Web Arena - Bug Fix I-131627",Completed,75,31,2014-12-08,2015-01-07,2014-12-13,3
+30047852,"Web Arena - Bug Fix I-135674","Cancelled - Client R",75,31,2014-12-08,2015-01-07,2014-12-09,2
+30047852,"Web Arena - Bug Fix I-135674","Cancelled - Client R",75,31,2014-12-08,2015-01-07,2014-12-13,1
+30047852,"Web Arena - Bug Fix I-135674","Cancelled - Client R",75,31,2014-12-08,2015-01-07,2014-12-19,1
+30047852,"Web Arena - Bug Fix I-135674","Cancelled - Client R",75,31,2014-12-08,2015-01-07,2014-12-23,1
+30047853,"Web Arena - Bug Fix I-141699","Cancelled - Client R",50,31,2014-12-08,2015-01-07,2014-12-09,4
+30047853,"Web Arena - Bug Fix I-141699","Cancelled - Client R",50,31,2014-12-08,2015-01-07,2014-12-11,1
+30047884,"Web Arena Fix - Fix Time Format in Match Schedule Calendar",Completed,100,31,2014-12-10,2015-01-09,2014-12-10,4
+30047885,"Web Arena Fix - Enter Proper Room From Room Assignment Pop up",Completed,100,31,2014-12-10,2015-01-09,2014-12-10,4
+30047885,"Web Arena Fix - Enter Proper Room From Room Assignment Pop up",Completed,100,31,2014-12-10,2015-01-09,2014-12-13,2
+30047904,"Web Arena - Bug Fix I-140110",Completed,75,31,2014-12-10,2015-01-09,2014-12-10,1
+30047904,"Web Arena - Bug Fix I-140110",Completed,75,31,2014-12-10,2015-01-09,2014-12-11,1
+30047904,"Web Arena - Bug Fix I-140110",Completed,75,31,2014-12-10,2015-01-09,2014-12-13,1
+30047909,"Web Arena Fix - Fix Scroll Problem for Rating Key and registrants panels in Chat Widget",Completed,100,31,2014-12-11,2015-01-10,2014-12-11,3
+30047913,"TopCoder Competition Engine Fix - Fix Registration Problem if SRM has Long Personal Question without Answer configured",Completed,100,31,2014-12-11,2015-01-10,2014-12-11,2
+30047913,"TopCoder Competition Engine Fix - Fix Registration Problem if SRM has Long Personal Question without Answer configured",Completed,100,31,2014-12-11,2015-01-10,2014-12-19,1
+30047913,"TopCoder Competition Engine Fix - Fix Registration Problem if SRM has Long Personal Question without Answer configured",Completed,100,31,2014-12-11,2015-01-10,2014-12-23,1
+30047913,"TopCoder Competition Engine Fix - Fix Registration Problem if SRM has Long Personal Question without Answer configured",Completed,100,31,2014-12-11,2015-01-10,2014-12-24,1
+30047964,"Web Arena - Bug Fix I-142561",Completed,75,31,2014-12-12,2015-01-11,2014-12-12,1
+30047964,"Web Arena - Bug Fix I-142561",Completed,75,31,2014-12-12,2015-01-11,2014-12-13,4
+30047964,"Web Arena - Bug Fix I-142561",Completed,75,31,2014-12-12,2015-01-11,2014-12-14,2
+30047965,"Web Arena - Bug Fix I-142562",Completed,75,31,2014-12-12,2015-01-11,2014-12-12,2
+30047965,"Web Arena - Bug Fix I-142562",Completed,75,31,2014-12-12,2015-01-11,2014-12-13,2
+30047965,"Web Arena - Bug Fix I-142562",Completed,75,31,2014-12-12,2015-01-11,2014-12-14,1
+30048007,"Web Arena - Missing Add Test Case Button for Practice and SRM Problems",Completed,50,31,2014-12-13,2015-01-12,2014-12-14,4
+30048007,"Web Arena - Missing Add Test Case Button for Practice and SRM Problems",Completed,50,31,2014-12-13,2015-01-12,2014-12-15,1
+30048007,"Web Arena - Missing Add Test Case Button for Practice and SRM Problems",Completed,50,31,2014-12-13,2015-01-12,2014-12-18,1
+30048007,"Web Arena - Missing Add Test Case Button for Practice and SRM Problems",Completed,50,31,2014-12-13,2015-01-12,2014-12-19,1
+30048008,"TopCoder Competition Engine - Figure out way to add Admin Role",Completed,80,31,2014-12-13,2015-01-12,2014-12-13,1
+30048008,"TopCoder Competition Engine - Figure out way to add Admin Role",Completed,80,31,2014-12-13,2015-01-12,2014-12-14,3
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-14,4
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-15,2
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-18,1
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-22,1
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-26,1
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-28,3
+30048009,"Web Arena - Scrolling Animation Delay Fix","Cancelled - Requirem",100,31,2014-12-13,2015-01-12,2014-12-29,1
+30048033,"Web Arena - Bug Fix Inconsistent Scroll Bar","Cancelled - Client R",75,31,2014-12-15,2015-01-14,2014-12-16,1
+30048033,"Web Arena - Bug Fix Inconsistent Scroll Bar","Cancelled - Client R",75,31,2014-12-15,2015-01-14,2014-12-18,1
+30048033,"Web Arena - Bug Fix Inconsistent Scroll Bar","Cancelled - Client R",75,31,2014-12-15,2015-01-14,2014-12-19,1
+30048033,"Web Arena - Bug Fix Inconsistent Scroll Bar","Cancelled - Client R",75,31,2014-12-15,2015-01-14,2014-12-23,2
+30048036,"TopCoder Web Module - Reg2 Callback is Not Working","Cancelled - Client R",100,31,2014-12-16,2015-01-15,2014-12-16,2
+30048036,"TopCoder Web Module - Reg2 Callback is Not Working","Cancelled - Client R",100,31,2014-12-16,2015-01-15,2014-12-18,3
+30048036,"TopCoder Web Module - Reg2 Callback is Not Working","Cancelled - Client R",100,31,2014-12-16,2015-01-15,2014-12-19,2
+30048037,"TopCoder Web Module - Fix Problem to Build and Deploy",Completed,100,31,2014-12-16,2015-01-15,2014-12-16,6
+30048037,"TopCoder Web Module - Fix Problem to Build and Deploy",Completed,100,31,2014-12-16,2015-01-15,2014-12-17,1
+30048037,"TopCoder Web Module - Fix Problem to Build and Deploy",Completed,100,31,2014-12-16,2015-01-15,2014-12-18,1
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-17,4
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-18,1
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-19,1
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-20,1
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-21,3
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-22,2
+30048038,"Web Arena - Remember Me  Fix",Completed,50,31,2014-12-17,2015-01-16,2014-12-23,2
+30048056,"Web Arena - Bug Fix I-143203",Completed,50,31,2014-12-17,2015-01-16,2014-12-17,1
+30048056,"Web Arena - Bug Fix I-143203",Completed,50,31,2014-12-17,2015-01-16,2014-12-18,1
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-17,2
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-18,3
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-19,3
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-22,1
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-23,1
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-24,1
+30048057,"Web Arena - Bug Fix I-143205",Completed,50,31,2014-12-17,2015-01-16,2014-12-25,1
+30048058,"Web Arena - Bug Fix Floating Footer",Completed,50,31,2014-12-17,2015-01-16,2014-12-17,5
+30048058,"Web Arena - Bug Fix Floating Footer",Completed,50,31,2014-12-17,2015-01-16,2014-12-18,1
+30048059,"TopCoder Competition Engine - Fix Challenge Message","Cancelled - Requirem",80,31,2014-12-17,2015-01-16,2014-12-17,7
+30048059,"TopCoder Competition Engine - Fix Challenge Message","Cancelled - Requirem",80,31,2014-12-17,2015-01-16,2014-12-18,3
+30048059,"TopCoder Competition Engine - Fix Challenge Message","Cancelled - Requirem",80,31,2014-12-17,2015-01-16,2014-12-19,3
+30048082,"Web Arena -  Fix Match Plan Issues",Completed,200,31,2014-12-18,2015-01-17,2014-12-18,5
+30048082,"Web Arena -  Fix Match Plan Issues",Completed,200,31,2014-12-18,2015-01-17,2014-12-19,8
+30048082,"Web Arena -  Fix Match Plan Issues",Completed,200,31,2014-12-18,2015-01-17,2014-12-20,1
+30048170,"Web Arena - Create Consolidated Setup Guide For Windows",Completed,100,31,2014-12-23,2015-01-22,2014-12-23,2
+30048170,"Web Arena - Create Consolidated Setup Guide For Windows",Completed,100,31,2014-12-23,2015-01-22,2014-12-24,3
+30048170,"Web Arena - Create Consolidated Setup Guide For Windows",Completed,100,31,2014-12-23,2015-01-22,2014-12-25,1
+30048188,"Web Arena - Create Consolidated Setup Guide For CentOS 6.x",Completed,50,31,2014-12-25,2015-01-24,2014-12-26,3
+30048189,"Web Arena - Create Consolidated Setup Guide For Ubuntu",Completed,50,31,2014-12-25,2015-01-24,2014-12-25,1
+30048189,"Web Arena - Create Consolidated Setup Guide For Ubuntu",Completed,50,31,2014-12-25,2015-01-24,2014-12-26,3
+30048189,"Web Arena - Create Consolidated Setup Guide For Ubuntu",Completed,50,31,2014-12-25,2015-01-24,2014-12-27,1
+30048190,"Web Arena - Create Consolidated Setup Guide For Mac OS X",Completed,60,31,2014-12-25,2015-01-24,2014-12-26,5
+30048230,"Web Arena Fix - Turn on auto end when creating SRM Round in Match Creation Wizard",Completed,50,31,2014-12-30,2015-01-29,2014-12-30,2
+30048304,"Github Wiki Creation - Create Wiki Page for Creating SRM Problem Using MPSQAS Client",Completed,50,31,2015-01-05,2015-02-04,2015-01-05,1
+30048305,"Github Wiki Creation - Create Wiki Page for Creating MM Problem Using MPSQAS Client",Completed,50,31,2015-01-05,2015-02-04,2015-01-05,3
+30048306,"Github Wiki Creation - Create Wiki Page for Creating Mararathon Match Using Admin Tool",Completed,30,31,2015-01-05,2015-02-04,2015-01-05,4
+30048307,"Github Wiki Creation - Create Wiki Page for Creating Single Round Match Using Admin Tool",Completed,40,31,2015-01-05,2015-02-04,2015-01-05,5
+30048337,"TC API - Set Round Components API Update",Completed,50,31,2015-01-06,2015-02-05,2015-01-06,2
+30048337,"TC API - Set Round Components API Update",Completed,50,31,2015-01-06,2015-02-05,2015-01-07,2
+30048338,"TC API - Get Rounds API Update",Completed,150,31,2015-01-06,2015-02-05,2015-01-06,2
+30048338,"TC API - Get Rounds API Update",Completed,150,31,2015-01-06,2015-02-05,2015-01-07,1
+30048339,"Web Arena UI Prototype - Update Icon for Run System Tests",Completed,50,31,2015-01-06,2015-02-05,2015-01-07,7
+30048369,"Web Arena - Show Editorial Link Properly in Practice Problem Coding Page",Completed,150,31,2015-01-08,2015-02-07,2015-01-08,1
+30048369,"Web Arena - Show Editorial Link Properly in Practice Problem Coding Page",Completed,150,31,2015-01-08,2015-02-07,2015-01-09,9
+30048392,"TC API  - Authoriziation Logic Update - flag Web Arena Super User Role",Completed,50,31,2015-01-12,2015-02-11,2015-01-12,7
+30048409,"Web Arena UI Prototype -  Update Coding Arena",Completed,150,31,2015-01-13,2015-02-12,2015-01-13,10
+30048433,"Web Arena UI Prototype - Fix Toggle for Theme Switcher",Completed,20,31,2015-01-13,2015-02-12,2015-01-13,1
+30048433,"Web Arena UI Prototype - Fix Toggle for Theme Switcher",Completed,20,31,2015-01-13,2015-02-12,2015-01-14,1
+30048435,"Web Arena UI - Current User Highlight in Chat Widget",Completed,30,31,2015-01-13,2015-02-12,2015-01-13,1
+30048435,"Web Arena UI - Current User Highlight in Chat Widget",Completed,30,31,2015-01-13,2015-02-12,2015-01-14,3
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-13,2
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-14,4
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-15,2
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-16,1
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-17,2
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-19,2
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-20,1
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-21,1
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-23,1
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-27,1
+30048437,"Web Arena - Fix 'Back to My Room' Button Displaying  Issue","Cancelled - Requirem",60,31,2015-01-13,2015-02-12,2015-01-30,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-14,8
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-15,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-16,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-18,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-20,1
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-21,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-22,1
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-23,3
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-25,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-26,2
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-27,3
+30048438,"Web Arena UI - Fix Coder History Popup Problem",Completed,100,31,2015-01-14,2015-02-13,2015-01-30,1
+30048439,"Web Arena UI Prototype - Fix Small DOT in Scrollbar",Completed,30,31,2015-01-14,2015-02-13,2015-01-14,2
+30048440,"Web Arena UI - Sort Rounds Drop down  by Round Name In Leaderboard",Completed,30,31,2015-01-14,2015-02-13,2015-01-14,9
+30048440,"Web Arena UI - Sort Rounds Drop down  by Round Name In Leaderboard",Completed,30,31,2015-01-14,2015-02-13,2015-01-15,1
+30048469,"TopCoder Competition Engine - Resize the Round Dialog To Show the Content Properly","Cancelled - Requirem",50,31,2015-01-15,2015-02-14,2015-01-15,2
+30048469,"TopCoder Competition Engine - Resize the Round Dialog To Show the Content Properly","Cancelled - Requirem",50,31,2015-01-15,2015-02-14,2015-01-16,5
+30048470,"Web Arena - Fix Problem to Change and Load Round",Completed,100,31,2015-01-15,2015-02-14,2015-01-16,5
+30048470,"Web Arena - Fix Problem to Change and Load Round",Completed,100,31,2015-01-15,2015-02-14,2015-01-17,3
+30048470,"Web Arena - Fix Problem to Change and Load Round",Completed,100,31,2015-01-15,2015-02-14,2015-01-18,4
+30048470,"Web Arena - Fix Problem to Change and Load Round",Completed,100,31,2015-01-15,2015-02-14,2015-01-19,1
+30048497,"TC API - Create SRM Round API Update",Completed,100,31,2015-01-19,2015-02-18,2015-01-19,3
+30048498,"TC API - Get Rounds API Update",Completed,100,31,2015-01-19,2015-02-18,2015-01-19,4
+30048498,"TC API - Get Rounds API Update",Completed,100,31,2015-01-19,2015-02-18,2015-01-20,1
+30048499,"TC API - Modify SRM Round API Update",Completed,60,31,2015-01-19,2015-02-18,2015-01-19,7
+30048500,"TC API - List SRM Problems API Update",Completed,60,31,2015-01-19,2015-02-18,2015-01-19,5
+30048527,"TC API - Create SRM Contest API and Modify SRM Contest API Update",Completed,60,31,2015-01-21,2015-02-20,2015-01-21,3
+30048540,"TC API - Set Round Language API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048541,"TC API - Set Round Segments API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048542,"TC API - List Round Problems API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,3
+30048543,"TC API - List Round Components API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048544,"TC API - Set Round Components API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048545,"TC API - Set Round Terms API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048546,"TC API - Get Round Questions API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048547,"TC API - Add Round Question API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048548,"TC API - Delete Round Question API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,1
+30048549,"TC API - Delete Round Question Answer API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048550,"TC API - Get Round Question Answers API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048551,"TC API - Add Round Question Answer API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048552,"TC API - Modify Round Question Answer API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048553,"TC API - Modify Round Question API Update",Completed,30,31,2015-01-22,2015-02-21,2015-01-22,2
+30048589,"Web Arena - Add Sponsorship Logo Configs",Completed,50,31,2015-01-25,2015-02-24,2015-01-25,2
+30048589,"Web Arena - Add Sponsorship Logo Configs",Completed,50,31,2015-01-25,2015-02-24,2015-01-26,2
+30048589,"Web Arena - Add Sponsorship Logo Configs",Completed,50,31,2015-01-25,2015-02-24,2015-01-27,1
+30048589,"Web Arena - Add Sponsorship Logo Configs",Completed,50,31,2015-01-25,2015-02-24,2015-01-30,1
+30048593,"Web Arena - Update Set Terms Dialog",Completed,80,31,2015-01-25,2015-02-24,2015-01-25,2
+30048593,"Web Arena - Update Set Terms Dialog",Completed,80,31,2015-01-25,2015-02-24,2015-01-26,2
+30048594,"TopCoder Competition Engine - Support Instant Match Type",Completed,200,31,2015-01-26,2015-02-25,2015-01-26,8
+30048594,"TopCoder Competition Engine - Support Instant Match Type",Completed,200,31,2015-01-26,2015-02-25,2015-01-27,1
+30048742,"Web Arena - Support Match Brackets Addon in Coding Page",Completed,100,31,2015-01-30,2015-03-01,2015-01-30,6
+30048756,"TC 3.0 VM Update - Setup Cloud9 IDE for Arena Codebase",Completed,100,31,2015-01-31,2015-03-02,2015-01-31,5
+30048779,"TopCoder Competition Engine - Code Analysis for Last Event Data",Completed,80,31,2015-02-02,2015-03-04,2015-02-02,7

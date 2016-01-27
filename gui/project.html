@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project status</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2 id="header">Registration in time for project with PID </h2>
+
+		<p align="center"> Sort by </p>
+		<div id="button-wrap-sort">
+	        <div id="prize" class="button">PRIZE</div>
+	        <div id="name" class="button">NAME</div>
+      	</div>
+
+      	<p align="center"> Filter by </p>
+		<div id="button-wrap-filter">
+			<div id="all" data-filter="*" class="button">ALL</div>
+	        <div id="completed" data-filter=".completed" class="button">COMPLETED</div>
+	        <div id="uncompleted" data-filter=".uncompleted" class="button">UNCOMPLETED</div>
+      	</div>
+
+		<div id="vis"></div>
+	</div>
+
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+	<script src="js/libs/coffee-script.js"></script>
+	<script src="js/libs/isotope.pkgd.min.js"></script>
+	<script src="js/libs/d3.min.js"></script>
+	<script src="js/libs/queue.min.js"></script>
+	<script type="text/coffeescript" src="coffee/tasks.coffee"></script>
+</body>
+<html>

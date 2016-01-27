@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Worker registrations</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<h2 align="center">Visualizing worker activity in time</h2>
+		<br> <br>
+		<div class="row">
+			<div class="col-sm-6">
+				<div id="chart"></div>
+			</div>
+			<div class="col-sm-6">
+				<div id="chart2"></div>
+			</div>
+		</div>
+
+		<div class="row" style="height: 100px;">
+			<svg width="1200" height="200">
+				<g class="legend" transform="translate(20, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: orange;"></circle>
+					<text x="22" y="14">First2Finish</text>
+				</g>
+				<g class="legend" transform="translate(120, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: green;"></circle>
+					<text x="22" y="14">UI Prototype Competition</text>
+				</g>
+				<g class="legend" transform="translate(270, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: yellow;"></circle>
+					<text x="22" y="14">Assembly Competition</text>
+				</g>
+				<g class="legend" transform="translate(420, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: red;"></circle>
+					<text x="22" y="14">Code</text>
+				</g>
+				<g class="legend" transform="translate(520, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: blue;"></circle>
+					<text x="22" y="14">Design</text>
+				</g>
+
+				<g class="legend" transform="translate(800, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: black;"></circle>
+					<text x="22" y="14">Not submitted</text>
+				</g>
+				<g class="legend" transform="translate(1000, 0)">
+					<circle cx="10" cy="10" r="10" style="fill: #80ff00;"></circle>
+					<text x="22" y="14">Submitted</text>
+				</g>
+			</svg>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div id="pie1" align="center"></div>
+			</div>
+			<div class="col-sm-6" align="center">
+				<div id="pie2"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+	<script src="js/libs/coffee-script.js"></script>
+	<script src="js/libs/d3.min.js"></script>
+	<script src="js/libs/queue.min.js"></script>
+	<script src="js/worker_scatterplot.js"></script>
+</body>
+<html>

@@ -1,0 +1,141 @@
+.chart {
+	float: left;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-top:0;
+	padding-left:0;
+}
+
+.chart2 {
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-top:0;
+  padding-left:0;
+}
+
+.background {
+	fill: #F0F0F5;
+}
+
+.title {
+	font-size: 12px;
+	font-weight: bold
+}
+
+.info {
+	font-size: 10px;
+}
+
+.mouse_preview {
+  pointer-events: all;
+  cursor: pointer;
+  fill: #F0F0F5;
+}
+
+.area-unf {
+  fill: #FF0000;
+}
+
+.area {
+  fill: #cec6b9;
+}
+
+.line {
+  fill: none;
+  stroke: #74736c;
+  stroke-width: 1.4px;
+}
+
+svg {
+  font-size: 10px;
+}
+
+.axis line, .grid line {
+  stroke-width: .5px;
+  shape-rendering: crispEdges;
+  stroke: #fff;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.axis path {
+  display: none;
+}
+
+.hidden {
+  display:none;
+  opacity: 0.0;
+}
+
+#button-wrap-sort {
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+#button-wrap-filter {
+  width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.button {
+  cursor: pointer;
+  float: left;
+  width: 107px;
+  height: 30px;
+  text-align: center;
+  background: #fcfcfc;
+  border: 1px solid #cecece;
+  display: block;
+  padding-top: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.button.active {
+  box-shadow: inset 0px 0px 7px rgba(0,0,0,0.18);
+  pointer-events: none;
+  background-color: #e6e6e6;
+}
+
+#button-handles {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+body { font: 12px Arial;}
+
+path { 
+    stroke: black;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.slice text {
+  font-size: 16pt;
+  font-family: Arial;
+}
