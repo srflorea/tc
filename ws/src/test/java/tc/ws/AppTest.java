@@ -1,13 +1,13 @@
 package tc.ws;
 
-/*import junit.framework.Test;
+import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
  * Unit test for simple App.
  */
-/*public class AppTest 
+public class AppTest 
     extends TestCase
 {
     /**
@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
      *
      * @param testName name of the test case
      */
-  /*  public AppTest( String testName )
+    public AppTest( String testName )
     {
         super( testName );
     }
@@ -23,7 +23,7 @@ import junit.framework.TestSuite;
     /**
      * @return the suite of tests being tested
      */
-    /*public static Test suite()
+    public static Test suite()
     {
         return new TestSuite( AppTest.class );
     }
@@ -31,8 +31,8 @@ import junit.framework.TestSuite;
     /**
      * Rigourous Test :-)
      */
-    /*public void testApp()
+    public void testApp()
     {
         assertTrue( true );
     }
-}*/
+}

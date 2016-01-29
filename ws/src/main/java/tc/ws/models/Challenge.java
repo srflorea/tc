@@ -1,13 +1,13 @@
 package tc.ws.models;
 
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "challenge")
-*/public class Challenge {
+public class Challenge {
 
 	public enum Fields {
 		CHALLENGE_ID("challengeId"),
@@ -25,14 +25,14 @@ import javax.persistence.Table;
 		}
 	}
 	
-	//@Id
-	//@Column(name = "challengeId")
+	@Id
+	@Column(name = "challengeId")
 	private long challengeId;
 	
-	//@Column(name = "challengeName")
+	@Column(name = "challengeName")
 	private String challengeName;
 	
-	//@Column(name = "projectId")
+	@Column(name = "projectId")
 	private long projectId;
 	
 	public Challenge() {}

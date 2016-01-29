@@ -18,7 +18,7 @@
         <!-- Specify session context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
-		<mapping class="cs.ws.Challenge"/>
+		<mapping class="tc.ws.models.Challenge"/>
 
     </session-factory>
 
