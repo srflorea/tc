@@ -159,7 +159,8 @@ SmallMultiples = () ->
 				.call(yAxis)
 
 	showWorkers = (d, i) ->
-		url = 'workers.html';
+		challengeId = d.values[0].challenge_id
+		url = 'workers.html?challengeId=' + challengeId;
 		window.open url, '_self'
 
 	return chart
@@ -204,6 +205,7 @@ makeValues = (values) ->
 				no_of_reg += oldValue.no_of_reg
 		newValues.push { 
 			challenge_name: values[0].challenge_name,
+			challenge_id: values[0].challenge_id,
 			reg_start: values[0].reg_start,
 			reg_end: values[0].reg_end,
 			day: day + 1,

@@ -1,3 +1,7 @@
+/*get challengeId (from the parameters) to be loaded */
+var qs = getQueryStrings();
+var challengeId = qs["challengeId"];
+
 var tempColor;
 
 var margin = { top: 30, right: 30, bottom: 100, left: 80 };
@@ -12,26 +16,8 @@ var tooltip = d3.select('body').append('div')
 						.style('padding', '0 10px')
 						.style('background', 'white')
 						.style('opacity', '0')
-
-/*function getQueryStrings() { 
-  var assoc  = {};
-  var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
-  var queryString = location.search.substring(1); 
-  var keyValues = queryString.split('&'); 
-
-  for(var i in keyValues) { 
-    var key = keyValues[i].split('=');
-    if (key.length > 1) {
-      assoc[decode(key[0])] = decode(key[1]);
-    }
-  } 
-
-  return assoc; 
-}
-
-var qs = getQueryStrings();
-var myParam = qs["projectId"]; 
-
+ 
+/*
 var element = document.getElementById("header");
 element.innerHTML += myParam;
 */
@@ -60,18 +46,23 @@ function updateData(id) {
 	bardata = [];
 	xs = [];
 
-	fileName = 'data/30048038_handles_reliability_ratings.csv'
+	//fileName = 'data/30048038_handles_reliability_ratings.csv'
+	url = "http://localhost:8080/handles/ratings?challengeId=" + challengeId;
 	if (id == "rating") {
-		fileName = 'data/30048038_handles_ratings.csv'
+		url = "http://localhost:8080/handles/ratings?challengeId=" + challengeId;
+		//fileName = 'data/30048038_handles_ratings.csv'
 	} else if(id == "rel-rating") {
-		fileName = 'data/30048038_handles_reliability_ratings.csv'
+		url = "http://localhost:8080/handles/ratings?challengeId=" + challengeId;
+		//fileName = 'data/30048038_handles_reliability_ratings.csv'
 	} else if(id == "registrations") {
-		fileName = 'data/30048038_handles_registrations.csv'
+		url = "http://localhost:8080/handles/ratings?challengeId=" + challengeId;
+		//fileName = 'data/30048038_handles_registrations.csv'
 	} else if(id == "submissions") {
-		fileName = 'data/30048038_handles_submissions.csv'
+		url = "http://localhost:8080/handles/ratings?challengeId=" + challengeId;
+		//fileName = 'data/30048038_handles_submissions.csv'
 	}
 
-	d3.csv(fileName, function(data) {
+	d3.json(url, function(data) {
 
 		data.forEach(function (d) { 
 			d.y = +yValue(d);

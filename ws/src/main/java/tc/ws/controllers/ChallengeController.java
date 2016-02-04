@@ -60,7 +60,7 @@ public class ChallengeController {
 		"	from relation_c_r 											" +
 		"	join handle_rating											" +
 		"		on relation_c_r.handle = handle_rating.handle			" +
-		"	where relation_c_r.challengeId = 30048038					" +
+		"	where relation_c_r.challengeId = :challengeId				" +
 		"	group by relation_c_r.handle								" +
 		"	order by registrationDate;									";
 	
@@ -106,7 +106,7 @@ public class ChallengeController {
 		query.addScalar("handle", StringType.INSTANCE);
 		query.addScalar("y", DoubleType.INSTANCE);
 		query.addScalar("submitted", IntegerType.INSTANCE);
-		//query.setLong("challengeId", challengeId);
+		query.setLong("challengeId", challengeId);
 		query.setResultTransformer(Transformers.aliasToBean(Handle.class));
 		List<Handle> list = query.list();
 	
