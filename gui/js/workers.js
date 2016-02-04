@@ -191,7 +191,8 @@ function updateData(id) {
 			})
 			.attr('transform', 'rotate(-65)')
 			.on('click', function (d) {
-				window.open('worker_scatterplot.html', '_self')
+				url = 'worker_scatterplot.html?handle=' + data[d].handle;
+				window.open(url, '_self')
 			})
 
 		d3.select('svg').append('text')

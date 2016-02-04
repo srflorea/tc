@@ -1,3 +1,19 @@
+function getQueryStrings() { 
+  var assoc  = {};
+  var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
+  var queryString = location.search.substring(1); 
+  var keyValues = queryString.split('&'); 
+
+  for(var i in keyValues) { 
+    var key = keyValues[i].split('=');
+    if (key.length > 1) {
+      assoc[decode(key[0])] = decode(key[1]);
+    }
+  } 
+
+  return assoc; 
+}
+
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 30, left: 50},
     width = 600 - margin.left - margin.right,
@@ -51,10 +67,17 @@ var svg2 = d3.select("#chart2")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
 
+var qs = getQueryStrings();
+var handle = qs["handle"];
 
+var url = "http://localhost:8080/registrations?handle=" + handle;
 // Get the data
-d3.csv("data/savon_cn_registrations.csv", function(error, data) {
+d3.json(url, function(error, data) {
     data.forEach(function(d) {
+        if (d.prize > 10000) {
+            var i = data.indexOf(d);
+            data.splice(i, 1)
+        }
         d.date = parseDate(d.date);
         d.prize = +d.prize;
     });
@@ -127,8 +150,8 @@ d3.csv("data/savon_cn_registrations.csv", function(error, data) {
 
     var new_data = compute_data_for_pie1(data);
     var total_no = d3.sum(new_data, function(d) {return d.values;});
-    console.log(new_data);
-    console.log(total_no);
+    //console.log(new_data);
+    //console.log(total_no);
 
     var vis = d3.select('#pie1').append("svg:svg").data([new_data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
     var pie = d3.layout.pie().value(function(d){return d.values;});
@@ -140,7 +163,7 @@ d3.csv("data/savon_cn_registrations.csv", function(error, data) {
     var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");
     arcs.append("svg:path")
         .style("fill", function(d, i){
-            return colors[i];
+            return tasks_colors[d.data.key];
         })
         .attr("d", function (d) {
             // log the result of the arc generator to show how cool it is :)
@@ -186,8 +209,12 @@ function compute_data_for_pie2(data) {
 }
 
 // Get the data
-d3.csv("data/savon_cn_registrations.csv", function(error, data) {
+d3.json(url, function(error, data) {
     data.forEach(function(d) {
+        if (d.prize > 10000) {
+            var i = data.indexOf(d);
+            data.splice(i, 1)
+        }
         d.date = parseDate(d.date);
         d.prize = +d.prize;
     });
