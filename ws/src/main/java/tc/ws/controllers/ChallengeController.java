@@ -2,8 +2,6 @@ package tc.ws.controllers;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -21,48 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import tc.ws.models.Challenge;
 import tc.ws.models.Handle;
 import tc.ws.models.Registration;
+import tc.ws.utils.HandleInfoType;
 import tc.ws.utils.HibernateUtils;
+import tc.ws.utils.Queries;
 
 @RestController
 public class ChallengeController {
-
-	public static final String SELECT_REGISTRATIONS_QUERY =
-		"	select " +
-		"	date(relation_c_r.registrationDate) date,	" +
-		"	challenge.totalPrize prize,					" +
-		"    case 										" +
-		"		when challenge.challengeType = \"Code\"	" +
-		"			then \"Code\"							" +
-		"		when challenge.challengeType = \"UI Prototype Competition\"	" +
-		"			then \"UI Prototype Competition\"							" +
-		"		when challenge.challengeType = \"Assembly Competition\"			" +
-		"			then \"Assembly Competition\"								" +
-		"		when (challenge.challengeType = \"Specification\" or challenge.challengeType = \"Design\" or challenge.challengeType = \"Conceptualization\") " +
-		"			then \"Design\"	" +
-		"		when (challenge.challengeType = \"Test Suites\" or challenge.challengeType = \"Test Scenarios\") "+
-		"			then \"testing\" " +
-		"		when challenge.challengeType = \"First2Finish\" " +
-		"			then \"First2Finish\" " +
-		"		else challenge.challengeType " +
-		"	end as type, " +
-		"   relation_c_r.submissionDate != 0 as submitted " +
-		"from relation_c_r " +
-		"join challenge " +
-		"	on relation_c_r.challengeId = challenge.challengeId " +
-		"where handle = :handle " + // \"savon_cn\" " +
-		"order by date; ";
-	
-	public static final String SELECT_HANDLES_RATINGS =
-		"	select 														" +
-		"	relation_c_r.handle,										" +
-		"	avg(handle_rating.rating) as y,								" +
-		"    relation_c_r.submissionDate != 0 as submitted				" +
-		"	from relation_c_r 											" +
-		"	join handle_rating											" +
-		"		on relation_c_r.handle = handle_rating.handle			" +
-		"	where relation_c_r.challengeId = :challengeId				" +
-		"	group by relation_c_r.handle								" +
-		"	order by registrationDate;									";
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/challenges")
@@ -84,7 +46,7 @@ public class ChallengeController {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		SQLQuery query = session.createSQLQuery(SELECT_REGISTRATIONS_QUERY);
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_REGISTRATIONS_QUERY);
 		query.addScalar("date", DateType.INSTANCE);
 		query.addScalar("prize", LongType.INSTANCE);
 		query.addScalar("type", StringType.INSTANCE);
@@ -96,13 +58,20 @@ public class ChallengeController {
 		return list;
 	}
 	
-	@RequestMapping("/handles/ratings")
-	public List<Handle> handles(@RequestParam Long challengeId) {
+	@RequestMapping("/handles/info")
+	public List<Handle> handles(@RequestParam Long challengeId, @RequestParam Long type) {
+		
+		String queryString = Queries.SELECT_HANDLES_RATINGS;
+		if (type == HandleInfoType.RATING.getId()) {
+			queryString = Queries.SELECT_HANDLES_RATINGS;
+		} else if (type == HandleInfoType.REL_RATING.getId()) {
+			queryString = Queries.SELECT_HANDLES_REL_RATINGS;
+		}
 		
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		SQLQuery query = session.createSQLQuery(SELECT_HANDLES_RATINGS);
+		SQLQuery query = session.createSQLQuery(queryString);
 		query.addScalar("handle", StringType.INSTANCE);
 		query.addScalar("y", DoubleType.INSTANCE);
 		query.addScalar("submitted", IntegerType.INSTANCE);
