@@ -53,6 +53,7 @@ public class ChallengeController {
 		query.addScalar("submitted", IntegerType.INSTANCE);
 		query.setString("handle", handle);
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
+		@SuppressWarnings("unchecked")
 		List<Registration> list = query.list();
 	
 		return list;
@@ -67,7 +68,7 @@ public class ChallengeController {
 		} else if (type == HandleInfoType.REL_RATING.getId()) {
 			queryString = Queries.SELECT_HANDLES_REL_RATINGS;
 		}
-		
+
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -77,6 +78,7 @@ public class ChallengeController {
 		query.addScalar("submitted", IntegerType.INSTANCE);
 		query.setLong("challengeId", challengeId);
 		query.setResultTransformer(Transformers.aliasToBean(Handle.class));
+		@SuppressWarnings("unchecked")
 		List<Handle> list = query.list();
 	
 		return list;
