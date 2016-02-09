@@ -13,3 +13,7 @@ function getQueryStrings() {
 
   return assoc; 
 }
+
+function getWebServerURL() {
+  return "http://tcws.herokuapp.com";
+}

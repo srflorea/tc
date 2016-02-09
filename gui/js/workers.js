@@ -2,6 +2,8 @@
 var qs = getQueryStrings();
 var challengeId = qs["challengeId"];
 
+var wsUrl = getWebServerURL();
+
 var tempColor;
 
 var margin = { top: 30, right: 30, bottom: 100, left: 80 };
@@ -47,22 +49,17 @@ function updateData(id) {
 	xs = [];
 
 	//fileName = 'data/30048038_handles_reliability_ratings.csv'
-	url = "http://localhost:8080/handles/info?challengeId=" + challengeId;
-	url += "&type=1"
+	url = wsUrl + "/handles/info?challengeId=" + challengeId;
 	if (id == "rating") {
-		url = "http://localhost:8080/handles/info?challengeId=" + challengeId;
 		url += "&type=1";
 		//fileName = 'data/30048038_handles_ratings.csv'
 	} else if(id == "rel-rating") {
-		url = "http://localhost:8080/handles/info?challengeId=" + challengeId;
 		url += "&type=2";
 		//fileName = 'data/30048038_handles_reliability_ratings.csv'
 	} else if(id == "registrations") {
-		url = "http://localhost:8080/handles/info?challengeId=" + challengeId;
 		url += "&type=1";
 		//fileName = 'data/30048038_handles_registrations.csv'
 	} else if(id == "submissions") {
-		url = "http://localhost:8080/handles/info?challengeId=" + challengeId;
 		url += "&type=1";
 		//fileName = 'data/30048038_handles_submissions.csv'
 	}

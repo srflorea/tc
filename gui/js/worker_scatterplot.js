@@ -1,18 +1,4 @@
-function getQueryStrings() { 
-  var assoc  = {};
-  var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
-  var queryString = location.search.substring(1); 
-  var keyValues = queryString.split('&'); 
-
-  for(var i in keyValues) { 
-    var key = keyValues[i].split('=');
-    if (key.length > 1) {
-      assoc[decode(key[0])] = decode(key[1]);
-    }
-  } 
-
-  return assoc; 
-}
+var wsUrl = getWebServerURL();
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 30, left: 50},
@@ -70,7 +56,7 @@ var svg2 = d3.select("#chart2")
 var qs = getQueryStrings();
 var handle = qs["handle"];
 
-var url = "http://localhost:8080/registrations?handle=" + handle;
+var url =  wsUrl + "/registrations?handle=" + handle;
 // Get the data
 d3.json(url, function(error, data) {
     data.forEach(function(d) {
