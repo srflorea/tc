@@ -12,6 +12,7 @@ import org.hibernate.type.DoubleType;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,8 @@ public class ChallengeController {
 
 		return challenges;
 	}
-	
+
+	@CrossOrigin
 	@RequestMapping("/registrations")
 	public List<Registration> registrations(@RequestParam(value="handle") String handle) {
 
@@ -58,7 +60,8 @@ public class ChallengeController {
 	
 		return list;
 	}
-	
+
+	@CrossOrigin
 	@RequestMapping("/handles/info")
 	public List<Handle> handles(@RequestParam Long challengeId, @RequestParam Long type) {
 		
