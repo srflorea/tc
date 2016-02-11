@@ -57,10 +57,10 @@ function updateData(id) {
 		url += "&type=2";
 		//fileName = 'data/30048038_handles_reliability_ratings.csv'
 	} else if(id == "registrations") {
-		url += "&type=1";
+		url += "&type=3";
 		//fileName = 'data/30048038_handles_registrations.csv'
 	} else if(id == "submissions") {
-		url += "&type=1";
+		url += "&type=4";
 		//fileName = 'data/30048038_handles_submissions.csv'
 	}
 

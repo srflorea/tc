@@ -70,6 +70,10 @@ public class ChallengeController {
 			queryString = Queries.SELECT_HANDLES_RATINGS;
 		} else if (type == HandleInfoType.REL_RATING.getId()) {
 			queryString = Queries.SELECT_HANDLES_REL_RATINGS;
+		} else if (type == HandleInfoType.NO_OF_REG.getId()) {
+			queryString = Queries.SELECT_HANDLES_NO_OF_REG;
+		} else if (type == HandleInfoType.NO_OF_SUB.getId()) {
+			queryString = Queries.SELECT_HANDLES_NO_OF_SUB;
 		}
 
 		Session session = HibernateUtils.getSessionFactory().openSession();
