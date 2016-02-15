@@ -8,7 +8,8 @@ public class Registration {
 	private long prize;
 	private String type;
 	private int submitted;
-
+	private long projectId;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -32,5 +33,11 @@ public class Registration {
 	}
 	public void setSubmitted(int submitted) {
 		this.submitted = submitted;
+	}
+	public long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 }

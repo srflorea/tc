@@ -53,6 +53,7 @@ public class ChallengeController {
 		query.addScalar("prize", LongType.INSTANCE);
 		query.addScalar("type", StringType.INSTANCE);
 		query.addScalar("submitted", IntegerType.INSTANCE);
+		query.addScalar("projectId", LongType.INSTANCE);
 		query.setString("handle", handle);
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
 		@SuppressWarnings("unchecked")

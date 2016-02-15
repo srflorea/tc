@@ -209,7 +209,8 @@ makeValues = (values) ->
 			reg_start: values[0].reg_start,
 			reg_end: values[0].reg_end,
 			day: day + 1,
-			reg_date: new Date(date), no_of_reg: no_of_reg,
+			reg_date: new Date(date),
+			no_of_reg: no_of_reg,
 			status: values[0].status,
 			prize: values[0].prize
 		}

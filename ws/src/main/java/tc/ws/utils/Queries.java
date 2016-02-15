@@ -21,7 +21,8 @@ public class Queries {
 			"			then \"First2Finish\" " +
 			"		else challenge.challengeType " +
 			"	end as type, " +
-			"   relation_c_r.submissionDate != 0 as submitted " +
+			"   relation_c_r.submissionDate != 0 as submitted, " +
+			"	challenge.projectId as projectId					" +
 			"from relation_c_r " +
 			"join challenge " +
 			"	on relation_c_r.challengeId = challenge.challengeId " +
