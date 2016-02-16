@@ -101,6 +101,6 @@ public class Queries {
 				"	from relation_c_r										" +
 				"	join challenge											" +
 				"		on relation_c_r.challengeId = challenge.challengeId " +
-				"	where projectId = 7377									" +
+				"	where projectId = :projectId							" +
 				"	group by challengeId, registrationDate;					";
 }

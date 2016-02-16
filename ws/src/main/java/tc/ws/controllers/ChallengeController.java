@@ -91,9 +91,9 @@ public class ChallengeController {
 	
 		return list;
 	}
-	
+
 	@RequestMapping("/projectChallenges")
-	public List<ChallengeRegistration> getProjectChallenges() {
+	public List<ChallengeRegistration> getProjectChallenges(@RequestParam Long projectId) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -108,11 +108,12 @@ public class ChallengeController {
 		query.addScalar("registrationDate", DateType.INSTANCE);
 		query.addScalar("registrationStart", DateType.INSTANCE);
 		query.addScalar("noOfRegistrations", IntegerType.INSTANCE);
+		query.setLong("projectId", projectId);
 		query.setResultTransformer(Transformers.aliasToBean(ChallengeRegistration.class));
 
 		@SuppressWarnings("unchecked")
 		List<ChallengeRegistration> list = query.list();
-		
+
 		return list;
 	}
 }

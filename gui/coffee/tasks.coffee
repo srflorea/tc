@@ -279,7 +279,7 @@ $ ->
 	# inefficient, but its good to know about).
 	# https://github.com/mbostock/queue
 	queue()
-		.defer(d3.json, "http://localhost:8080/projectChallenges")
+		.defer(d3.json, "http://tcws.herokuapp.com/projectChallenges?projectId=" + projectId)
 		#.defer(d3.csv, "data/7377_reg_in_time_all.csv")
 		.await(display)
 
