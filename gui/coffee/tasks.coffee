@@ -13,10 +13,10 @@ getQueryStrings = () ->
 	assoc
 
 qs = getQueryStrings();
-myParam = qs["projectId"]; 
+projectId = qs["projectId"]; 
 
 element = document.getElementById("header");
-element.innerHTML += myParam;
+element.innerHTML += projectId;
 
 SmallMultiples = () ->
 	# variables accessible to
@@ -31,7 +31,7 @@ SmallMultiples = () ->
 	# x and y values. This makes it easier to
 	# swap in your own data!
 	xValue = (d) -> d.day
-	yValue = (d) -> d.no_of_reg
+	yValue = (d) -> d.noOfRegistrations
 
 	# back at the top of the function...
 	xScale = d3.time.scale().range([0,width])
@@ -63,7 +63,12 @@ SmallMultiples = () ->
 		maxY = d3.max(data, (c) -> d3.max(c.values, (d) -> yValue(d)))
 		maxY = maxY + (maxY * 1/4)
 		yScale.domain([0,maxY])
-		extentX = d3.extent(data[0].values, (d) -> xValue(d))
+		#extentX = d3.extent(data[0].values, (d) -> xValue(d))
+		#xScale.domain(extentX)
+
+	# trying to change the scale while loading another small multiple
+	changeXScale = (data) ->
+		extentX = d3.extent(data, (d) -> xValue(d))
 		xScale.domain(extentX)
 
 
@@ -115,12 +120,17 @@ SmallMultiples = () ->
 					else
 						"area"))
 				.style("pointer-events", "none")
-				.attr("d", (c) -> area(c.values))
+				.attr("d", (c) -> 
+					changeXScale(c.values)
+					#console.log(c.values)
+					area(c.values))
 
 			lines.append("path")
 				.attr("class", "line")
 				.style("pointer-events", "none")
-				.attr("d", (c) -> line(c.values))
+				.attr("d", (c) -> 
+					changeXScale(c.values)
+					line(c.values))
 
 
 			lines = g.append("g")
@@ -130,7 +140,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", height)
 				.attr("dy", margin.bottom / 2 + 5)
-				.text((c) -> c.values[0].challenge_name.substring(0,25))
+				.text((c) -> c.values[0].challengeName.substring(0,25))
 
 			lines.append("text")
 				.attr("class", "static_year")
@@ -139,7 +149,7 @@ SmallMultiples = () ->
 				.attr("dy", 13)
 				.attr("y", height)
 				.attr("x", 0)
-				.text((c) -> ((c.values[0].reg_start.getUTCMonth() + 1) + "/" + c.values[0].reg_start.getUTCDate()))
+				.text((c) -> ((c.values[0].registrationStart.getUTCMonth() + 1) + "/" + c.values[0].registrationStart.getUTCDate()))
 
 			lines.append("text")
 				.attr("class", "static_year")
@@ -148,7 +158,7 @@ SmallMultiples = () ->
 				.attr("dy", 13)
 				.attr("y", height)
 				.attr("x", width + 11)
-				.text((c) -> ((c.values[0].reg_end.getUTCMonth() + 1) + "/" + c.values[0].reg_end.getUTCDate()))
+				.text((c) -> ((c.values[0].registrationEnd.getUTCMonth() + 1) + "/" + c.values[0].registrationEnd.getUTCDate()))
 
 
 
@@ -159,7 +169,7 @@ SmallMultiples = () ->
 				.call(yAxis)
 
 	showWorkers = (d, i) ->
-		challengeId = d.values[0].challenge_id
+		challengeId = d.values[0].challengeId
 		url = 'workers.html?challengeId=' + challengeId;
 		window.open url, '_self'
 
@@ -178,13 +188,13 @@ transformData = (rawData) ->
 	format = d3.time.format("%Y-%m-%d")
 	rawData.forEach (d) ->
 		d.prize = +d.prize
-		d.no_of_reg = +d.no_of_reg
-		d.reg_date = format.parse(d.reg_date)
-		d.reg_start = format.parse(d.reg_start)
-		d.reg_end = format.parse(d.reg_end)
+		d.noOfRegistrations = +d.noOfRegistrations
+		d.registrationDate = format.parse(d.registrationDate)
+		d.registrationStart = format.parse(d.registrationStart)
+		d.registrationEnd = format.parse(d.registrationEnd)
 	nest = d3.nest()
-		.key((d) -> d.challenge_name)
-		.sortValues((a,b) -> d3.ascending(a.reg_date, b.reg_date))
+		.key((d) -> d.challengeName)
+		.sortValues((a,b) -> d3.ascending(a.registrationDate, b.registrationDate))
 		.entries(rawData)
 
 	nest.forEach (d) ->
@@ -194,27 +204,27 @@ transformData = (rawData) ->
 
 makeValues = (values) ->
 	newValues = []
-	start = values[0].reg_start;
+	start = values[0].registrationStart;
 
-	no_of_reg = 0
-	for day in [0..30]
+	noOfRegistrations = 0
+	for day in [0..values[0].daysLength]
 		date = new Date(start)
 		date.setDate(date.getDate() + day)
 		for oldValue in values
-			if oldValue.reg_date.getTime() == date.getTime()
-				no_of_reg += oldValue.no_of_reg
+			if oldValue.registrationDate.getTime() == date.getTime()
+				noOfRegistrations += oldValue.noOfRegistrations
 		newValues.push { 
-			challenge_name: values[0].challenge_name,
-			challenge_id: values[0].challenge_id,
-			reg_start: values[0].reg_start,
-			reg_end: values[0].reg_end,
+			challengeName: values[0].challengeName,
+			challengeId: values[0].challengeId,
+			registrationStart: values[0].registrationStart,
+			registrationEnd: values[0].registrationEnd,
 			day: day + 1,
-			reg_date: new Date(date), no_of_reg: no_of_reg,
+			registrationDate: new Date(date),
+			noOfRegistrations: noOfRegistrations,
 			status: values[0].status,
 			prize: values[0].prize
 		}
 
-	#console.log(newValues)
 	newValues
 
 setupIsoytpe = () ->
@@ -255,12 +265,11 @@ $ ->
 	# the data has been successfully loaded
 	# and we can start visualizing!!
 	# ---
-	display = (error, rawData) ->    
+	display = (error, rawData) ->
 		if error
 			console.log(error)
 
 		data = transformData(rawData)
-		console.log(data)
 		plotData("#vis", data, plot)
 		setupIsoytpe()
 
@@ -270,7 +279,8 @@ $ ->
 	# inefficient, but its good to know about).
 	# https://github.com/mbostock/queue
 	queue()
-		.defer(d3.csv, "data/7377_reg_in_time.csv")
+		.defer(d3.json, "http://localhost:8080/projectChallenges")
+		#.defer(d3.csv, "data/7377_reg_in_time_all.csv")
 		.await(display)
 
 	d3.select("#button-wrap-sort").selectAll("div").on "click", () ->
