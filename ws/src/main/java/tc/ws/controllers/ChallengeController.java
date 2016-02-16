@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tc.ws.models.Challenge;
+import tc.ws.models.ChallengeRegistration;
 import tc.ws.models.Handle;
 import tc.ws.models.Registration;
 import tc.ws.utils.HandleInfoType;
@@ -88,6 +89,30 @@ public class ChallengeController {
 		@SuppressWarnings("unchecked")
 		List<Handle> list = query.list();
 	
+		return list;
+	}
+	
+	@RequestMapping("/projectChallenges")
+	public List<ChallengeRegistration> getProjectChallenges() {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_PROJECT_CHALLENGES_QUERY);
+		query.addScalar("challengeId", LongType.INSTANCE);
+		query.addScalar("challengeName", StringType.INSTANCE);
+		query.addScalar("status", StringType.INSTANCE);
+		query.addScalar("prize", LongType.INSTANCE);
+		query.addScalar("daysLength", IntegerType.INSTANCE);
+		query.addScalar("registrationStart", DateType.INSTANCE);
+		query.addScalar("registrationEnd", DateType.INSTANCE);
+		query.addScalar("registrationDate", DateType.INSTANCE);
+		query.addScalar("registrationStart", DateType.INSTANCE);
+		query.addScalar("noOfRegistrations", IntegerType.INSTANCE);
+		query.setResultTransformer(Transformers.aliasToBean(ChallengeRegistration.class));
+
+		@SuppressWarnings("unchecked")
+		List<ChallengeRegistration> list = query.list();
+		
 		return list;
 	}
 }

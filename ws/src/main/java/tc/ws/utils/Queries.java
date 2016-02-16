@@ -30,9 +30,9 @@ public class Queries {
 		
 		public static final String SELECT_HANDLES_RATINGS =
 			"	select 														" +
-			"	relation_c_r.handle,										" +
-			"	avg(handle_rating.rating) as y,								" +
-			"    relation_c_r.submissionDate != 0 as submitted				" +
+			"		relation_c_r.handle,									" +
+			"		avg(handle_rating.rating) as y,							" +
+			"   	relation_c_r.submissionDate != 0 as submitted			" +
 			"	from relation_c_r 											" +
 			"	left join handle_rating										" +
 			"		on relation_c_r.handle = handle_rating.handle			" +
@@ -86,4 +86,21 @@ public class Queries {
 			    "	)														" +
 				"	group by relation_c_r.handle							" +
 				"	order by registrationDate;								";
+
+		public static final String SELECT_PROJECT_CHALLENGES_QUERY =
+				"	select													" +
+				"		relation_c_r.challengeId as challengeId,			" +
+			    "		challengeName as challengeName,						" +
+			    "		status,												" +
+			    "		totalPrize as prize,								" +
+			    "		datediff(registrationEndDate, registrationStartDate) + 1 as daysLength, " +
+			    "		date(registrationStartDate) as registrationStart,	" +
+			    "		date(registrationEndDate) as registrationEnd,		" +
+			    "		date(registrationDate) as registrationDate,			" +
+			    "		count(*) as noOfRegistrations						" +
+				"	from relation_c_r										" +
+				"	join challenge											" +
+				"		on relation_c_r.challengeId = challenge.challengeId " +
+				"	where projectId = 7377									" +
+				"	group by challengeId, registrationDate;					";
 }
