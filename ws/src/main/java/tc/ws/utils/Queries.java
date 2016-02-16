@@ -103,4 +103,16 @@ public class Queries {
 				"		on relation_c_r.challengeId = challenge.challengeId " +
 				"	where projectId = :projectId							" +
 				"	group by challengeId, registrationDate;					";
+
+		public static final String SELECT_PROJECTS_QUERY =
+				"	select																				" +
+				"		projectId projectId,															" +
+				"		count(*) noOfTasks,																" +
+			    "		sum(if(status = 'Completed', 1, 0)) tasksCompleted,								" +
+			    "		sum(if(status <> 'Completed', 1, 0)) tasksCancelled,							" +
+				"	    datediff(max(submissionEndDate), min(registrationStartDate)) daysDuration,		" +
+				"	    avg(totalPrize) avgAward,														" +
+				"	    avg(numSubmissions) avgSubmissions												" +
+				"	from challenge																		" +
+				"	group by projectId;																	";
 }

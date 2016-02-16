@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tc.ws.models.Challenge;
 import tc.ws.models.ChallengeRegistration;
 import tc.ws.models.Handle;
+import tc.ws.models.Project;
 import tc.ws.models.Registration;
 import tc.ws.utils.HandleInfoType;
 import tc.ws.utils.HibernateUtils;
@@ -113,6 +114,27 @@ public class ChallengeController {
 
 		@SuppressWarnings("unchecked")
 		List<ChallengeRegistration> list = query.list();
+
+		return list;
+	}
+
+	@RequestMapping("/projects")
+	public List<Project> getProjects() {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_PROJECTS_QUERY);
+		query.addScalar("projectId", LongType.INSTANCE);
+		query.addScalar("noOfTasks", IntegerType.INSTANCE);
+		query.addScalar("tasksCompleted", IntegerType.INSTANCE);
+		query.addScalar("tasksCancelled", IntegerType.INSTANCE);
+		query.addScalar("daysDuration", IntegerType.INSTANCE);
+		query.addScalar("avgAward", LongType.INSTANCE);
+		query.addScalar("avgSubmissions", IntegerType.INSTANCE);
+		query.setResultTransformer(Transformers.aliasToBean(Project.class));
+
+		@SuppressWarnings("unchecked")
+		List<Project> list = query.list();
 
 		return list;
 	}
