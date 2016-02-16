@@ -46,7 +46,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", height)
 				.attr("dy", margin.bottom / 2)
-				.text((c) -> "Project id " + c.project_id)
+				.text((c) -> "Project id " + c.projectId)
 
 			lines.append("text")
 				.attr("class", "info")
@@ -54,7 +54,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 20)
-				.text((c) -> c.no_of_tasks + " tasks")
+				.text((c) -> c.noOfTasks + " tasks")
 
 			lines.append("text")
 				.attr("class", "info")
@@ -62,7 +62,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 30)
-				.text((c) -> c.tasks_completed + " completed tasks")
+				.text((c) -> c.tasksCompleted + " completed tasks")
 
 			lines.append("text")
 				.attr("class", "info")
@@ -70,7 +70,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 40)
-				.text((c) -> c.tasks_cancelled + " cancelled tasks")
+				.text((c) -> c.tasksCancelled + " cancelled tasks")
 
 			lines.append("text")
 				.attr("class", "info")
@@ -78,7 +78,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 50)
-				.text((c) -> c.days_duration + " days_duration")
+				.text((c) -> c.daysDuration + " daysDuration")
 
 			lines.append("text")
 				.attr("class", "info")
@@ -86,7 +86,7 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 60)
-				.text((c) -> c.avg_award + " average award")
+				.text((c) -> c.avgAward + " average award")
 
 			lines.append("text")
 				.attr("class", "info")
@@ -94,10 +94,10 @@ SmallMultiples = () ->
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 70)
-				.text((c) -> c.avg_submissions + " submissions in average")
+				.text((c) -> c.avgSubmissions + " submissions in average")
 
 	showProject = (d, i) ->
-		url = 'project.html?projectId=' + d.project_id;
+		url = 'project.html?projectId=' + d.projectId;
 		window.open url, '_self'
 
 	return chart
@@ -113,9 +113,9 @@ plotData = (selector, data, plot) ->
 # ---
 transformData = (rawData) ->
 	rawData.forEach (d) ->
-		d.no_of_tasks = +d.no_of_tasks
-		d.avg_award = Math.round(d.avg_award * 10) / 10
-		d.avg_submissions = Math.round(d.avg_submissions)
+		d.noOfTasks = +d.noOfTasks
+		d.avgAward = Math.round(d.avgAward * 10) / 10
+		d.avgSubmissions = Math.round(d.avgSubmissions)
 	rawData
 
 $ ->
@@ -141,5 +141,5 @@ $ ->
 	# inefficient, but its good to know about).
 	# https://github.com/mbostock/queue
 	queue()
-		.defer(d3.csv, "data/projects_no_of_tasks.csv")
+		.defer(d3.json, "http://tcws.herokuapp.com/projects")
 		.await(display)
