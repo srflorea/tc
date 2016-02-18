@@ -23,8 +23,10 @@ var tooltip = d3.select('body').append('div')
 var element = document.getElementById("header");
 element.innerHTML += myParam;
 */
+var yField = "y"
 function yValue(value) {
-	return value.y
+	//return value.y
+	return eval("value." + yField)
 }
 
 function xValue(value) {
@@ -49,22 +51,29 @@ function updateData(id) {
 	xs = [];
 
 	//fileName = 'data/30048038_handles_reliability_ratings.csv'
-	url = wsUrl + "/handles/info?challengeId=" + challengeId;
+	url = wsUrl + "/handles/info";
+	url += "?challengeId=" + challengeId;
 	if (id == "rating") {
+		yField = "y"
 		url += "&type=1";
-		//fileName = 'data/30048038_handles_ratings.csv'
 	} else if(id == "rel-rating") {
-		url += "&type=2";
-		//fileName = 'data/30048038_handles_reliability_ratings.csv'
+		yField = "y"
+		url += "&type=2"
 	} else if(id == "registrations") {
-		url += "&type=3";
-		//fileName = 'data/30048038_handles_registrations.csv'
+		yField = "y"
+		//url += "&type=3";
+		url = wsUrl + "/handlesNoOfReg?challengeId=" + challengeId;
 	} else if(id == "submissions") {
-		url += "&type=4";
-		//fileName = 'data/30048038_handles_submissions.csv'
+		yField = "y"
+		//url += "&type=4";
+		url = wsUrl + "/handlesNoOfSub?challengeId=" + challengeId;
 	}
 
 	d3.json(url, function(data) {
+
+		data.sort(function(a, b) {
+			return new Date(a.registrationDate) - new Date(b.registrationDate);
+		})
 
 		data.forEach(function (d) { 
 			d.y = +yValue(d);
@@ -182,7 +191,7 @@ function updateData(id) {
 					return 'green'
 				return 'red'
 			})
-			.attr('transform', 'rotate(-65)')
+			.attr('transform', 'rotate(-50)')
 			.on('click', function (d) {
 				url = 'worker_scatterplot.html?handle=' + data[d].handle;
 				window.open(url, '_self')
@@ -202,6 +211,15 @@ function updateData(id) {
 			.attr('text-anchor', 'left')
 			.attr("x", -height + 50)
 			.attr("y", 20)
-			.text('Reliability rating')
+			.text(function() {
+				if (id == "rating") 
+					return "Rating"
+				else if (id == "rel-rating")
+					return 'Reliability rating'
+				else if (id == "registrations")
+					return "No of registrations"
+				else if (id == "submissions")
+					return "No of submissions"
+			})
 	});
 }

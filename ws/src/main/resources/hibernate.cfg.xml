@@ -13,12 +13,16 @@
         <property name="hibernate.connection.username">tcdb</property>
         <property name="hibernate.connection.password">tcdb100</property>
 
+		<property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>
+
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- Specify session context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
 		<mapping class="tc.ws.models.Challenge"/>
+		<mapping class="tc.ws.models.Handle"/>
+		<mapping class="tc.ws.models.RelationCR"/>
 
     </session-factory>
 

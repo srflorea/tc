@@ -1,17 +1,23 @@
 package tc.ws.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
+import org.hibernate.type.BooleanType;
 import org.hibernate.type.DateType;
 import org.hibernate.type.DoubleType;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
+import org.hibernate.type.TimestampType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 import tc.ws.models.Challenge;
 import tc.ws.models.ChallengeRegistration;
 import tc.ws.models.Handle;
+import tc.ws.models.HandleInfo;
 import tc.ws.models.Project;
 import tc.ws.models.Registration;
+import tc.ws.models.RelationCR;
 import tc.ws.utils.HandleInfoType;
 import tc.ws.utils.HibernateUtils;
 import tc.ws.utils.Queries;
 
+@CrossOrigin
 @RestController
 public class ChallengeController {
 	
@@ -43,7 +52,6 @@ public class ChallengeController {
 		return challenges;
 	}
 
-	@CrossOrigin
 	@RequestMapping("/registrations")
 	public List<Registration> registrations(@RequestParam(value="handle") String handle) {
 
@@ -63,9 +71,8 @@ public class ChallengeController {
 		return list;
 	}
 
-	@CrossOrigin
 	@RequestMapping("/handles/info")
-	public List<Handle> handles(@RequestParam Long challengeId, @RequestParam Long type) {
+	public List<HandleInfo> handles(@RequestParam Long challengeId, @RequestParam Long type) {
 		
 		String queryString = Queries.SELECT_HANDLES_RATINGS;
 		if (type == HandleInfoType.RATING.getId()) {
@@ -84,11 +91,12 @@ public class ChallengeController {
 		SQLQuery query = session.createSQLQuery(queryString);
 		query.addScalar("handle", StringType.INSTANCE);
 		query.addScalar("y", DoubleType.INSTANCE);
-		query.addScalar("submitted", IntegerType.INSTANCE);
+		query.addScalar("submitted", BooleanType.INSTANCE);
+		query.addScalar("registrationDate", TimestampType.INSTANCE);
 		query.setLong("challengeId", challengeId);
-		query.setResultTransformer(Transformers.aliasToBean(Handle.class));
+		query.setResultTransformer(Transformers.aliasToBean(HandleInfo.class));
 		@SuppressWarnings("unchecked")
-		List<Handle> list = query.list();
+		List<HandleInfo> list = query.list();
 	
 		return list;
 	}
@@ -137,5 +145,123 @@ public class ChallengeController {
 		List<Project> list = query.list();
 
 		return list;
+	}
+/*
+	@RequestMapping("/handlesRelRatings")
+	public int getHandlesRelRatings(@RequestParam Long challengeId) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(RelationCR.class);
+		//criteria.setProjection(Projections.property(RelationCR.Fields.HANDLE.getName()));
+		criteria.add(Restrictions.eq(RelationCR.Fields.CHALLENGE_ID.getName(), challengeId));
+		List<RelationCR> relations = criteria.list();
+		
+		Map<String, Boolean> handlesMap = new HashMap<>();
+		for (RelationCR relation : relations) {
+			handlesMap.put(relation.getId().getHandle(),
+							relation.getSubmissionDate() != null ? true : false);
+		}
+		
+		criteria = session.createCriteria(Handle.class);
+		criteria.add(Restrictions.in(Handle.Fields.HANDLE.getName(), handlesMap.keySet()));
+		List<Handle> handles = criteria.list();
+
+		for (Handle handle : handles) {
+			handle.setSubmitted(handlesMap.get(handle.getHandle()));
+		}
+
+		return handles.size();
+	}
+	
+	@RequestMapping("/handlesRatings")
+	public List<Handle> getHandlesRatings(@RequestParam Long challengeId) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(RelationCR.class);
+		//criteria.setProjection(Projections.property(RelationCR.Fields.HANDLE.getName()));
+		criteria.add(Restrictions.eq(RelationCR.Fields.CHALLENGE_ID.getName(), challengeId));
+		List<RelationCR> relations = criteria.list();
+		
+		Map<String, Boolean> handlesMap = new HashMap<>();
+		for (RelationCR relation : relations) {
+			handlesMap.put(relation.getId().getHandle(),
+							relation.getSubmissionDate() != null ? true : false);
+		}
+		
+		criteria = session.createCriteria(Handle.class);
+		criteria.add(Restrictions.in(Handle.Fields.HANDLE.getName(), handlesMap.keySet()));
+		List<Handle> handles = criteria.list();
+
+		for (Handle handle : handles) {
+			handle.setSubmitted(handlesMap.get(handle.getHandle()));
+		}
+
+		return handles;
+	}
+*/
+	@RequestMapping("/handlesNoOfReg")
+	public List<HandleInfo> getHandlesNoOfReg(@RequestParam Long challengeId) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(RelationCR.class);
+		//criteria.setProjection(Projections.property(RelationCR.Fields.HANDLE.getName()));
+		criteria.add(Restrictions.eq(RelationCR.Fields.CHALLENGE_ID.getName(), challengeId));
+		List<RelationCR> relations = criteria.list();
+		
+		Map<String, RelationCR> handlesMap = new HashMap<>();
+		for (RelationCR relation : relations) {
+			handlesMap.put(relation.getId().getHandle(), relation);
+		}
+
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_HANDLES_NO_OF_REG);
+		query.addScalar("handle", StringType.INSTANCE);
+		query.addScalar("y", DoubleType.INSTANCE);
+		query.setLong("challengeId", challengeId);
+		query.setResultTransformer(Transformers.aliasToBean(HandleInfo.class));
+		@SuppressWarnings("unchecked")
+		List<HandleInfo> handlesInfo = query.list();
+
+		for (HandleInfo handleInfo : handlesInfo) {
+			RelationCR relation = handlesMap.get(handleInfo.getHandle());
+			handleInfo.setSubmitted(relation.getSubmissionDate() != null ? true : false);
+			handleInfo.setRegistrationDate(relation.getRegistrationDate());
+		}
+
+		return handlesInfo;
+	}
+
+	@RequestMapping("/handlesNoOfSub")
+	public List<HandleInfo> getHandlesNoOfSub(@RequestParam Long challengeId) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(RelationCR.class);
+		//criteria.setProjection(Projections.property(RelationCR.Fields.HANDLE.getName()));
+		criteria.add(Restrictions.eq(RelationCR.Fields.CHALLENGE_ID.getName(), challengeId));
+		List<RelationCR> relations = criteria.list();
+		
+		Map<String, RelationCR> handlesMap = new HashMap<>();
+		for (RelationCR relation : relations) {
+			handlesMap.put(relation.getId().getHandle(), relation);
+		}
+
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_HANDLES_NO_OF_SUB);
+		query.addScalar("handle", StringType.INSTANCE);
+		query.addScalar("y", DoubleType.INSTANCE);
+		query.setLong("challengeId", challengeId);
+		query.setResultTransformer(Transformers.aliasToBean(HandleInfo.class));
+		@SuppressWarnings("unchecked")
+		List<HandleInfo> handlesInfo = query.list();
+
+		for (HandleInfo handleInfo : handlesInfo) {
+			RelationCR relation = handlesMap.get(handleInfo.getHandle());
+			handleInfo.setSubmitted(relation.getSubmissionDate() != null ? true : false);
+			handleInfo.setRegistrationDate(relation.getRegistrationDate());
+		}
+
+		return handlesInfo;
 	}
 }
