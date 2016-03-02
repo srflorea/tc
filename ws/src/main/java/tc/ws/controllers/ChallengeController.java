@@ -136,6 +136,7 @@ public class ChallengeController {
 		query.addScalar("noOfTasks", IntegerType.INSTANCE);
 		query.addScalar("tasksCompleted", IntegerType.INSTANCE);
 		query.addScalar("tasksCancelled", IntegerType.INSTANCE);
+		query.addScalar("technologies", StringType.INSTANCE);
 		query.addScalar("daysDuration", IntegerType.INSTANCE);
 		query.addScalar("avgAward", LongType.INSTANCE);
 		query.addScalar("avgSubmissions", IntegerType.INSTANCE);
@@ -144,6 +145,18 @@ public class ChallengeController {
 		@SuppressWarnings("unchecked")
 		List<Project> list = query.list();
 
+		for (Project project : list) {
+			List<String> uniqueTechs = new ArrayList<>();
+			String technologies = project.getTechnologies();
+			String[] techArray = technologies.split(",");
+			for (String tech : techArray) {
+				if (!uniqueTechs.contains(tech.trim())) {
+					uniqueTechs.add(tech.trim());
+				}
+			}
+			project.setTechsList(uniqueTechs);
+		}
+		
 		return list;
 	}
 /*

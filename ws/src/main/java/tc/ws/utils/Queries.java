@@ -110,6 +110,7 @@ public class Queries {
 				"		count(*) noOfTasks,																" +
 			    "		sum(if(status = 'Completed', 1, 0)) tasksCompleted,								" +
 			    "		sum(if(status <> 'Completed', 1, 0)) tasksCancelled,							" +
+			    "		group_concat(technologies) technologies,										" +	
 				"	    datediff(max(submissionEndDate), min(registrationStartDate)) daysDuration,		" +
 				"	    avg(totalPrize) avgAward,														" +
 				"	    avg(numSubmissions) avgSubmissions												" +

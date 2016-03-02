@@ -20,7 +20,14 @@ SmallMultiples = () ->
 			# with each element containing another array of 'values'
 			div = d3.select(this).selectAll(".chart").data(data)
 		    
-			div.enter().append("div").attr("class", "chart")
+			div.enter().append("div")
+				.attr("class", ((c) ->
+						classes = "chart"
+						for tech in c.techsList
+							classes = classes + " " + tech.toLowerCase()
+
+						classes
+					))
 				.append("svg").append("g")
 				
 			svg = div.select("svg")
@@ -132,6 +139,12 @@ transformData = (rawData) ->
 		d.avgSubmissions = Math.round(d.avgSubmissions)
 	rawData
 
+setupIsoytpe = () ->
+	$("#vis").isotope({
+		itemSelector: '.chart',
+		layoutMode: 'fitRows'
+	})
+
 $ ->
 
 	plot = SmallMultiples()
@@ -147,7 +160,7 @@ $ ->
 
 		data = transformData(rawData)
 		plotData("#vis", data, plot)
-		# setupIsoytpe()
+		setupIsoytpe()
 
 	# I've started using Bostock's queue to load data.
 	# The tool allows you to easily add more input files

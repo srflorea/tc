@@ -1,14 +1,25 @@
 package tc.ws.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Project {
 
 	private Long projectId;
 	private int noOfTasks;
 	private int tasksCompleted;
 	private int tasksCancelled;
+
+	@JsonIgnore
+	private String technologies;
+
 	private int daysDuration;
 	private Long avgAward;
 	private int avgSubmissions;
+	
+	private List<String> techsList;
+	
 	public Long getProjectId() {
 		return projectId;
 	}
@@ -50,5 +61,17 @@ public class Project {
 	}
 	public void setAvgSubmissions(int avgSubmissions) {
 		this.avgSubmissions = avgSubmissions;
+	}
+	public String getTechnologies() {
+		return technologies;
+	}
+	public void setTechnologies(String technologies) {
+		this.technologies = technologies;
+	}
+	public List<String> getTechsList() {
+		return techsList;
+	}
+	public void setTechsList(List<String> techsList) {
+		this.techsList = techsList;
 	}
 }
