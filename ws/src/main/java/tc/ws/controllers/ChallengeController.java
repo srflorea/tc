@@ -137,9 +137,11 @@ public class ChallengeController {
 		query.addScalar("tasksCompleted", IntegerType.INSTANCE);
 		query.addScalar("tasksCancelled", IntegerType.INSTANCE);
 		query.addScalar("technologies", StringType.INSTANCE);
+		query.addScalar("challengesTypes", StringType.INSTANCE);
 		query.addScalar("daysDuration", IntegerType.INSTANCE);
 		query.addScalar("avgAward", LongType.INSTANCE);
 		query.addScalar("avgSubmissions", IntegerType.INSTANCE);
+		query.addScalar("avgRegistrants", IntegerType.INSTANCE);
 		query.setResultTransformer(Transformers.aliasToBean(Project.class));
 
 		@SuppressWarnings("unchecked")
@@ -150,11 +152,28 @@ public class ChallengeController {
 			String technologies = project.getTechnologies();
 			String[] techArray = technologies.split(",");
 			for (String tech : techArray) {
-				if (!uniqueTechs.contains(tech.trim())) {
-					uniqueTechs.add(tech.trim());
+				String cleanTech = tech.trim();
+				cleanTech = cleanTech.replace(".", "");
+				cleanTech = cleanTech.replace("#", "sharp");
+				if (!uniqueTechs.contains(cleanTech)) {
+					uniqueTechs.add(cleanTech);
 				}
 			}
 			project.setTechsList(uniqueTechs);
+		}
+		
+		for (Project project : list) {
+			List<String> uniqueChalTypes = new ArrayList<>();
+			String chalTypes = project.getChallengesTypes();
+			String[] chalTypesArray = chalTypes.split(",");
+			for (String type : chalTypesArray) {
+				String cleanType = type.trim();
+				cleanType = cleanType.replace(" ", "");
+				if (!uniqueChalTypes.contains(cleanType)) {
+					uniqueChalTypes.add(cleanType);
+				}
+			}
+			project.setChalTypesList(uniqueChalTypes);
 		}
 		
 		return list;

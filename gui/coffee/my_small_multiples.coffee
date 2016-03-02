@@ -26,6 +26,40 @@ SmallMultiples = () ->
 						for tech in c.techsList
 							classes = classes + " " + tech.toLowerCase()
 
+						for type in c.chalTypesList
+							classes = classes + " " + type.toLowerCase()
+
+						if c.daysDuration <= 10
+							classes = classes + " " + "ten"
+						else if c.daysDuration <= 30
+							classes = classes + " " + "thirty"
+						else if c.daysDuration <= 100
+							classes = classes + " " + "hundred"
+						else
+							classes = classes + " " + "more"
+
+						if c.avgRegistrants <= 5
+							classes = classes + " " + "fivereg"
+						else if c.daysDuration <= 20
+							classes = classes + " " + "twentyreg"
+						else if c.daysDuration <= 50
+							classes = classes + " " + "fiftyreg"
+						else if c.daysDuration <= 100
+							classes = classes + " " + "hundredreg"
+						else
+							classes = classes + " " + "morereg"
+
+						if c.avgSubmissions == 1
+							classes = classes + " " + "onesub"
+						if c.avgSubmissions == 2
+							classes = classes + " " + "twosub"
+						else if c.avgSubmissions <= 5
+							classes = classes + " " + "fivesub"
+						else if c.avgSubmissions <= 10
+							classes = classes + " " + "tensub"
+						else
+							classes = classes + " " + "moresub"
+
 						classes
 					))
 				.append("svg").append("g")
@@ -172,6 +206,30 @@ $ ->
 		.await(display)
 
 	d3.select("#tech").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#type").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#duration").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#registrants").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#submissions").selectAll("a").on "click", () ->
 		id = d3.select(this).attr("id")
 
 		filter_value = $(this).attr('data-filter');

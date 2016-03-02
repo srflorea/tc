@@ -14,11 +14,16 @@ public class Project {
 	@JsonIgnore
 	private String technologies;
 
+	@JsonIgnore
+	private String challengesTypes;
+
 	private int daysDuration;
 	private Long avgAward;
 	private int avgSubmissions;
+	private int avgRegistrants;
 	
 	private List<String> techsList;
+	private List<String> chalTypesList;
 	
 	public Long getProjectId() {
 		return projectId;
@@ -73,5 +78,23 @@ public class Project {
 	}
 	public void setTechsList(List<String> techsList) {
 		this.techsList = techsList;
+	}
+	public String getChallengesTypes() {
+		return challengesTypes;
+	}
+	public void setChallengesTypes(String challengesTypes) {
+		this.challengesTypes = challengesTypes;
+	}
+	public List<String> getChalTypesList() {
+		return chalTypesList;
+	}
+	public void setChalTypesList(List<String> chalTypesList) {
+		this.chalTypesList = chalTypesList;
+	}
+	public int getAvgRegistrants() {
+		return avgRegistrants;
+	}
+	public void setAvgRegistrants(int avgRegistrants) {
+		this.avgRegistrants = avgRegistrants;
 	}
 }

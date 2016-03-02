@@ -8,28 +8,103 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="container" align="center">
-		<!--<h2>Visualizing workers' dynamics in software crowdsourcing</h2>
-		-->
-		<h2>Visualizing projects from Top Coder platform</h2>
+	<h2 align="center">Visualizing projects from Top Coder platform</h2>
+	<div class="row">
+		<div class="col-sm-2">
+			<ul id="nav" align="center">
+				<li>
+					Filter projects
+				</li>
+				<li class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						Technology<span class="caret"></span>
+					</button>
+					<ul id="tech" class="dropdown-menu">
+						<li><a id="html" data-filter=".html" href="#">HTML</a></li>
+						<li><a id="css" data-filter=".css" href="#">CSS</a></li>
+						<li><a id="java" data-filter=".java" href="#">Java</a></li>
+						<li><a id="js" data-filter=".javascript" href="#">JavaScript</a></li>
+						<li><a id="c++" data-filter=".c++" href="#">C++</a></li>
+						<li><a id="nodejs" data-filter=".nodejs" href="#">Node.js</a></li>
+						<li><a id="python" data-filter=".python" href="#">Python</a></li>
+						<li><a id="csharp" data-filter=".csharp" href="#">C#</a></li>
+						<li><a id="dojo" data-filter=".dojo" href="#">Dojo</a></li>
+						<li><a id="android" data-filter=".android" href="#">Android</a></li>
+						<li><a id="ios" data-filter=".ios" href="#">iOS</a></li>
 
-		<div id="nav">
-			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-					Technology<span class="caret"></span>
-				</button>
-				<ul id="tech" class="dropdown-menu">
-					<li><a id="html" data-filter=".html" href="#">HTML</a></li>
-					<li><a id="css" data-filter=".css" href="#">CSS</a></li>
-					<li><a id="java" data-filter=".java" href="#">Java</a></li>
-					<li><a id="js" data-filter=".js" href="#">JavaScript</a></li>
+						<li><a id="other" data-filter=".other" href="#">Other</a></li>
 
-			    	<li><a id="all" data-filter="*" href="#">All</a></li>
-				</ul>
+						<li><a id="all" data-filter="*" href="#">All</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						Challenge Type<span class="caret"></span>
+					</button>
+					<ul id="type" class="dropdown-menu">
+						<li><a id="first2finish" data-filter=".first2finish" href="#">First 2 Finish</a></li>
+						<li><a id="assemblycompetition" data-filter=".assemblycompetition" href="#">Assembly Competition</a></li>
+						<li><a id="code" data-filter=".code" href="#">Code</a></li>
+						<li><a id="uiprototypecompetition" data-filter=".uiprototypecompetition" href="#">UI Prototype Competition</a></li>
+						<li><a id="bughunt" data-filter=".bughunt" href="#">Bug Hunt</a></li>
+						<li><a id="architecture" data-filter=".architecture" href="#">Architecture</a></li>
+						<li><a id="copilotposting" data-filter=".copilotposting" href="#">Copilot Posting</a></li>
+						<li><a id="contentcreation" data-filter=".contentcreation" href="#">Content Creation</a></li>
+						<li><a id="testsuites" data-filter=".testsuites" href="#">Test Suites</a></li>
+						<li><a id="testscenarios" data-filter=".testscenarios" href="#">Test Scenarios</a></li>
+						<li><a id="conceptualization" data-filter=".conceptualization" href="#">Conceptualization</a></li>
+
+						<li><a id="all" data-filter="*" href="#">All</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						Duration<span class="caret"></span>
+					</button>
+					<ul id="duration" class="dropdown-menu">
+						<li><a id="ten" data-filter=".ten" href="#">1 to 10 days</a></li>
+						<li><a id="thirty" data-filter=".thirty" href="#">11 to 30 days</a></li>
+						<li><a id="hundred" data-filter=".hundred" href="#">31 to 100 days</a></li>
+						<li><a id="more" data-filter=".more" href="#">more than 100 days</a></li>
+
+						<li><a id="all" data-filter="*" href="#">All</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						No. of registrants<span class="caret"></span>
+					</button>
+					<ul id="registrants" class="dropdown-menu">
+						<li><a id="fivereg" data-filter=".fivereg" href="#">0 to 5</a></li>
+						<li><a id="twentyreg" data-filter=".twentyreg" href="#">6 to 20</a></li>
+						<li><a id="fiftyreg" data-filter=".fiftyreg" href="#">21 to 50</a></li>
+						<li><a id="hundredreg" data-filter=".hundredreg" href="#">51 to 100</a></li>
+						<li><a id="morereg" data-filter=".morereg" href="#">more than 100</a></li>
+
+						<li><a id="all" data-filter="*" href="#">All</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						No. of submissions<span class="caret"></span>
+					</button>
+					<ul id="submissions" class="dropdown-menu">
+						<li><a id="onesub" data-filter=".onesub" href="#">1</a></li>
+						<li><a id="twosub" data-filter=".twosub" href="#">2</a></li>
+						<li><a id="fivesub" data-filter=".fivesub" href="#">3 to 5</a></li>
+						<li><a id="tensub" data-filter=".tensub" href="#">6 to 10</a></li>
+						<li><a id="moresub" data-filter=".moresub" href="#">more than 10</a></li>
+
+						<li><a id="all" data-filter="*" href="#">All</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-10">
+			<div class="container" align="center">
+				<div id="vis"></div>
 			</div>
 		</div>
-
-		<div id="vis"></div>
 	</div>
 
 	<!--<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>-->

@@ -144,8 +144,20 @@ path {
 #nav {
     line-height:30px;
     background-color:#eeeeee;
-    height:300px;
+    height:100vh;
     width:170px;
     float:left;
     padding:5px;
+    position:fixed;
+}
+
+#nav_title {
+    background-color:blue;
+    height:50px;
+    width:170px;
+    position:fixed;
+}
+
+#nav li{
+  margin: 10px 0;
 }

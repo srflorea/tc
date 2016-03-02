@@ -110,10 +110,12 @@ public class Queries {
 				"		count(*) noOfTasks,																" +
 			    "		sum(if(status = 'Completed', 1, 0)) tasksCompleted,								" +
 			    "		sum(if(status <> 'Completed', 1, 0)) tasksCancelled,							" +
-			    "		group_concat(technologies) technologies,										" +	
+			    "		group_concat(technologies) technologies,										" +
+			    "		group_concat(challengeType) challengesTypes,									" +
 				"	    datediff(max(submissionEndDate), min(registrationStartDate)) daysDuration,		" +
 				"	    avg(totalPrize) avgAward,														" +
-				"	    avg(numSubmissions) avgSubmissions												" +
+				"	    avg(numSubmissions) avgSubmissions,												" +
+				"	    avg(numRegistrants) avgRegistrants												" +
 				"	from challenge																		" +
 				"	group by projectId;																	";
 }
