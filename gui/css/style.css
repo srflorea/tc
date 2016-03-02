@@ -139,3 +139,13 @@ path {
   font-size: 16pt;
   font-family: Arial;
 }
+
+/* project level stuff */
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:170px;
+    float:left;
+    padding:5px;
+}

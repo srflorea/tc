@@ -157,3 +157,9 @@ $ ->
 	queue()
 		.defer(d3.json, "http://tcws.herokuapp.com/projects")
 		.await(display)
+
+	d3.select("#tech").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})

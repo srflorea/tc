@@ -242,7 +242,7 @@ setupIsoytpe = () ->
 	})
 
 # filter functions
-filterFns = {
+###filterFns = {
 	# show if number is greater than 50
 	completed: () ->
 		d = d3.select(e).datum()
@@ -254,7 +254,7 @@ filterFns = {
 		if d.values[0].status != "Completed"
 			true
 		false
-};
+};###
 
 $ ->
 
