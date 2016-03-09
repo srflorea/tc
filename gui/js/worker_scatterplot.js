@@ -92,7 +92,7 @@ d3.json(url, function(error, data) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-    var cicle = elemEnter.append("circle")
+    var circle = elemEnter.append("circle")
             .attr("r", 10)
             .attr("cx", function(d, i) { return i * 120; })
             .attr("cy", function(d) { return -17; })
@@ -103,7 +103,8 @@ d3.json(url, function(error, data) {
     elemEnter.append("text")
         //.attr("cx", function(d, i) { return i * 120; })
         //.attr("cy", function(d) { return -17; })
-        .attr("dx", function(d, i ) { return i * 120 - 30 })
+        //.attr("text-anchor", "middle")
+        .attr("dx", function(d, i ) { return i * 120 - d.type.length * 2 - 5 })
         .attr("dy", 5)
         .text(function(d,i) {
             return d.type
