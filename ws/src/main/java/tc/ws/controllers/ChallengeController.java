@@ -126,6 +126,34 @@ public class ChallengeController {
 		return list;
 	}
 
+	@RequestMapping("/matrixChallenges")
+	public List<ChallengeRegistration> getMatrixChallenges(
+			@RequestParam String platform,
+			@RequestParam String technology) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		SQLQuery query = session.createSQLQuery(Queries.SELECT_MATRIX_CHALLENGES_QUERY);
+		query.addScalar("challengeId", LongType.INSTANCE);
+		query.addScalar("challengeName", StringType.INSTANCE);
+		query.addScalar("status", StringType.INSTANCE);
+		query.addScalar("prize", LongType.INSTANCE);
+		query.addScalar("daysLength", IntegerType.INSTANCE);
+		query.addScalar("registrationStart", DateType.INSTANCE);
+		query.addScalar("registrationEnd", DateType.INSTANCE);
+		query.addScalar("registrationDate", DateType.INSTANCE);
+		query.addScalar("registrationStart", DateType.INSTANCE);
+		query.addScalar("noOfRegistrations", IntegerType.INSTANCE);
+		query.setString("platform", "%" + platform + "%");
+		query.setString("technology", "%" + technology + "%");
+		query.setResultTransformer(Transformers.aliasToBean(ChallengeRegistration.class));
+
+		@SuppressWarnings("unchecked")
+		List<ChallengeRegistration> list = query.list();
+
+		return list;
+	}
+
 	@RequestMapping("/projects")
 	public List<Project> getProjects() {
 		Session session = HibernateUtils.getSessionFactory().openSession();

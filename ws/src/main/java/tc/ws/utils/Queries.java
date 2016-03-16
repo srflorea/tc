@@ -104,6 +104,24 @@ public class Queries {
 				"	where projectId = :projectId							" +
 				"	group by challengeId, registrationDate;					";
 
+		public static final String SELECT_MATRIX_CHALLENGES_QUERY =
+				"	select													" +
+				"		relation_c_r.challengeId as challengeId,			" +
+			    "		challengeName as challengeName,						" +
+			    "		status,												" +
+			    "		totalPrize as prize,								" +
+			    "		datediff(registrationEndDate, registrationStartDate) + 1 as daysLength, " +
+			    "		date(registrationStartDate) as registrationStart,	" +
+			    "		date(registrationEndDate) as registrationEnd,		" +
+			    "		date(registrationDate) as registrationDate,			" +
+			    "		count(*) as noOfRegistrations						" +
+				"	from relation_c_r										" +
+				"	join challenge											" +
+				"		on relation_c_r.challengeId = challenge.challengeId " +
+				"	where technologies like :technology						" +
+				"		and platforms like :platform						" +
+				"	group by challengeId, registrationDate;					";
+
 		public static final String SELECT_PROJECTS_QUERY =
 				"	select																				" +
 				"		projectId projectId,															" +
