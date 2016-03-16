@@ -20,7 +20,48 @@ SmallMultiples = () ->
 			# with each element containing another array of 'values'
 			div = d3.select(this).selectAll(".chart").data(data)
 		    
-			div.enter().append("div").attr("class", "chart")
+			div.enter().append("div")
+				.attr("class", ((c) ->
+						classes = "chart"
+						for tech in c.techsList
+							classes = classes + " " + tech.toLowerCase()
+
+						for type in c.chalTypesList
+							classes = classes + " " + type.toLowerCase()
+
+						if c.daysDuration <= 10
+							classes = classes + " " + "ten"
+						else if c.daysDuration <= 30
+							classes = classes + " " + "thirty"
+						else if c.daysDuration <= 100
+							classes = classes + " " + "hundred"
+						else
+							classes = classes + " " + "more"
+
+						if c.avgRegistrants <= 5
+							classes = classes + " " + "fivereg"
+						else if c.daysDuration <= 20
+							classes = classes + " " + "twentyreg"
+						else if c.daysDuration <= 50
+							classes = classes + " " + "fiftyreg"
+						else if c.daysDuration <= 100
+							classes = classes + " " + "hundredreg"
+						else
+							classes = classes + " " + "morereg"
+
+						if c.avgSubmissions == 1
+							classes = classes + " " + "onesub"
+						if c.avgSubmissions == 2
+							classes = classes + " " + "twosub"
+						else if c.avgSubmissions <= 5
+							classes = classes + " " + "fivesub"
+						else if c.avgSubmissions <= 10
+							classes = classes + " " + "tensub"
+						else
+							classes = classes + " " + "moresub"
+
+						classes
+					))
 				.append("svg").append("g")
 				
 			svg = div.select("svg")
@@ -39,65 +80,79 @@ SmallMultiples = () ->
 				.attr("height", height)
 				.on("click", showProject)
 
-			lines = g.append("g")
-			lines.append("text")
+			rects = g.append("g")
+			rects.append("rect")
+				.style("pointer-events", "none")
+				.attr("class", "area-unf")
+				.attr("width", ((c) ->
+					c.tasksCancelled * width / c.noOfTasks + margin.right ))
+				.attr("height", height)
+
+			info = g.append("g")
+			info.append("text")
 				.attr("class", "title")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", height)
 				.attr("dy", margin.bottom / 2)
-				.text((c) -> "Project id " + c.project_id)
+				.text((c) -> "Project id " + c.projectId)
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 20)
-				.text((c) -> c.no_of_tasks + " tasks")
+				.text((c) -> c.noOfTasks + " tasks")
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 30)
-				.text((c) -> c.tasks_completed + " completed tasks")
+				.text((c) -> c.tasksCompleted + " completed tasks")
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 40)
-				.text((c) -> c.tasks_cancelled + " cancelled tasks")
+				.text((c) -> c.tasksCancelled + " cancelled tasks")
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 50)
-				.text((c) -> c.days_duration + " days_duration")
+				.text((c) -> c.daysDuration + " daysDuration")
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 60)
-				.text((c) -> c.avg_award + " average award")
+				.text((c) -> c.avgAward + " average award")
 
-			lines.append("text")
+			info.append("text")
 				.attr("class", "info")
+				.style("pointer-events", "none")
 				.attr("text-anchor", "middle")
 				.attr("x", width / 2)
 				.attr("y", 0)
 				.attr("dy", 70)
-				.text((c) -> c.avg_submissions + " submissions in average")
+				.text((c) -> c.avgSubmissions + " submissions in average")
 
 	showProject = (d, i) ->
-		url = 'project.html?projectId=' + d.project_id;
+		url = 'tasks.html?projectId=' + d.projectId;
 		window.open url, '_self'
 
 	return chart
@@ -113,10 +168,16 @@ plotData = (selector, data, plot) ->
 # ---
 transformData = (rawData) ->
 	rawData.forEach (d) ->
-		d.no_of_tasks = +d.no_of_tasks
-		d.avg_award = Math.round(d.avg_award * 10) / 10
-		d.avg_submissions = Math.round(d.avg_submissions)
+		d.noOfTasks = +d.noOfTasks
+		d.avgAward = Math.round(d.avgAward * 10) / 10
+		d.avgSubmissions = Math.round(d.avgSubmissions)
 	rawData
+
+setupIsoytpe = () ->
+	$("#vis").isotope({
+		itemSelector: '.chart',
+		layoutMode: 'fitRows'
+	})
 
 $ ->
 
@@ -133,7 +194,7 @@ $ ->
 
 		data = transformData(rawData)
 		plotData("#vis", data, plot)
-		# setupIsoytpe()
+		setupIsoytpe()
 
 	# I've started using Bostock's queue to load data.
 	# The tool allows you to easily add more input files
@@ -141,5 +202,35 @@ $ ->
 	# inefficient, but its good to know about).
 	# https://github.com/mbostock/queue
 	queue()
-		.defer(d3.csv, "data/projects_no_of_tasks.csv")
+		.defer(d3.json, "http://tcws.herokuapp.com/projects")
 		.await(display)
+
+	d3.select("#tech").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#type").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#duration").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#registrants").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
+
+	d3.select("#submissions").selectAll("a").on "click", () ->
+		id = d3.select(this).attr("id")
+
+		filter_value = $(this).attr('data-filter');
+		$("#vis").isotope({filter:filter_value})
