@@ -135,8 +135,11 @@ d3.tsv("data/igmat.tsv"/*, type*/, function(error, data) {
               }
             })
         })
-      .on('click', function (d) {
-        url = 'tasks.html?projectId=4507';
+      .on('click', function (d, i, j) {
+        platform = data[j].Platform;
+        technology = d.name;
+        url = 'tasks.html?platform=' + platform;
+        url += '&technology=' + technology;
         window.open(url, '_self')
       })
 	;	

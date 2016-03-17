@@ -12,11 +12,22 @@ getQueryStrings = () ->
 
 	assoc
 
-qs = getQueryStrings();
-projectId = qs["projectId"]; 
-
 element = document.getElementById("header");
-element.innerHTML += projectId;
+
+qs = getQueryStrings();
+projectId = qs["projectId"];
+platform = qs["platform"]
+technology = qs["technology"]
+
+wsUrl = "http://tcws.herokuapp.com/";
+if projectId
+	wsUrl += "projectChallenges?projectId="
+	wsUrl += projectId;
+	element.innerHTML += " for project with PID " + projectId;
+else
+	wsUrl += "matrixChallenges?platform=" + platform;
+	wsUrl += "&technology=" + technology;
+	element.innerHTML += " for platform <b>" + platform + "</b> and technology <b>" + technology + "</b>";
 
 SmallMultiples = () ->
 	# variables accessible to
@@ -279,7 +290,7 @@ $ ->
 	# inefficient, but its good to know about).
 	# https://github.com/mbostock/queue
 	queue()
-		.defer(d3.json, "http://tcws.herokuapp.com/projectChallenges?projectId=" + projectId)
+		.defer(d3.json, wsUrl)
 		#.defer(d3.csv, "data/7377_reg_in_time_all.csv")
 		.await(display)
 
