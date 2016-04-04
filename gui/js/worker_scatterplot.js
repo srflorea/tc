@@ -4,7 +4,7 @@ d3.select("#button-color-by").selectAll("div").on("click", function(d) {
     d3.select("#button-color-by").selectAll("div").classed("active", false)
     d3.select("#" + id).classed("active", true)
 
-    //updateData(id)
+    updateColors(id)
 });
 
 var wsUrl = getWebServerURL();
@@ -116,6 +116,7 @@ d3.json(url, function(error, data) {
       //.enter().append("circle")
         //.attr("r", 3.5)
         .enter().append("path")
+            .attr("class", "dot")
             .attr("d", d3.svg.symbol()
                 .type( function(d) { return "circle" })
                 .size( function(d) { return "42" })
@@ -124,8 +125,8 @@ d3.json(url, function(error, data) {
             //.attr("cy", function(d) { return y(d.prize); })
             .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.prize) + ")"; })
             .style('fill', function(d,i) {
-                if (d.submitted == 0)
-                    return
+                ///if (d.submitted == 0)
+                   // return
                 if (d.type in tasks_colors)
                     return tasks_colors[d.type];
                 return 'black'
@@ -223,4 +224,23 @@ function compute_data_for_pie1(data) {
             })
             .entries(data)
     return new_data
+}
+
+function updateColors(id) {
+    if (id == "submission") {
+        d3.selectAll(".dot")
+            .style("fill", function(d,i) {
+                    if (d.submitted == 1)
+                        return 'green'
+                    return 'black'
+                });
+    }
+    if (id == "type") {
+        d3.selectAll(".dot")
+            .style("fill", function(d,i) {
+                    if (d.type in tasks_colors)
+                        return tasks_colors[d.type];
+                    return 'black'
+                });
+    }
 }
