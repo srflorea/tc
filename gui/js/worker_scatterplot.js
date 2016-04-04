@@ -4,15 +4,16 @@ d3.select("#button-color-by").selectAll("div").on("click", function(d) {
     d3.select("#button-color-by").selectAll("div").classed("active", false)
     d3.select("#" + id).classed("active", true)
 
-    updateColors(id)
+    update_colors(id);
+    update_pie(id)
 });
 
 var wsUrl = getWebServerURL();
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
+var margin = {top: 40, right: 20, bottom: 40, left: 60},
     width = 600 - margin.left - margin.right,
-    height = 270 - margin.top - margin.bottom;
+    height = 330 - margin.top - margin.bottom;
 
 var tasks_colors = {"First2Finish":"orange",
                 "UI Prototype Competition":"green",
@@ -20,6 +21,11 @@ var tasks_colors = {"First2Finish":"orange",
                 "Code":"red",
                 "Design":"blue"
                 }
+
+var submission_colors = {
+    "0": "red",
+    "1": "green"
+}
 
 var data_legend = [
     {type:"First2Finish", color:"orange"},
@@ -71,6 +77,7 @@ var handle = qs["handle"];
 
 var url =  wsUrl + "/registrations?handle=" + handle;
 // Get the data
+allData = []
 d3.json(url, function(error, data) {
     data.forEach(function(d) {
         if (d.prize > 10000) {
@@ -80,6 +87,8 @@ d3.json(url, function(error, data) {
         d.date = parseDate(d.date);
         d.prize = +d.prize;
     });
+
+    allData = data;
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -169,29 +178,61 @@ d3.json(url, function(error, data) {
         .attr("x", -height + 60)
         .attr("y", -40)
         .text('Task\'s prize')
-            
 
-    var w = 300;
-    var h = 300;
+    var criteria = "type";
+    var new_data = compute_data_for_pie(data, criteria);
+    create_pie(new_data, criteria);
+});
+
+
+function compute_data_for_pie(data, criteria) {
+    var new_data = d3.nest()
+            .key(function(d) {
+                if (criteria == "type")
+                    return d.type;
+                else if (criteria == "submission")
+                    return d.submitted;
+            })
+            .rollup(function(d) {
+                return d3.sum(d, function(g) {return 1})
+            })
+            .entries(data)
+    return new_data
+}
+
+function create_pie(new_data, criteria) {
+    var w = 400;
+    var h = 400;
     var r = h/2;
-    var colors = ['orange','yellow','green','red','blue'];
 
-    var new_data = compute_data_for_pie1(data);
     var total_no = d3.sum(new_data, function(d) {return d.values;});
-    //console.log(new_data);
-    //console.log(total_no);
 
-    var vis = d3.select('#pie1').append("svg:svg").data([new_data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+    var vis = d3.select('#pie')
+                    .append("svg:svg")
+                    .data([new_data])
+                    .attr("width", w)
+                    .attr("height", h)
+                    .append("svg:g")
+                        .attr("transform", "translate(" + r + "," + r + ")");
     var pie = d3.layout.pie().value(function(d){return d.values;});
 
     // declare an arc generator function
-    var arc = d3.svg.arc().outerRadius(r);
+    var arc = d3.svg.arc()
+                .innerRadius(r - 100)
+                .outerRadius(r - 20);
 
     // select paths, use arc generator to draw
-    var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");
+    var arcs = vis.selectAll("g.slice")
+                    .data(pie)
+                    .enter()
+                    .append("svg:g")
+                        .attr("class", "slice");
     arcs.append("svg:path")
-        .style("fill", function(d, i){
-            return tasks_colors[d.data.key];
+        .style("fill", function(d, i) {
+            if (criteria == "type")
+                return tasks_colors[d.data.key];
+            if (criteria == "submission")
+                return submission_colors[d.data.key]
         })
         .attr("d", function (d) {
             // log the result of the arc generator to show how cool it is :)
@@ -201,38 +242,27 @@ d3.json(url, function(error, data) {
 
     // add the text
     arcs.append("svg:text").attr("transform", function(d){
-                d.innerRadius = 0;
-                d.outerRadius = r;
-    return "translate(" + arc.centroid(d) + ")";})
-                .attr("text-anchor", "middle")
-                .style('fill', 'black')
-                .text( function(d, i) {
-                    //return new_data[i].key;
-                    var percent = (new_data[i].values / total_no) * 100;
-                    if (percent < 6)
-                        return ''
-                    return (Math.round(percent * 100) / 100) + '%';
-                });
-});
-
-
-function compute_data_for_pie1(data) {
-    var new_data = d3.nest()
-            .key(function(d) {return d.type;})
-            .rollup(function(d) {
-                return d3.sum(d, function(g) {return 1})
-            })
-            .entries(data)
-    return new_data
+                d.innerRadius = r - 100;
+                d.outerRadius = r - 20;
+                return "translate(" + arc.centroid(d) + ")";})
+                            .attr("text-anchor", "middle")
+                            .style('fill', 'black')
+                            .text( function(d, i) {
+                                //return new_data[i].key;
+                                var percent = (new_data[i].values / total_no) * 100;
+                                if (percent < 6)
+                                    return ''
+                                return (Math.round(percent * 100) / 100) + '%';
+                            });
 }
 
-function updateColors(id) {
+function update_colors(id) {
     if (id == "submission") {
         d3.selectAll(".dot")
             .style("fill", function(d,i) {
                     if (d.submitted == 1)
                         return 'green'
-                    return 'black'
+                    return 'red'
                 });
     }
     if (id == "type") {
@@ -243,4 +273,14 @@ function updateColors(id) {
                     return 'black'
                 });
     }
+}
+
+function update_pie(criteria) {
+    var new_data = compute_data_for_pie(allData, criteria);
+    var myNode = document.getElementById("pie");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+
+    create_pie(new_data, criteria)
 }
