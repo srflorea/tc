@@ -4,8 +4,10 @@ d3.select("#button-color-by").selectAll("div").on("click", function(d) {
     d3.select("#button-color-by").selectAll("div").classed("active", false)
     d3.select("#" + id).classed("active", true)
 
+    update_colors_for_legend(id)
     update_colors(id);
     update_pie(id)
+    update_legend(id);
 });
 
 var wsUrl = getWebServerURL();
@@ -15,25 +17,10 @@ var margin = {top: 40, right: 20, bottom: 40, left: 60},
     width = 600 - margin.left - margin.right,
     height = 330 - margin.top - margin.bottom;
 
-var tasks_colors = {"First2Finish":"orange",
-                "UI Prototype Competition":"green",
-                "Assembly Competition":"yellow",
-                "Code":"red",
-                "Design":"blue"
-                }
+var tasks_colors = {}
+var data_legend = []
 
-var submission_colors = {
-    "0": "red",
-    "1": "green"
-}
-
-var data_legend = [
-    {type:"First2Finish", color:"orange"},
-    {type:"UI Prototype Competition", color:"green"},
-    {type:"Assembly Competition", color:"yellow"},
-    {type:"Code", color:"red"},
-    {type:"Design", color:"blue"}
-]
+var colors = ["orange", "green", "yellow", "red", "blue", "brown", "grey"]
 
 // Parse the date / time
 var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -90,34 +77,12 @@ d3.json(url, function(error, data) {
 
     allData = data;
 
+    update_colors_for_legend("type")
+    update_legend("type")
+
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.prize; })]);
-
-    var elem = legend.selectAll("legendDot")
-        .data(data_legend)
-        
-    var elemEnter = elem.enter()
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-
-    var circle = elemEnter.append("circle")
-            .attr("r", 10)
-            .attr("cx", function(d, i) { return i * 120; })
-            .attr("cy", function(d) { return -17; })
-            .style('fill', function(d,i) {
-                return d.color;
-            })
-
-    elemEnter.append("text")
-        //.attr("cx", function(d, i) { return i * 120; })
-        //.attr("cy", function(d) { return -17; })
-        //.attr("text-anchor", "middle")
-        .attr("dx", function(d, i ) { return i * 120 - d.type.length * 2 - 5 })
-        .attr("dy", 5)
-        .text(function(d,i) {
-            return d.type
-        })
 
     // Add the scatterplot
     svg.selectAll("dot")
@@ -232,7 +197,7 @@ function create_pie(new_data, criteria) {
             if (criteria == "type")
                 return tasks_colors[d.data.key];
             if (criteria == "submission")
-                return submission_colors[d.data.key]
+                return tasks_colors[d.data.key]
         })
         .attr("d", function (d) {
             // log the result of the arc generator to show how cool it is :)
@@ -283,4 +248,78 @@ function update_pie(criteria) {
     }
 
     create_pie(new_data, criteria)
+}
+
+function update_legend(criteria) {
+    var myNode = document.getElementById("legend").firstChild.firstChild;
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+
+    var elem = legend.selectAll("legendDot")
+        .data(data_legend)
+
+    var elemEnter = elem.enter()
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+    var circle = elemEnter.append("circle")
+            .attr("r", 10)
+            .attr("cx", function(d, i) { return i * 120; })
+            .attr("cy", function(d) { return -17; })
+            .style('fill', function(d,i) {
+                return d.color;
+            })
+
+    elemEnter.append("text")
+        //.attr("cx", function(d, i) { return i * 120; })
+        //.attr("cy", function(d) { return -17; })
+        //.attr("text-anchor", "middle")
+        .attr("dx", function(d, i ) { return i * 120 - d.type.length * 2 - 5 })
+        .attr("dy", 5)
+        .text(function(d,i) {
+            return d.type
+        })
+}
+
+var data_legend_for_sub = [
+    {type:"Submitted", color:"green"},
+    {type:"Not Submitted", color:"red"}
+]
+
+var submission_colors = {
+    "0": "red",
+    "1": "green"
+}
+
+function update_colors_for_legend(criteria) {
+    data_legend = []
+    tasks_colors = {}
+    if (criteria == "submission") {
+        data_legend = data_legend_for_sub
+        tasks_colors = submission_colors;
+    } else {
+        var i = 0;
+
+        var nested_data = d3.nest()
+                .key(function(d) {
+                    return d.type;
+                })
+                .rollup(function(d) {
+                    return d3.sum(d, function(g) {return 1})
+                })
+                .entries(allData)
+        nested_data.sort(function(a,b) {return a.values < b.values})
+
+        nested_data.forEach(function(elem) {
+            data_legend.push({
+                type: elem.key,
+                color:colors[i]
+            })
+
+            tasks_colors[elem.key] = colors[i];
+
+            i++;
+        });
+    }
 }
