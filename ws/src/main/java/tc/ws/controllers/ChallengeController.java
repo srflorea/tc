@@ -2,13 +2,13 @@ package tc.ws.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.BooleanType;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tc.ws.models.Challenge;
 import tc.ws.models.ChallengeRegistration;
-import tc.ws.models.Handle;
 import tc.ws.models.HandleInfo;
 import tc.ws.models.Project;
 import tc.ws.models.Registration;
@@ -323,5 +322,76 @@ public class ChallengeController {
 		}
 
 		return handlesInfo;
+	}
+
+	/**
+	 * Endpoint that returns a matrix of distribution based on technology and platform
+	 * @return
+	 */
+	@RequestMapping("/matrix")
+	public Map<String, Integer> getMatrix() {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Challenge.class);
+		List<Challenge> challenges = criteria.list();
+
+		String[] mostTechs = 
+			{"javascript","ios","html","css","java","nodejs","android","angularjs","html5","apex","jquery",
+			"visualforce","other","bootstrap","salesforce","api","jsp","postgresql","mongodb","php"};
+
+		String[] mostPlats =
+			{"other","ios","html","nodejs","android","salesforce","mobile","forcecom","wordpress","ec2"};
+
+		Map<String, Integer> matrix = new LinkedHashMap<>();
+		for (String plat : mostPlats) {
+			for (String tech : mostTechs) {
+				matrix.put(plat+","+tech, 0);
+			}
+		}
+
+		for (Challenge challenge : challenges) {
+			String platforms = challenge.getPlatforms();
+			String technologies = challenge.getTechnologies();
+
+			platforms = platforms.toLowerCase().trim();
+			platforms = platforms.replace(".", "");
+			platforms = platforms.replace("#", "sharp");
+			platforms = platforms.replace(" ", "");
+
+			technologies = technologies.toLowerCase().trim();
+			technologies = technologies.replace(".", "");
+			technologies = technologies.replace("#", "sharp");
+			technologies = technologies.replace(" ", "");
+
+			for (String tech : mostTechs) {
+				if (!technologies.contains(tech))
+					continue;
+				for (String plat : mostPlats) {
+					if (!platforms.contains(plat))
+						continue;
+					String pair = plat + "," + tech;
+					if (matrix.containsKey(pair)) {
+						matrix.put(pair, matrix.get(pair) + 1);
+					} else {
+						matrix.put(pair, 1);
+					}
+				}
+			}
+		}
+
+		for(Map.Entry<String, Integer> entry : matrix.entrySet()) {
+			if (entry.getValue() >= 500) {
+				matrix.put(entry.getKey(), 4);
+			} else if(entry.getValue() >= 100) {
+				matrix.put(entry.getKey(), 3);
+			} else if(entry.getValue() >= 10) {
+				matrix.put(entry.getKey(), 2);
+			} else {
+				matrix.put(entry.getKey(), 1);
+			}
+		}
+
+		return matrix;
 	}
 }

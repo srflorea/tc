@@ -170,7 +170,7 @@ d3.tsv("data/igmat.tsv"/*, type*/, function(error, data) {
 		;
 	var legwidths = [0,55,135,235];
   var legsymbols = legend.selectAll(".legsymbols")
-      .data(["0-100","100-500","500-1,000",">1,000"])
+      .data(["0-10","10-100","100-500",">500"])
     .enter()
     	.append("g")
     		.attr("class","legsymbols")
