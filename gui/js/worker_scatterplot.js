@@ -10,12 +10,28 @@ d3.select("#button-color-by").selectAll("div").on("click", function(d) {
     update_legend(id);
 });
 
+d3.selectAll("#color").on("change", function() {
+        id = d3.select(this).attr("value")
+
+        update_colors_for_legend(id)
+        update_colors(id);
+        update_pie(id)
+        update_legend(id);
+    });
+
+d3.selectAll("#filter").on("change", function() {
+        var value = this.value;
+        var to_select = "." + value;
+        d3.selectAll(".dot").attr("hidden", true);
+        d3.selectAll(to_select).attr("hidden", null);
+    });
+
 var wsUrl = getWebServerURL();
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 40, right: 20, bottom: 40, left: 60},
+var margin = {top: 60, right: 20, bottom: 40, left: 60},
     width = 600 - margin.left - margin.right,
-    height = 330 - margin.top - margin.bottom;
+    height = 350 - margin.top - margin.bottom;
 
 var tasks_colors = {}
 var data_legend = []
@@ -90,7 +106,15 @@ d3.json(url, function(error, data) {
       //.enter().append("circle")
         //.attr("r", 3.5)
         .enter().append("path")
-            .attr("class", "dot")
+            .attr("class", function(c) {
+                classes = "dot"
+                if (c.submitted == 1) {
+                    classes += " submitted"
+                } else {
+                    classes += " notsubmitted"
+                }
+                return classes;
+            })
             .attr("d", d3.svg.symbol()
                 .type( function(d) { return "circle" })
                 .size( function(d) { return "42" })
@@ -125,7 +149,7 @@ d3.json(url, function(error, data) {
         .attr('text-anchor', 'middle')
         .attr("x", width / 2 + 20)
         .attr("y", -50)
-        .attr("dy", 30)
+        .attr("dy", 10)
         .text('Worker\'s registrations in time for different types of tasks')
 
     svg.append('text')
@@ -143,6 +167,17 @@ d3.json(url, function(error, data) {
         .attr("x", -height + 60)
         .attr("y", -40)
         .text('Task\'s prize')
+
+    d3.selectAll('.dot').on("mouseover", function(d) {
+        var circleUnderMouse = this;
+        d3.selectAll('.dot').transition().style('opacity',function () {
+            return (this === circleUnderMouse) ? 1.0 : 0.3;
+        });
+    });
+    d3.selectAll('.dot').on("mouseout", function(d) {
+        var circleUnderMouse = this;
+        d3.selectAll('.dot').transition().style('opacity', 1)
+    });
 
     var criteria = "type";
     var new_data = compute_data_for_pie(data, criteria);
@@ -261,7 +296,7 @@ function update_legend(criteria) {
 
     var elemEnter = elem.enter()
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("transform", "translate(" + margin.left + "," + 40 + ")")
 
     var circle = elemEnter.append("circle")
             .attr("r", 10)

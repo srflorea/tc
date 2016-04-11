@@ -6,12 +6,14 @@
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/worker_style.css">
 </head>
 <body>
 	<div class="container">
 		<h2 align="center">Visualizing worker activity in time</h2>
 		<br> <br>
 
+		<!--
 		<div id="colorBy">
 			<p align="center" class="title"> Color by </p>
 			<div id="button-color-by">
@@ -19,12 +21,25 @@
 		        <div id="submission" class="button">SUBMISSION</div>
 	      	</div>
       	</div>
+      	-->
 
       	<br> <br>
 
 		<div class="row">
 			<div class="col-sm-6">
-				<div id="chart"></div>
+				<div id="chart">
+					<form id="color-form">
+						Color by:
+						<label><input type="radio" name="dataset" id="color" value="type" checked>Type </label>
+						<label><input type="radio" name="dataset" id="color" value="submission">Submission </label>
+					</form>
+					<form id="filter-form">
+						Filter by:
+						<label><input type="radio" name="dataset" id="filter" value="dot" checked>All </label>
+						<label><input type="radio" name="dataset" id="filter" value="submitted">Submitted </label>
+						<label><input type="radio" name="dataset" id="filter" value="notsubmitted">Not Submitted </label>
+					</form>
+				</div>
 				<div id="legend"></div>
 			</div>
 			<div class="col-sm-6">
