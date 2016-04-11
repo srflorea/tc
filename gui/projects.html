@@ -6,11 +6,15 @@
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/projects_style.css">
 </head>
 <body>
-	<h2 align="center">Visualizing projects from Top Coder platform</h2>
-	<div class="row">
-		<div class="col-sm-2">
+	<div id="top">
+		<h2 align="center">Visualizing projects from Top Coder platform</h2>
+	</div>
+	<hr>
+
+	<div id="left">
 			<ul id="nav" align="center">
 				<li>
 					Filter projects
@@ -100,10 +104,32 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-sm-10">
-			<div class="container" align="center">
-				<div id="vis"></div>
-			</div>
+
+	<div id="content">
+		<div id="button-info">
+	        <div id="button_info" class="button">Open Info</div>
+      	</div>
+
+		<div id="info_hidden" style="display: none;" align="center">
+			<p> You have reached the project level page! </p>
+			<p>
+				In this page all the projects are presented using small multiples visualization, each of the squares
+				representing a project. The squares are drawn using red and grey color, representing the percentage of 
+				projects that has been completed or canceled within that project. Further on, the squares show some 
+				information about the project in order to get a glimpse about that project before clicking on it. Clicking
+				on one of the squares is getting you to the project's challenges level where you will be able to
+				visualize another small multiple containing all the challenges that belongs to a specific project.
+			</p>
+			<p>
+				On the left hand side of the page there is filtering section. You can select multiple filters for searching
+				for the project that it is the most interesting you.
+			</p>
+		</div>
+
+		<div> </div>
+
+		<div class="container" align="center">
+			<div id="vis" style="position: absolute;"></div>
 		</div>
 	</div>
 
