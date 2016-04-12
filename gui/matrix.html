@@ -4,48 +4,41 @@
   <meta charset="UTF-8">
   <title>TC projects</title>
 
-  <style>
-  .grow rect {
-    stroke: black;
-    shape-rendering: crispEdges;
-    fill: none;
-  }
-   
-   
-  .axis text {
-    font: 13px sans-serif;
-  }
-   
-  .legend text {
-  	font: 15px sans-serif;
-  }
-   
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-   
-  .x.axis path,
-  .x.axis line {
-    display: none;
-  }
-   
-   
-  .y.axis path,
-  .y.axis line {
-    display: none;
-  }
-  </style>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/matrix_style.css">
 </head>
 
 <body>
+  <div id="top">
+    <h2 id="header">Visualizing challenges in a distribution matrix</h2>
+  </div>
+
   <div class="container" align="center">
-    <h2 align="center">Visualizing challenges in a distribution matrix</h2>
-  
+    <div id="button-info">
+          <div id="button_info" class="button">Open Info</div>
+    </div>
+
+    <div id="info_hidden" style="display: none;" align="center">
+      <p> You have reached the distribution matrix page! </p>
+      <p>
+        On this page is presented a matrix containing 10 rows and 20 columns. The rows are representing the 10 most used
+        platforms and the columns are representing the 20 most used technologies in the database. Every element of the
+        matrix is represented by a chart containing a circle. The circle's color and size are both representing the
+        number of challenges that are standing behind that element. In other words, an element of the matrix is
+        showing how many challenges are using that specific platform and technology.
+      </p>
+      <p>
+        From this page the user can navigate deeper in looking to the challenges that are stannding begind that
+        element by clicking on the respective element.
+      </p>
+    </div>
+
     <svg class="chart"></svg>
   </div>
+
+  <script>
+    window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')
+  </script>
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
 

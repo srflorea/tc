@@ -1,3 +1,16 @@
+var hidden_div = $('#info_hidden');
+d3.select("#button-info").selectAll("div").on("click", function() {
+        var text = d3.select("#button_info").text();
+        if (text == "Open Info") {
+            hidden_div.show('slow')
+            d3.select("#button_info").text('Hide Info')
+        }
+        else {
+            hidden_div.hide('slow')
+            d3.select("#button_info").text('Open Info')
+        }
+    });
+
 var tempColor, tempColorTick;
 
 var totWidth = 1200,

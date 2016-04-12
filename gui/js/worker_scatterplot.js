@@ -26,6 +26,19 @@ d3.selectAll("#filter").on("change", function() {
         d3.selectAll(to_select).attr("hidden", null);
     });
 
+var hidden_div = $('#info_hidden');
+d3.select("#button-info").selectAll("div").on("click", function() {
+        var text = d3.select("#button_info").text();
+        if (text == "Open Info") {
+            hidden_div.show('slow')
+            d3.select("#button_info").text('Hide Info')
+        }
+        else {
+            hidden_div.hide('slow')
+            d3.select("#button_info").text('Open Info')
+        }
+    });
+
 var wsUrl = getWebServerURL();
 
 // Set the dimensions of the canvas / graph
@@ -36,7 +49,7 @@ var margin = {top: 60, right: 20, bottom: 40, left: 60},
 var tasks_colors = {}
 var data_legend = []
 
-var colors = ["orange", "green", "yellow", "red", "blue", "brown", "grey"]
+var colors = ["orange", "blue", "green", "yellow", "red", "brown", "grey"]
 
 // Parse the date / time
 var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -106,8 +119,6 @@ d3.json(url, function(error, data) {
     // Add the scatterplot
     svg.selectAll("dot")
         .data(data)
-      //.enter().append("circle")
-        //.attr("r", 3.5)
         .enter().append("path")
             .attr("class", function(c) {
                 classes = "dot"
@@ -122,12 +133,8 @@ d3.json(url, function(error, data) {
                 .type( function(d) { return "circle" })
                 .size( function(d) { return "42" })
                 )
-            //.attr("cx", function(d) { return x(d.date); })
-            //.attr("cy", function(d) { return y(d.prize); })
             .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.prize) + ")"; })
             .style('fill', function(d,i) {
-                ///if (d.submitted == 0)
-                   // return
                 if (d.type in tasks_colors)
                     return tasks_colors[d.type];
                 return 'black'
@@ -135,15 +142,12 @@ d3.json(url, function(error, data) {
 
     // Add the X Axis
     svg.append("g")
-        //.attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .style('text-anchor', 'end')
-        //
         .call(xAxis);
 
     // Add the Y Axis
     svg.append("g")
-        //.attr("class", "y axis")
         .call(yAxis);
 
     // Add title

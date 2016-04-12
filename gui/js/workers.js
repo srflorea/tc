@@ -36,6 +36,19 @@ function xValue(value) {
 	return value.handle
 }
 
+var hidden_div = $('#info_hidden');
+d3.select("#button-info").selectAll("div").on("click", function() {
+        var text = d3.select("#button_info").text();
+        if (text == "Open Info") {
+            hidden_div.show('slow')
+            d3.select("#button_info").text('Hide Info')
+        }
+        else {
+            hidden_div.hide('slow')
+            d3.select("#button_info").text('Open Info')
+        }
+    });
+
 d3.select("#button-handles").selectAll("div").on("click", function(d) {
 	id = d3.select(this).attr("id")
 	d3.select("#button-handles").selectAll("div").classed("active", false)
