@@ -78,6 +78,9 @@ var legend = d3.select('#legend')
 var qs = getQueryStrings();
 var handle = qs["handle"];
 
+var element = document.getElementById("header");
+element.innerHTML += " for <b>" + handle + "</b>";
+
 var url =  wsUrl + "/registrations?handle=" + handle;
 // Get the data
 allData = []

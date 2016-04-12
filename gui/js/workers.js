@@ -2,6 +2,9 @@
 var qs = getQueryStrings();
 var challengeId = qs["challengeId"];
 
+var element = document.getElementById("header");
+element.innerHTML += " for challenge with PID " + challengeId;
+
 var wsUrl = getWebServerURL();
 
 var tempColor;
@@ -134,6 +137,8 @@ function updateData(id) {
 					d3.select(this)
 						.style('opacity', 1)
 						.style('fill', tempColor)
+
+					tooltip.html("")
 				})
 
 		myChart.transition()
