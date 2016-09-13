@@ -39,13 +39,13 @@ public class ChallengeController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/challenges")
-	public List<Challenge> challenges(@RequestParam Long projectId) {
+	public List<Challenge> challenges() {
 		
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		Criteria criteria = session.createCriteria(Challenge.class);
-		criteria.add(Restrictions.eq(Challenge.Fields.PROJECT_ID.getName(), projectId));
+		//criteria.add(Restrictions.eq(Challenge.Fields.PROJECT_ID.getName(), projectId));
 		List<Challenge> challenges = criteria.list();
 
 		return challenges;
@@ -62,6 +62,8 @@ public class ChallengeController {
 		query.addScalar("prize", LongType.INSTANCE);
 		query.addScalar("type", StringType.INSTANCE);
 		query.addScalar("submitted", IntegerType.INSTANCE);
+		query.addScalar("challengeName", StringType.INSTANCE);
+		query.addScalar("projectId", IntegerType.INSTANCE);
 		query.setString("handle", handle);
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
 		@SuppressWarnings("unchecked")

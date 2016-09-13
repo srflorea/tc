@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "challenge")
 public class Challenge {
@@ -14,7 +16,12 @@ public class Challenge {
 		CHALLENGE_NAME("challengeName"),
 		PROJECT_ID("projectId"),
 		PLATFORMS("platforms"),
-		TECHNOLOGIES("technologies");
+		TECHNOLOGIES("technologies"),
+		NUM_REGISTRANTS("numRegistrants"),
+		NUM_SUBMISSIONS("numSubmissions"),
+		STATUS("status"),
+		REGISTRATION_START_DATE("registrationStartDate"),
+		CHALLENGE_TYPE("challengeType");
 
 		private String name;
 
@@ -43,6 +50,22 @@ public class Challenge {
 	@Column(name = "technologies")
 	private String technologies;
 
+	@Column(name = "numRegistrants")
+	private int numRegistrants;
+
+	@Column(name = "numSubmissions")
+	private int numSubmissions;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "registrationStartDate")
+	private Date registrationStartDate;
+
+	@Column(name = "challengeType")
+	private String challengeType;
+
+
 	public Challenge() {}
 
 	public Challenge(long challengeId, String challengeName) {
@@ -68,5 +91,25 @@ public class Challenge {
 
 	public String getTechnologies() {
 		return technologies;
+	}
+
+	public int getNumRegistrants() {
+		return numRegistrants;
+	}
+
+	public int getNumSubmissions() {
+		return numSubmissions;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public Date getRegistrationStartDate() {
+		return registrationStartDate;
+	}
+
+	public String getChallengeType() {
+		return challengeType;
 	}
 }

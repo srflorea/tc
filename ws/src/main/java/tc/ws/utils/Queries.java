@@ -4,29 +4,31 @@ public class Queries {
 
 	public static final String SELECT_REGISTRATIONS_QUERY =
 			"	select " +
-			"	date(relation_c_r.registrationDate) date,	" +
-			"	challenge.totalPrize prize,					" +
-			"    case 										" +
-			"		when challenge.challengeType = \"Code\"	" +
-			"			then \"Code\"							" +
-			"		when challenge.challengeType = \"UI Prototype Competition\"	" +
+			"	date(relation_c_r.registrationDate) date,					" +
+			"	challenge.totalPrize prize,									" +
+			"    case 														" +
+			"		when challenge.challengeType = \"Code\"					" +
+			"			then \"Code\"										" +
+			"		when challenge.challengeType = \"UI Prototype Competition\"		" +
 			"			then \"UI Prototype Competition\"							" +
 			"		when challenge.challengeType = \"Assembly Competition\"			" +
 			"			then \"Assembly Competition\"								" +
-			"		when (challenge.challengeType = \"Specification\" or challenge.challengeType = \"Design\" or challenge.challengeType = \"Conceptualization\") " +
-			"			then \"Design\"	" +
-			"		when (challenge.challengeType = \"Test Suites\" or challenge.challengeType = \"Test Scenarios\") "+
+			"		when (challenge.challengeType = \"Specification\" or challenge.challengeType = \"Design\" or challenge.challengeType = \"Conceptualization\")	" +
+			"			then \"Design\"										" +
+			"		when (challenge.challengeType = \"Test Suites\" or challenge.challengeType = \"Test Scenarios\")												"+
 			"			then \"testing\" " +
-			"		when challenge.challengeType = \"First2Finish\" " +
-			"			then \"First2Finish\" " +
-			"		else challenge.challengeType " +
-			"	end as type, " +
-			"   relation_c_r.submissionDate != 0 as submitted " +
-			"from relation_c_r " +
-			"join challenge " +
-			"	on relation_c_r.challengeId = challenge.challengeId " +
-			"where handle = :handle " + // \"savon_cn\" " +
-			"order by date; ";
+			"		when challenge.challengeType = \"First2Finish\" 		" +
+			"			then \"First2Finish\" 								" +
+			"		else challenge.challengeType 							" +
+			"	end as type,												" +
+			"   relation_c_r.submissionDate != 0 as submitted, 				" +
+			"	challenge.challengeName,									" +
+			"	challenge.projectId											" +
+			"from relation_c_r 												" +
+			"join challenge 												" +
+			"	on relation_c_r.challengeId = challenge.challengeId 		" +
+			"where handle = :handle 										" + // \"savon_cn\" " +
+			"order by date; 												";
 		
 		public static final String SELECT_HANDLES_RATINGS =
 				"	select 													" +
