@@ -10,6 +10,7 @@ public class Registration {
 	private int submitted;
 	private String challangeName;
 	private int projectId;
+	private int challengeId;
 
 	public Date getDate() {
 		return date;
@@ -51,5 +52,12 @@ public class Registration {
 	}
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
+	}
+
+	public int getChallengeId() {
+		return challengeId;
+	}
+	public void setChallengeId(int challengeId) {
+		this.challengeId = challengeId;
 	}
 }

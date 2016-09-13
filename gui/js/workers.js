@@ -211,7 +211,7 @@ function updateData(id) {
 			})
 			.attr('transform', 'rotate(-50)')
 			.on('click', function (d) {
-				url = 'worker_scatterplot.html?handle=' + data[d].handle;
+				url = 'worker.html?handle=' + data[d].handle;
 				window.open(url, '_self')
 			})
 

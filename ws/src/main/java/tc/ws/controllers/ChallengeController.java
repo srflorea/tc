@@ -64,6 +64,7 @@ public class ChallengeController {
 		query.addScalar("submitted", IntegerType.INSTANCE);
 		query.addScalar("challengeName", StringType.INSTANCE);
 		query.addScalar("projectId", IntegerType.INSTANCE);
+		query.addScalar("challengeId", IntegerType.INSTANCE);
 		query.setString("handle", handle);
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
 		@SuppressWarnings("unchecked")

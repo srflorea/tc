@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+
+  <title>Worker</title>
+
+  <script src='js/libs/d3.v3.js' type='text/javascript'></script>
+  <script src='js/libs/crossfilter.js' type='text/javascript'></script>
+  <script src='js/libs/dc.js' type='text/javascript'></script>
+  <script src='js/libs/jquery-1.9.1.min.js' type='text/javascript'></script>
+  <script src='js/libs/bootstrap.min.js' type='text/javascript'></script>
+
+  <link href='css/bootstrap2.min.css' rel='stylesheet' type='text/css'>
+  <link href='css/dc.css' rel='stylesheet' type='text/css'>
+
+  <style type="text/css"></style>
+  
+  <style>
+    h4 span {
+      font-size:14px;
+      font-weight:normal;
+      }
+    h2 {
+      float: right;
+    }
+    h2 span {
+      font-size:14px;
+      font-weight:normal;
+      }
+  </style>
+</head>
+
+<body>
+
+  <div class='container' style='font: 12px sans-serif;'>
+    <div class="row">
+      <div class="span6">
+      <h2>Worker's activity in time</h2>
+      </div>
+      <div class="span6 dc-data-count">
+        
+          <span style="float: right;">
+            <span class="filter-count"></span>
+             selected out of 
+            <span class="total-count"></span>
+             records | 
+            <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+          </span>
+        
+      </div>
+    </div>
+
+    <div id="button-info">
+          <div id="button_info" class="btn" type="Button">Open Info</div>
+    </div>
+
+    <div id="info_hidden" style="display: none;" align="center">
+      <p> You have reached the worker level page! </p>
+      <p>
+        On this page are presented statistics about a worker. The scatterplot is showing the worker's activity
+        in time between the first and the last registration. On the y axis the prize of each challenge is 
+        showed. When firstly generated, every circle in the chart represent a challenge for which the worker
+        registered. Each challenge is colored based on the type of the challenge (First to Finish, etc).
+      </p>
+      <p>
+        The chart contains also 2 groups of radio buttons which can help you better understand the worker's
+        behaviour. You can change the color of the circles by selecting another radio button on the left side
+        group and you can filter the challenges by selecting another radio button on the right side group.
+      </p>
+      <p>
+        The pie chart on the right side of the scatterplot is presenting percentages of challenges depending on
+        what the user has in the scatterplot. Can be percentages of different types of tasks or percentages of
+        submission.
+      </p>
+    </div>
+
+    <div class='row'>
+      <div class='span12' id='dc-registrations-chart'>
+        <h4>
+          Registrations by time and prize
+          <span>
+            <a class="reset"
+              href="javascript:registrationsChart.filterAll();dc.redrawAll();"
+              style="display: none;">
+              reset
+            </a>
+          </span>
+        </h4>
+      </div>
+    </div>
+
+    <div class='row'>
+    <div class='span4' id='dc-prize-chart'>
+      <h4>
+        Number of challenges by prize
+        <span>
+          <a class="reset"
+            href="javascript:prizeChart.filterAll();dc.redrawAll();"
+            style="display: none;">
+            reset
+          </a>
+        </span>
+      </h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class='span4' id='dc-status-chart'>
+    <h4>
+    Registrations' Status
+        <span>
+          <a class="reset"
+            href="javascript:statusChart.filterAll();dc.redrawAll();"
+            style="display: none;">
+            reset
+          </a>
+        </span>
+      </h4>
+    </div>   
+    <div class='span4' id='dc-challengeType-chart'>
+    <h4>
+    Challenges' Type
+        <span>
+          <a class="reset"
+            href="javascript:challengeTypeChart.filterAll();dc.redrawAll();"
+            style="display: none;">
+            reset
+          </a>
+        </span>
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="span12" style="height:50px;"></div>
+      <div class='span12'>
+          <div id="paging" style="float:right">
+            Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+            <input id="last" class="btn" type="Button" value="Previous" onclick="javascript:last()" />
+            <input id="next" class="btn" type="button" value="    Next    " onclick="javascript:next()"/>
+          </div>
+          <table class='table table-hover' id='dc-table-graph'>
+            <thead>
+              <tr class='header'>
+                <th>Challenge Name</th>
+                <th>Registration Date</th>
+                <th>Challenge Type</th>
+                <th>Submission</th>
+                <th>Prize</th>
+              </tr>
+            </thead>
+          </table>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/worker.js"></script>
+
+</body>
+</html>

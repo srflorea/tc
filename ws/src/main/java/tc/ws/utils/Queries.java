@@ -23,7 +23,8 @@ public class Queries {
 			"	end as type,												" +
 			"   relation_c_r.submissionDate != 0 as submitted, 				" +
 			"	challenge.challengeName,									" +
-			"	challenge.projectId											" +
+			"	challenge.projectId,										" +
+			"	challenge.challengeId										" +
 			"from relation_c_r 												" +
 			"join challenge 												" +
 			"	on relation_c_r.challengeId = challenge.challengeId 		" +
