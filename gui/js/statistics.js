@@ -111,13 +111,15 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .xAxis().tickFormat(function(v) {return v;});
 
   // time graph
-  timeChart.width(960)
+  timeChart.renderArea(true)
+    .width(960)
     .height(150)
     .transitionDuration(500)
-    .mouseZoomable(true)
     .margins({top: 10, right: 10, bottom: 20, left: 40})
     .dimension(volumeByDay)
     .group(volumeByDayGroup)
+    //.mouseZoomable(true)
+    .renderHorizontalGridLines(true)
     .elasticY(true)
     .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.date; })))
     .xAxis();
@@ -142,7 +144,7 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .radius(100)
     .innerRadius(30)
     .dimension(status)
-    .title(function(d){return d.data.key;})
+    .title(function(d){return d.key;})
     .group(statusGroup);
 
   // challenge type pie chart
@@ -151,7 +153,7 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .radius(100)
     .innerRadius(30)
     .dimension(challengeType)
-    .title(function(d){return d.data.key;})
+    .title(function(d){return d.key;})
     .group(challengeTypeGroup);
 
   // Render the Charts
