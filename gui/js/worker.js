@@ -33,8 +33,12 @@ d3.json(url, function (data) {
 
 	var dtgFormat = d3.time.format("%Y-%m-%d");
 
-	data.forEach(function(d, i, obj) {
+	data.forEach(function(d, i, obj) {		
 		d.dtgDate = dtgFormat.parse(d.date);
+
+		if (d.prize > 10000) {
+			data.splice(i , 1);
+		}
 	});
 
 	// Run the data through crossfilter and load our 'facts'
@@ -151,13 +155,11 @@ d3.json(url, function (data) {
 		//.showGroups(false)
 		.size(ndx.size())
 		.columns([
-			function(d) { return '<a href=\"workers.html?challengeId=' + d.challengeId + '\">' + d.challengeName + '</a>'; },
+			function(d) { return '<a href=\"challenge.html?challengeId=' + d.challengeId + '\">' + d.challengeName + '</a>'; },
 			function(d) { return d.date; },
 			function(d) { return d.type; },
 			function(d) { return d.submitted; },
 			function(d) { return d.prize; },
-			//function(d) { return '<a href=\"http://maps.google.com/maps?z=12&t=m&q=loc:' + d.lat + '+' + d.long +"\" target=\"_blank\">Google Map</a>"},
-			//function(d) { return '<a href=\"http://www.openstreetmap.org/?mlat=' + d.lat + '&mlon=' + d.long +'&zoom=12'+ "\" target=\"_blank\"> OSM Map</a>"}
 			])
 		.sortBy(function(d){ return d.dtgDate; })
 		.order(d3.ascending)

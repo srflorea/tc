@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+
+  <title>Challenge</title>
+
+  <script src='js/libs/d3.v3.js' type='text/javascript'></script>
+  <script src='js/libs/crossfilter.js' type='text/javascript'></script>
+  <script src='js/libs/dc.js' type='text/javascript'></script>
+  <script src='js/libs/jquery-1.9.1.min.js' type='text/javascript'></script>
+  <script src='js/libs/bootstrap.min.js' type='text/javascript'></script>
+
+  <link href='css/bootstrap2.min.css' rel='stylesheet' type='text/css'>
+  <link href='css/dc.css' rel='stylesheet' type='text/css'>
+
+  <style type="text/css"></style>
+  
+  <style>
+    h4 span {
+      font-size:14px;
+      font-weight:normal;
+      }
+    h2 {
+      float: right;
+    }
+    h2 span {
+      font-size:14px;
+      font-weight:normal;
+      }
+
+    #dc-reg-sub-chart .x.axis text {
+        text-anchor: end !important;
+        transform: rotate(-45deg);
+    }
+    #dc-rating-chart .x.axis text {
+        text-anchor: end !important;
+        transform: rotate(-45deg);
+    }
+    #dc-rel-rating-chart .x.axis text {
+        text-anchor: end !important;
+        transform: rotate(-45deg);
+    }
+
+    .header {
+        cursor:pointer;
+        cursor:hand;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class='container' style='font: 12px sans-serif;'>
+    <div class="row">
+      <div class="span6">
+      <h2>Challenge</h2>
+      </div>
+    </div>
+
+    <div id="button-info">
+          <div id="button_info" class="btn" type="Button">Open Info</div>
+    </div>
+
+    <div id="info_hidden" style="display: none;" align="center">
+      <p> You have reached the challenge level page! </p>
+      <p>
+        On this page are presented statistics about all the workers that registered for this challenge.
+        On the x axis the user can always see all the handles(names) of the workers inserted based on the
+        registration time while on the y axis the user has the possibility to change the information.
+        When firstly generated, the chart is showing the rating of the workers.
+      </p>
+      <p>
+        Clicking on the buttons above the chart, the user has the possibility to change the information that the
+        chart is showing: rating, reliability rating, number of registratios or number of submissions.
+      </p>
+      <p>
+        From this page the user can navigate deeper in looking to a specific worker by clicking on its
+        handle(name)
+      </p>
+    </div>
+
+    <div class='row'>
+      <div class='span12' id='dc-reg-sub-chart'>
+        <h4>
+          Number of registrations and submissions for the challenge's handles
+          <span>
+            <a class="reset"
+              href="javascript:regSubChart.filterAll();dc.redrawAll();"
+              style="display: none;">
+              reset
+            </a>
+          </span>
+        </h4>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='span6' id='dc-rating-chart'>
+        <h4>
+          Rating for the challenge's handles
+          <span>
+            <a class="reset"
+              href="javascript:ratingChart.filterAll();dc.redrawAll();"
+              style="display: none;">
+              reset
+            </a>
+          </span>
+        </h4>
+      </div>
+
+      <div class='span6' id='dc-rel-rating-chart'>
+        <h4>
+          Reliability rating for the challenge's handles
+          <span>
+            <a class="reset"
+              href="javascript:relRatingChart.filterAll();dc.redrawAll();"
+              style="display: none;">
+              reset
+            </a>
+          </span>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12" style="height:50px;"></div>
+      <div class='span12'>
+          <div id="paging" style="float:right">
+            Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+            <input id="last" class="btn" type="Button" value="Previous" onclick="javascript:last()" />
+            <input id="next" class="btn" type="button" value="    Next    " onclick="javascript:next()"/>
+          </div>
+          <table class='table table-hover' id='dc-table-graph'>
+            <thead>
+              <tr class='header'>
+                <th class="data-table-col" data-col="handle">Handle</th>
+                <th class="data-table-col" data-col="registrationDate">Registration Date</th>
+                <th class="data-table-col" data-col="submitted">Submission</th>
+              </tr>
+            </thead>
+          </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/challenge.js"></script>
+</body>
+</html>

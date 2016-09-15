@@ -31,51 +31,27 @@ public class Queries {
 			"where handle = :handle 										" + // \"savon_cn\" " +
 			"order by date; 												";
 		
-		public static final String SELECT_HANDLES_RATINGS =
+		public static final String SELECT_HANDLES_RATINGS_AND_REL_RATINGS =
 				"	select 													" +
 				"		relation_c_r.handle,								" +
-				"		avg(handle_rating.rating) as y,						" +
+				"		avg(handle_rating.rating) as rating,				" +
+				"		handle.reliability_rating as relRating,				" +
 				"   	relation_c_r.submissionDate != 0 as submitted,		" +
 				"		relation_c_r.registrationDate						" +
 				"	from relation_c_r 										" +
 				"	left join handle_rating									" +
 				"		on relation_c_r.handle = handle_rating.handle		" +
+				"	left join handle										" +
+				"		on relation_c_r.handle = handle.handle				" +
 				"	where relation_c_r.challengeId = :challengeId			" +
 				"	group by relation_c_r.handle							";
 
-		public static final String SELECT_HANDLES_REL_RATINGS =
-				"	select 													" +
-				"		relation_c_r.handle,								" +
-				"		handle.reliability_rating as y,						" +
-				"    	relation_c_r.submissionDate != 0 as submitted,		" +
-				"		relation_c_r.registrationDate						" +
-				"	from relation_c_r 										" +
-				"	left join handle										" +
-				"		on relation_c_r.handle = handle.handle				" +
-				"	where relation_c_r.challengeId = :challengeId			";
 
-		public static final String SELECT_HANDLES_NO_OF_REG =
+		public static final String SELECT_HANDLES_NO_OF_REG_AND_SUB =
 				"	select													" +
 				"		relation_c_r.handle,								" +
-				"		count(*) as y,										" +
-			    "		relation_c_r.submissionDate != 0 as submitted,		" + //not working... is changed later during the flow
-				"		relation_c_r.registrationDate						" + //not working... is changed later during the flow
-				"	from challenge											" +
-				"	join relation_c_r										" +
-				"		on challenge.challengeId = relation_c_r.challengeId	" +
-				"	where relation_c_r.handle in							" +
-			    "	(														" +
-				"		select												" +
-				"			handle											" +
-				"		from relation_c_r									" +
-				"		where relation_c_r.challengeId = :challengeId		" +
-			    "	)														" +
-				"	group by relation_c_r.handle							";
-
-		public static final String SELECT_HANDLES_NO_OF_SUB =
-				"	select													" +
-				"		relation_c_r.handle,								" +
-				"		sum(if(relation_c_r.submissionDate != 0, 1, 0)) as y, " +
+				"		sum(if(relation_c_r.submissionDate != 0, 1, 0)) as subNo, " +
+				"		count(*) as regNo,										" +
 			    "		relation_c_r.submissionDate != 0 as submitted,		" + //not working... is changed later during the flow
 				"		relation_c_r.registrationDate						" + //not working... is changed later during the flow
 				"	from challenge											" +

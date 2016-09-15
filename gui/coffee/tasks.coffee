@@ -181,7 +181,7 @@ SmallMultiples = () ->
 
 	showWorkers = (d, i) ->
 		challengeId = d.values[0].challengeId
-		url = 'workers.html?challengeId=' + challengeId;
+		url = 'challenge.html?challengeId=' + challengeId;
 		window.open url, '_self'
 
 	return chart
