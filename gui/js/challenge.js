@@ -1,11 +1,9 @@
 var qs = getQueryStrings();
 var challengeId = qs["challengeId"];
 
-var element = document.getElementById("header");
-//element.innerHTML += " for <b>" + handle + "</b>";
-
 var wsUrl = getWebServerURL();
-var url =  wsUrl + "/handles/info?challengeId=" + challengeId;
+var handlesInfoUrl =  wsUrl + "/handles/info?challengeId=" + challengeId;
+var challengeInfoUrl = wsUrl + "/challenges?challengeId=" + challengeId;
 
 var hidden_div = $('#info_hidden');
 d3.select("#button-info").selectAll("div").on("click", function() {
@@ -25,10 +23,34 @@ var ratingChart = dc.barChart("#dc-rating-chart");
 var relRatingChart = dc.barChart("#dc-rel-rating-chart");
 var dataTable = dc.dataTable("#dc-table-graph");
 
+
+// load challenge info from the web server
+d3.json(challengeInfoUrl, function (data) {
+	var info = data[0];
+
+	var element = document.getElementById("challenge-name");
+	element.innerHTML += "<b>" + info.challengeName + "</b>";
+
+	element = document.getElementById("challenge-type");
+	element.innerHTML += "<b>" + info.challengeType + "</b>";
+
+	element = document.getElementById("challenge-prize");
+	element.innerHTML += "<b>$" + info.prize + "</b>";
+
+	element = document.getElementById("challenge-status");
+	element.innerHTML += "<b>" + info.status + "</b>";
+
+	element = document.getElementById("challenge-tech");
+	element.innerHTML += "<b>" + info.technologies + "</b>";
+
+	element = document.getElementById("challenge-plat");
+	element.innerHTML += "<b>" + info.platforms + "</b>";
+});
+
 var ndx;
 
-// load data from a csv file
-d3.json(url, function (data) {
+// load handles info from a the web server
+d3.json(handlesInfoUrl, function (data) {
 	
 	data.sort(function(a, b) {
 		return new Date(a.registrationDate) - new Date(b.registrationDate);
@@ -38,13 +60,21 @@ d3.json(url, function (data) {
 		if (d.regNo > 2000) {
 			data.splice(i , 1);
 		}
+
+		if (d.submitted) {
+			var element = document.getElementById("challenge-sub");
+			if (element.innerHTML != "") {
+				element.innerHTML += ', '
+			}
+			element.innerHTML += '<a href=\"worker.html?handle=' + d.handle + '\">' + d.handle + '</a>';
+		}
 	});
 
 	ndx = crossfilter(data);
 
 	// for handles
 	var handlesDim = ndx.dimension(function (d) {
-		return d.handle;       // add the magnitude dimension
+		return d.handle;
 	});
 
 	var regNoGroup = handlesDim.group().reduceSum(function (d) { return d.regNo; });	// sums
@@ -107,12 +137,8 @@ d3.json(url, function (data) {
 		.columns([
 			function(d) { return '<a href=\"worker.html?handle=' + d.handle + '\">' + d.handle + '</a>'; },
 			function(d) { return d.registrationDate; },
-			//function(d) { return d.type; },
 			function(d) { return d.submitted; },
-			//function(d) { return d.prize; },
 			])
-		// /.sortBy(function(d){ return d.dtgDate; })
-		//.order(d3.ascending)
 
 	updatePagination();
 

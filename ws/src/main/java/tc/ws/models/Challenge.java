@@ -21,7 +21,8 @@ public class Challenge {
 		NUM_SUBMISSIONS("numSubmissions"),
 		STATUS("status"),
 		REGISTRATION_START_DATE("registrationStartDate"),
-		CHALLENGE_TYPE("challengeType");
+		CHALLENGE_TYPE("challengeType"),
+		PRIZE("prize");
 
 		private String name;
 
@@ -64,6 +65,9 @@ public class Challenge {
 
 	@Column(name = "challengeType")
 	private String challengeType;
+
+	@Column(name = "totalPrize")
+	private int prize;
 
 
 	public Challenge() {}
@@ -111,5 +115,9 @@ public class Challenge {
 
 	public String getChallengeType() {
 		return challengeType;
+	}
+
+	public int getPrize() {
+		return prize;
 	}
 }

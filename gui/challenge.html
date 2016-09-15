@@ -29,15 +29,7 @@
       font-weight:normal;
       }
 
-    #dc-reg-sub-chart .x.axis text {
-        text-anchor: end !important;
-        transform: rotate(-45deg);
-    }
-    #dc-rating-chart .x.axis text {
-        text-anchor: end !important;
-        transform: rotate(-45deg);
-    }
-    #dc-rel-rating-chart .x.axis text {
+    #dc-reg-sub-chart .x.axis text, #dc-rating-chart .x.axis text, #dc-rel-rating-chart .x.axis text {
         text-anchor: end !important;
         transform: rotate(-45deg);
     }
@@ -45,6 +37,10 @@
     .header {
         cursor:pointer;
         cursor:hand;
+    }
+
+    #button_info {
+        float: right;
     }
   </style>
 </head>
@@ -54,30 +50,71 @@
   <div class='container' style='font: 12px sans-serif;'>
     <div class="row">
       <div class="span6">
-      <h2>Challenge</h2>
+        <h2>Challenge Information</h2>
+      </div>
+      <div class="span6">
+        <br>
+        <div id="button-info">
+            <div id="button_info" class="btn" type="Button">Open Info</div>
+      </div>
       </div>
     </div>
 
-    <div id="button-info">
-          <div id="button_info" class="btn" type="Button">Open Info</div>
+    <div class="row">
+
+      <div id="info_hidden" style="display: none;" align="center">
+        <p> You have reached the challenge level page! </p>
+        <p>
+          On this page are presented statistics about all the workers that registered for this challenge.
+          On the x axis the user can always see all the handles(names) of the workers inserted based on the
+          registration time while on the y axis the user has the possibility to change the information.
+          When firstly generated, the chart is showing the rating of the workers.
+        </p>
+        <p>
+          Clicking on the buttons above the chart, the user has the possibility to change the information that the
+          chart is showing: rating, reliability rating, number of registratios or number of submissions.
+        </p>
+        <p>
+          From this page the user can navigate deeper in looking to a specific worker by clicking on its
+          handle(name)
+        </p>
+      </div>
     </div>
 
-    <div id="info_hidden" style="display: none;" align="center">
-      <p> You have reached the challenge level page! </p>
-      <p>
-        On this page are presented statistics about all the workers that registered for this challenge.
-        On the x axis the user can always see all the handles(names) of the workers inserted based on the
-        registration time while on the y axis the user has the possibility to change the information.
-        When firstly generated, the chart is showing the rating of the workers.
-      </p>
-      <p>
-        Clicking on the buttons above the chart, the user has the possibility to change the information that the
-        chart is showing: rating, reliability rating, number of registratios or number of submissions.
-      </p>
-      <p>
-        From this page the user can navigate deeper in looking to a specific worker by clicking on its
-        handle(name)
-      </p>
+    <div class="row">
+      <br>
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr class="success">
+            <td>Challenge name</td>
+            <td id="challenge-name"></td>
+          </tr>
+          <tr class="info">
+            <td>Challenge type</td>
+            <td id="challenge-type"></td>
+          </tr>
+          <tr class="info">
+            <td>Prize</td>
+            <td id="challenge-prize"></td>
+          </tr>
+          <tr class="info">
+            <td>Status</td>
+            <td id="challenge-status"></td>
+          </tr>
+          <tr class="info">
+            <td>Technologies</td>
+            <td id="challenge-tech"></td>
+          </tr>
+          <tr class="info">
+            <td>Platforms</td>
+            <td id="challenge-plat"></td>
+          </tr>
+          <tr class="info">
+            <td>Submitters</td>
+            <td id="challenge-sub"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class='row'>
