@@ -28,6 +28,9 @@
       font-size:14px;
       font-weight:normal;
       }
+    #button_info {
+        float: right;
+    }
   </style>
 </head>
 
@@ -36,10 +39,40 @@
   <div class='container' style='font: 12px sans-serif;'>
     <div class="row">
       <div class="span6">
-      <h2>Worker's activity in time</h2>
+        <h2>Worker's activity in time</h2>
       </div>
-      <div class="span6 dc-data-count">
-        
+      <div class="span6">
+        <br>
+        <div id="button-info">
+          <div id="button_info" class="btn" type="Button">Open Info</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="info_hidden" style="display: none;" align="center">
+        <p> You have reached the worker level page! </p>
+        <p>
+          On this page are presented statistics about a worker. The scatterplot is showing the worker's activity
+          in time between the first and the last registration. On the y axis the prize of each challenge is 
+          showed. When firstly generated, every circle in the chart represent a challenge for which the worker
+          registered. Each challenge is colored based on the type of the challenge (First to Finish, etc).
+        </p>
+        <p>
+          The chart contains also 2 groups of radio buttons which can help you better understand the worker's
+          behaviour. You can change the color of the circles by selecting another radio button on the left side
+          group and you can filter the challenges by selecting another radio button on the right side group.
+        </p>
+        <p>
+          The pie chart on the right side of the scatterplot is presenting percentages of challenges depending on
+          what the user has in the scatterplot. Can be percentages of different types of tasks or percentages of
+          submission.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="span12 dc-data-count">
           <span style="float: right;">
             <span class="filter-count"></span>
              selected out of 
@@ -47,32 +80,7 @@
              records | 
             <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
           </span>
-        
       </div>
-    </div>
-
-    <div id="button-info">
-          <div id="button_info" class="btn" type="Button">Open Info</div>
-    </div>
-
-    <div id="info_hidden" style="display: none;" align="center">
-      <p> You have reached the worker level page! </p>
-      <p>
-        On this page are presented statistics about a worker. The scatterplot is showing the worker's activity
-        in time between the first and the last registration. On the y axis the prize of each challenge is 
-        showed. When firstly generated, every circle in the chart represent a challenge for which the worker
-        registered. Each challenge is colored based on the type of the challenge (First to Finish, etc).
-      </p>
-      <p>
-        The chart contains also 2 groups of radio buttons which can help you better understand the worker's
-        behaviour. You can change the color of the circles by selecting another radio button on the left side
-        group and you can filter the challenges by selecting another radio button on the right side group.
-      </p>
-      <p>
-        The pie chart on the right side of the scatterplot is presenting percentages of challenges depending on
-        what the user has in the scatterplot. Can be percentages of different types of tasks or percentages of
-        submission.
-      </p>
     </div>
 
     <div class='row'>
