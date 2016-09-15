@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tc.ws.models.Challenge;
 import tc.ws.models.ChallengeRegistration;
 import tc.ws.models.HandleInfo;
+import tc.ws.models.Handle;
 import tc.ws.models.Project;
 import tc.ws.models.Registration;
 import tc.ws.models.RelationCR;
@@ -40,7 +41,7 @@ public class ChallengeController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/challenges")
 	public List<Challenge> challenges(@RequestParam(value = "challengeId", required=false) Long challengeId) {
-		
+
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -52,6 +53,23 @@ public class ChallengeController {
 		List<Challenge> challenges = criteria.list();
 
 		return challenges;
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/handles")
+	public List<Handle> handles(@RequestParam(value = "handle", required=false) String handle) {
+
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Handle.class);
+		if (handle != null) {
+			criteria.add(Restrictions.eq(Handle.Fields.HANDLE.getName(), handle));
+		}
+
+		List<Handle> handles = criteria.list();
+
+		return handles;
 	}
 
 	@RequestMapping("/registrations")

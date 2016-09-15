@@ -5,7 +5,8 @@ var element = document.getElementById("header");
 //element.innerHTML += " for <b>" + handle + "</b>";
 
 var wsUrl = getWebServerURL();
-var url =  wsUrl + "/registrations?handle=" + handle;
+var registrationsUrl =  wsUrl + "/registrations?handle=" + handle;
+var handleInfoUrl = wsUrl + "/handles?handle=" + handle;
 
 var hidden_div = $('#info_hidden');
 d3.select("#button-info").selectAll("div").on("click", function() {
@@ -26,10 +27,30 @@ var challengeTypeChart = dc.rowChart("#dc-challengeType-chart");
 var prizeChart = dc.barChart("#dc-prize-chart");
 var dataTable = dc.dataTable("#dc-table-graph");
 
+// load challenge info from the web server
+d3.json(handleInfoUrl, function (data) {
+	var info = data[0];
+
+	var element = document.getElementById("handle");
+	element.innerHTML += "<b>" + info.handle + "</b>";
+
+	element = document.getElementById("country");
+	element.innerHTML += "<b>" + info.country + "</b>";
+
+	element = document.getElementById("quote");
+	element.innerHTML += "<b>" + info.quote + "</b>";
+
+	element = document.getElementById("earning");
+	element.innerHTML += "<b>" + info.overallEarning + "</b>";
+
+	element = document.getElementById("rel-rating");
+	element.innerHTML += "<b>" + info.reliabilityRating + "</b>";
+});
+
 var ndx;
 
 // load data from a csv file
-d3.json(url, function (data) {
+d3.json(registrationsUrl, function (data) {
 
 	var dtgFormat = d3.time.format("%Y-%m-%d");
 
