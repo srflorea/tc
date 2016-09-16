@@ -23,6 +23,7 @@
 		<mapping class="tc.ws.models.Challenge"/>
 		<mapping class="tc.ws.models.Handle"/>
 		<mapping class="tc.ws.models.RelationCR"/>
+        <mapping class="tc.ws.models.HandleRating"/>
 
     </session-factory>
 

@@ -1,12 +1,15 @@
 package tc.ws.models;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "handle")
@@ -18,7 +21,8 @@ public class Handle {
 		MEMBER_SINCE("memberSince"),
 		QUOTE("quote"),
 		OVERALL_EARNING("overallEarning"),
-		RELIABILITY_RATING("reliabilityRating");
+		RELIABILITY_RATING("reliabilityRating"),
+		HANDLE_RATINGS("handleRatings");
 
 		private String name;
 
@@ -50,8 +54,8 @@ public class Handle {
 	@Column(name = "reliability_rating")
 	private Double reliabilityRating;
 
-	@Transient
-	private Boolean submitted;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "handle")
+	private List<HandleRating> handleRatings;
 
 	public String getHandle() {
 		return handle;
@@ -101,11 +105,11 @@ public class Handle {
 		this.reliabilityRating = reliabilityRating;
 	}
 
-	public Boolean getSubmitted() {
-		return submitted;
+	public List<HandleRating> getHandleRatings() {
+		return handleRatings;
 	}
 
-	public void setSubmitted(Boolean submitted) {
-		this.submitted = submitted;
+	public void setHandleRatings(List<HandleRating> handleRatings) {
+		this.handleRatings = handleRatings;
 	}
 }

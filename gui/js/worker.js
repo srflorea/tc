@@ -48,6 +48,13 @@ d3.json(handleInfoUrl, function (data) {
 
 	element = document.getElementById("rel-rating");
 	element.innerHTML += "<b>" + info.reliabilityRating + "</b>";
+
+	element = document.getElementById("rating");
+	var ratingSum = 0;
+	info.handleRatings.forEach(function (d) {
+		ratingSum += d.rating;
+	})
+	element.innerHTML += "<b>" + ratingSum / info.handleRatings.length + "</b>";
 });
 
 var ndx;
