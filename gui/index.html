@@ -82,6 +82,8 @@ li{ float:left;padding:15px}
 	<script src="js/libs/d3.min.js"></script>
 	<script src="js/libs/queue.min.js"></script>
 
+	<script src="js/utils.js"></script>
+
 	<script type="text/javascript">
 		function changeImage(button, path) {
 			document.images[button].src = path;
@@ -92,6 +94,12 @@ li{ float:left;padding:15px}
 			url = 'statistics.html';
 			window.open(url, '_self')
 		})
+
+		var wsUrl = getWebServerURL();
+		var wakeupUrl =  wsUrl + "/wakeup";
+		d3.json(wakeupUrl, function (data) {
+
+		});
 	</script>
 </body>
 <html>

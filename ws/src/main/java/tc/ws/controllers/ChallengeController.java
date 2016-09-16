@@ -37,6 +37,11 @@ import tc.ws.utils.Queries;
 @CrossOrigin
 @RestController
 public class ChallengeController {
+
+	@RequestMapping("/wakeup")
+	public Boolean wakeup() {
+		return true;
+	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/challenges")
