@@ -37,6 +37,9 @@ d3.json(handleInfoUrl, function (data) {
 	element = document.getElementById("country");
 	element.innerHTML += "<b>" + info.country + "</b>";
 
+	element = document.getElementById("member-since");
+	element.innerHTML += "<b>" + info.memberSince + "</b>";
+
 	element = document.getElementById("quote");
 	element.innerHTML += "<b>" + info.quote + "</b>";
 
@@ -89,6 +92,7 @@ d3.json(registrationsUrl, function (data) {
 	registrationsChart
 		.width(960)
 		.height(300)
+		.margins({top: 10, right: 10, bottom: 20, left: 40})
 		.dimension(scatterDimension)
 		.group(scatterGroup)
 		.x(d3.time.scale().domain(d3.extent(data, function(d) { return d.dtgDate; })))

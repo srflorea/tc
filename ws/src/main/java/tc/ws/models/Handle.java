@@ -1,6 +1,6 @@
 package tc.ws.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,6 +67,14 @@ public class Handle {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public Date getMemberSince() {
+		return memberSince;
+	}
+
+	public void setMemberSince(Date memberSince) {
+		this.memberSince = memberSince;
 	}
 
 	public String getQuote() {
