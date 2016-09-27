@@ -107,6 +107,8 @@ public class ChallengeController {
 		query.addScalar("challengeName", StringType.INSTANCE);
 		query.addScalar("projectId", IntegerType.INSTANCE);
 		query.addScalar("challengeId", IntegerType.INSTANCE);
+		query.addScalar("registrationStartDate", DateType.INSTANCE);
+		query.addScalar("submissionEndDate", DateType.INSTANCE);
 		query.setString("handle", handle);
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
 		@SuppressWarnings("unchecked")

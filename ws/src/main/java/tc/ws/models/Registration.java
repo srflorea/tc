@@ -11,6 +11,8 @@ public class Registration {
 	private String challangeName;
 	private int projectId;
 	private int challengeId;
+	private Date registrationStartDate;
+	private Date submissionEndDate;
 
 	public Date getDate() {
 		return date;
@@ -59,5 +61,19 @@ public class Registration {
 	}
 	public void setChallengeId(int challengeId) {
 		this.challengeId = challengeId;
+	}
+
+	public Date getRegistrationStartDate() {
+		return registrationStartDate;
+	}
+	public void setRegistrationStartDate(Date registrationStartDate) {
+		this.registrationStartDate = registrationStartDate;
+	}
+
+	public Date getSubmissionEndDate() {
+		return submissionEndDate;
+	}
+	public void setSubmissionEndDate(Date submissionEndDate) {
+		this.submissionEndDate = submissionEndDate;
 	}
 }

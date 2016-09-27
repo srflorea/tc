@@ -24,7 +24,9 @@ public class Queries {
 			"   relation_c_r.submissionDate != 0 as submitted, 				" +
 			"	challenge.challengeName,									" +
 			"	challenge.projectId,										" +
-			"	challenge.challengeId										" +
+			"	challenge.challengeId,										" +
+			"	challenge.registrationStartDate,							" +
+			"	challenge.submissionEndDate									" +
 			"from relation_c_r 												" +
 			"join challenge 												" +
 			"	on relation_c_r.challengeId = challenge.challengeId 		" +

@@ -39,8 +39,6 @@ $("#button-run").on('click', function (e) {
         return;
     }
 
-    dateVal = $("#date-picker-3").val();
-
     handle = "isv";
     var wsUrl = getWebServerURL();
     var registrationsUrl =  wsUrl + "/registrations?handle=" + worker;
@@ -48,15 +46,18 @@ $("#button-run").on('click', function (e) {
     var dataTable = dc.dataTable("#dc-reg-table");
 
     d3.json(registrationsUrl, function (data) {
+        var mdyFormat = d3.time.format("%m/%d/%Y");
+        var ymdFormat = d3.time.format("%Y-%m-%d");
+
+        var dateVal = $("#date-picker-3").val();
         if (dateVal != "") {
-            var mdyFormat = d3.time.format("%m-%d-%Y");
-            date = mdyFormat.parse(dateVal)
-            var ymdFormat = d3.time.format("%Y-%m-%d");
-            data.forEach(function (d, i, obj) {
-                if (ymdFormat.parse(d.date) > date) {
-                    console.log(date)
-                    data.splice(i , 1);
-                }
+            var date = new Date(mdyFormat.parse(dateVal))
+
+            data = data.filter(function (d) {
+                var registrationStartDate = new Date(ymdFormat.parse(d.registrationStartDate));
+                var submissionEndDate = new Date(ymdFormat.parse(d.submissionEndDate));
+
+                return registrationStartDate <= date && date <= submissionEndDate;
             })
         }
 
@@ -71,9 +72,10 @@ $("#button-run").on('click', function (e) {
             .size(ndx.size())
             .columns([
                 function (d) { return '<a href=\"challenge.html?challengeId=' + d.challengeId + '\">' + d.challengeName + '</a>'; },
-                function (d) { return d.date; },
+                function (d) { return d.registrationStartDate; },
+                function (d) { return d.submissionEndDate; },
                 function (d) { return d.type; },
-                function (d) { return d.submitted; },
+                function (d) { return d.submitted != 0; },
                 function (d) { return d.prize; },
                 ])
             .sortBy(function (d){ return d.dtgDate; })
