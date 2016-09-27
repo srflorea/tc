@@ -55,31 +55,37 @@ li{ float:left;padding:15px}
 				<ul>
 					<li><span>Visualize challenges grouped by projects</span></li>
 				</ul>
-				<a href="projects.html" 
-					onMouseOver="return changeImage('groupedButton', 'data/grouped_by_projects.png')"
-					onMouseOut= "return changeImage('groupedButton', 'data/small_multiples.png')" >
-					<img name="groupedButton" src="data/small_multiples.png" width="300" height="150" border="0" alt="javascript button">
+				<a href="projects.html">
+					<img name="groupedButton"
+							onMouseOver="bigImg(this)"
+							onMouseOut="normalImg(this)"
+							src="data/small_multiples.png"
+							width="300" height="150" border="0" alt="javascript button">
 				</a>
 			</div>
 			<div class="col-sm-4">
 				<ul>
 					<li><span>Visualize challenges grouped in a distribution matrix</span></li>
 				</ul>
-				<a href="matrix.html" 
-					onMouseOver="return changeImage('matrixButton', 'data/grouped_matrix.png')" 
-					onMouseOut= "return changeImage('matrixButton', 'data/matrix.png')">
-					<img name="matrixButton" src="data/matrix.png" width="300" height="150" border="0" alt="javascript button">
+				<a href="matrix.html">
+					<img name="matrixButton"
+							onMouseOver="bigImg(this)"
+							onMouseOut="normalImg(this)"
+							src="data/matrix.png"
+							width="300" height="150" border="0" alt="javascript button">
 				</a>
 			</div>
 			<div class="col-sm-4">
-				<div class="row">
-					<ul>
-						<li><span>Visualize workers</span></li>
-					</ul>
-				</div>
-				<div class="row">
-					<button type="button" class="btn btn-default" id="workers">See Workers</button>
-				</div>
+				<ul>
+					<li><span>Visualize worker registrations at different moments in time</span></li>
+				</ul>
+				<a href="search-workers.html">
+					<img name="workersButton"
+							onMouseOver="bigImg(this)"
+							onMouseOut="normalImg(this)"
+							src="data/workers.png"
+							width="300" height="150" border="0" alt="javascript button">
+				</a>
 			</div>
 		</div>
 		<hr>
@@ -95,9 +101,14 @@ li{ float:left;padding:15px}
 	<script src="js/utils.js"></script>
 
 	<script type="text/javascript">
-		function changeImage(button, path) {
-			document.images[button].src = path;
-			return true;
+		function bigImg(x) {
+			x.style.height = "200px";
+			x.style.width = "400px";
+		}
+
+		function normalImg(x) {
+			x.style.height = "150px";
+			x.style.width = "300px";
 		}
 
 		$('#statistics').on('click', function (e) {
