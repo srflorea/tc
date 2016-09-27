@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -73,6 +74,21 @@ public class ChallengeController {
 		}
 
 		List<Handle> handles = criteria.list();
+
+		return handles;
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/handlesNames")
+	public List<String> handlesNames() {
+
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Handle.class);
+		criteria.setProjection(Projections.property(Handle.Fields.HANDLE.getName()));
+
+		List<String> handles = criteria.list();
 
 		return handles;
 	}

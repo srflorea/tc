@@ -53,20 +53,35 @@
       <div id="info_hidden" style="display: none;" align="center">
         <p> You have reached the worker level page! </p>
         <p>
-          On this page are presented statistics about a worker. The scatterplot is showing the worker's activity
-          in time between the first and the last registration. On the y axis the prize of each challenge is 
-          showed. When firstly generated, every circle in the chart represent a challenge for which the worker
-          registered. Each challenge is colored based on the type of the challenge (First to Finish, etc).
+          On this page there are presented statistics about a worker. The page starts with a table presenting general
+          information about the worker like name, country, rating, etc., continues with 4 interactive visualization
+          charts that show the worker's history on the platform and ends with a table that contains all the challenges
+          that he registed for.
         </p>
         <p>
-          The chart contains also 2 groups of radio buttons which can help you better understand the worker's
-          behaviour. You can change the color of the circles by selecting another radio button on the left side
-          group and you can filter the challenges by selecting another radio button on the right side group.
+          <b>Registrations by time and prize</b> is a scatterplot that is showing the worker's activity
+          in time between the first and the last registration. On the vertical axis the prize of each challenge is 
+          showed. Every circle in the chart represents a challenge for which the worker registered. By dragging regions
+          with the mouse, the visualization is getting filtered out.
         </p>
         <p>
-          The pie chart on the right side of the scatterplot is presenting percentages of challenges depending on
-          what the user has in the scatterplot. Can be percentages of different types of tasks or percentages of
-          submission.
+          <b>Number of challenges by prize</b> is a barchart presenting a histogram about the worker's preference for
+          different challenges based on the price of the challenge.
+        </p>
+        <p>
+          <b>Registrations' status</b> is a pie chart containing the worker's history of submitting solutions for the 
+          challenges that he registered for. By clicking on different chunks of the pie chart, the visualization is getting
+          filtered out.
+        </p>
+        <p>
+          <b>Challenges' type</b> is a rowchart showing the type of the challenges that he registered for together with
+          the number of challenges for each type. By clicking on different rows of the chart, the visualization is getting
+          filtered out.
+        </p>
+        <p>
+          At the bottom of the page there is a table containing all the challenges that the worker registered for on the platform.
+          The user can navigate to the challenge level by clicking on a challenge name. All the challenges are grouped
+          by the project that they belong to and the user can navigate to the project level by clicking on the project id.
         </p>
       </div>
     </div>
@@ -150,7 +165,7 @@
     </div>
     <div class='span4' id='dc-status-chart'>
     <h4>
-    Registrations' Status
+    Registrations' status
         <span>
           <a class="reset"
             href="javascript:statusChart.filterAll();dc.redrawAll();"
@@ -162,7 +177,7 @@
     </div>   
     <div class='span4' id='dc-challengeType-chart'>
     <h4>
-    Challenges' Type
+    Challenges' type
         <span>
           <a class="reset"
             href="javascript:challengeTypeChart.filterAll();dc.redrawAll();"

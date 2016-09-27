@@ -31,6 +31,9 @@
     h4, h2 {
       text-align: center;
     }
+    #button_info {
+        float: right;
+    }
   </style>
 </head>
 
@@ -39,10 +42,58 @@
 <div class='container' style='font: 12px sans-serif;'>
   <div class="row">
     <div class="span6">
-    <h2>TopCoder Platform Statistics</h2>
+      <h2>TopCoder Platform Statistics</h2>
     </div>
+    <div class="span6">
+      <br>
+      <div id="button-info">
+        <div id="button_info" class="btn" type="Button">Open Info</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div id="info_hidden" style="display: none;" align="center">
+        <p> You have reached the statistics level page! </p>
+        <p>
+          On this page there are presented statistics about the platform. It contains 6 interactive visualizations
+          that can be filtered out. Nevertheless, the other visualizations will respond to any visualization filtering.
+          On the top of the page, the user can see the total number of challenges and the number of challenges that are
+          currently selected after applying different filters.
+        </p>
+        <p>
+          <b>Registered challenges per day</b> is a line chart that shows how the challenges got added to the platform
+          during the entire period that exists in the database. On the horizantal axis, the time is represented while the
+          vertical one shows the number of challenges that have been added on a specific day. The visualization can be filtered
+          out by dragging regions with the mouse.
+        </p>
+        <p>
+          <b>Number of challenges by number of registrants</b> is a barchart that represents a histogram showing how many
+          people are usually registering for challenges. The horizantal axis shows how many people registered for a challenge while
+          on the vertical one is represented the number of occurances for that specific number of registrations.
+        </p>
+        <p>
+          <b>Number of challenges by number of submissions</b> is a similar barcharr to the previous one but representing the
+          number of submmisions for challenges on the horizantal axis. 
+        </p>
+        <p>
+          <b>Registered challenges per day of the week</b> is a rowchart that basically shows the same information as the
+          line chart but grouped by the day of the week this time. Thus, the user can see how many challenges has been added on each
+          day of the week.
+        </p>
+        <p>
+          <b>Challenges' status</b> is a piechart that shows how many challenges have been completed or not. It can be filtered out
+          by clicking on different pie chart chunks. 
+        </p>
+        <p>
+          <b>Challenge's type</b> is a piechart that shows how many challenges exist of what type. It can be also filtered out
+          by clicking on different pie chart chunks.
+        </p>
+      </div>
+  </div>
+
+  <div class="row">
     <div class="span6 dc-data-count">
-      
         <span style="float: right;">
           <span class="filter-count"></span>
            selected out of 
@@ -112,7 +163,7 @@
     </div>
     <div class='span4' id='dc-status-chart'>
 	  <h4>
-		Challenges Status
+		Challenges' status
         <span>
           <a class="reset"
             href="javascript:statusChart.filterAll();dc.redrawAll();"
@@ -124,7 +175,7 @@
     </div>   
     <div class='span4' id='dc-challengeType-chart'>
 	  <h4>
-    Challenges Type
+    Challenges' type
         <span>
           <a class="reset"
             href="javascript:challengeTypeChart.filterAll();dc.redrawAll();"

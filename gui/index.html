@@ -51,7 +51,7 @@ li{ float:left;padding:15px}
 			<hr>
 
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<ul>
 					<li><span>Visualize challenges grouped by projects</span></li>
 				</ul>
@@ -61,7 +61,7 @@ li{ float:left;padding:15px}
 					<img name="groupedButton" src="data/small_multiples.png" width="300" height="150" border="0" alt="javascript button">
 				</a>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<ul>
 					<li><span>Visualize challenges grouped in a distribution matrix</span></li>
 				</ul>
@@ -70,6 +70,16 @@ li{ float:left;padding:15px}
 					onMouseOut= "return changeImage('matrixButton', 'data/matrix.png')">
 					<img name="matrixButton" src="data/matrix.png" width="300" height="150" border="0" alt="javascript button">
 				</a>
+			</div>
+			<div class="col-sm-4">
+				<div class="row">
+					<ul>
+						<li><span>Visualize workers</span></li>
+					</ul>
+				</div>
+				<div class="row">
+					<button type="button" class="btn btn-default" id="workers">See Workers</button>
+				</div>
 			</div>
 		</div>
 		<hr>
@@ -92,6 +102,11 @@ li{ float:left;padding:15px}
 
 		$('#statistics').on('click', function (e) {
 			url = 'statistics.html';
+			window.open(url, '_self')
+		})
+
+		$('#workers').on('click', function (e) {
+			url = 'search-workers.html';
 			window.open(url, '_self')
 		})
 

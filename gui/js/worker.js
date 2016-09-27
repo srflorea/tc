@@ -64,7 +64,7 @@ d3.json(registrationsUrl, function (data) {
 
 	var dtgFormat = d3.time.format("%Y-%m-%d");
 
-	data.forEach(function(d, i, obj) {		
+	data.forEach(function(d, i, obj) {
 		d.dtgDate = dtgFormat.parse(d.date);
 
 		if (d.prize > 10000) {
