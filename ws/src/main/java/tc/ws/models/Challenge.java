@@ -21,6 +21,7 @@ public class Challenge {
 		NUM_SUBMISSIONS("numSubmissions"),
 		STATUS("status"),
 		REGISTRATION_START_DATE("registrationStartDate"),
+		SUBMISSION_END_DATE("submissionEndDate"),
 		CHALLENGE_TYPE("challengeType"),
 		PRIZE("prize");
 
@@ -62,6 +63,9 @@ public class Challenge {
 
 	@Column(name = "registrationStartDate")
 	private Date registrationStartDate;
+
+	@Column(name = "submissionEndDate")
+	private Date submissionEndDate;
 
 	@Column(name = "challengeType")
 	private String challengeType;
@@ -111,6 +115,10 @@ public class Challenge {
 
 	public Date getRegistrationStartDate() {
 		return registrationStartDate;
+	}
+
+	public Date getSubmissionEndDate() {
+		return submissionEndDate;
 	}
 
 	public String getChallengeType() {

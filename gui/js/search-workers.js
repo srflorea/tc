@@ -33,34 +33,26 @@ $(document).ready(function() {
     $('select').chosen( { width: '50%' } );
 });
 
-var registrationsTable = dc.dataTable("#dc-reg-table");
+var registrationsTable;
 $("#button-run").on('click', function (e) {
     worker = $(".chosen-select").val();
     if (worker == "") {
         return;
     }
 
+    registrationsTable = dc.dataTable("#dc-reg-table");
+
     var wsUrl = getWebServerURL();
     var registrationsUrl =  wsUrl + "/registrations?handle=" + worker;
 
+    var dateVal = $("#date-picker-1").val();
+    if (dateVal != "") {
+        registrationsUrl += "&date=" + dateVal;
+    }
+
     d3.json(registrationsUrl, function (data) {
-        var mdyFormat = d3.time.format("%m/%d/%Y");
-        var ymdFormat = d3.time.format("%Y-%m-%d");
-
-        var dateVal = $("#date-picker-1").val();
-        if (dateVal != "") {
-            var date = new Date(mdyFormat.parse(dateVal))
-
-            data = data.filter(function (d) {
-                var registrationStartDate = new Date(ymdFormat.parse(d.registrationStartDate));
-                var submissionEndDate = new Date(ymdFormat.parse(d.submissionEndDate));
-
-                return registrationStartDate <= date && date <= submissionEndDate;
-            })
-        }
-
-        ndx = crossfilter(data);
-        dimension = ndx.dimension(function (d) { return [d.dtgDate, +d.prize]; })
+        var ndx = crossfilter(data);
+        var dimension = ndx.dimension(function (d) { return [d.dtgDate, +d.prize]; })
 
         // Table of registrations
         registrationsTable.width(960).height(800)
@@ -90,12 +82,57 @@ $("#button-run").on('click', function (e) {
         }
 
         var registrations_table = $('#registrations-table');
-        registrations_table.show('slow');        
+        registrations_table.show('slow');
     });
 });
 
+var newChallengesTable;
 $("#button-get-chal").on('click', function (e) {
-    
+    var dateVal = $("#date-picker-1").val();
+    console.log(dateVal)
+    if (dateVal == "") {
+        return
+    }
+
+    newChallengesTable = dc.dataTable("#dc-new-challenges-table");
+
+    var wsUrl = getWebServerURL();
+    var registrationsUrl =  wsUrl + "/challenges?date=" + dateVal;
+
+    d3.json(registrationsUrl, function (data) {
+        var mdyFormat = d3.time.format("%m/%d/%Y");
+        var ymdFormat = d3.time.format("%Y-%m-%d");
+
+        var ndx = crossfilter(data);
+        var dimension = ndx.dimension(function (d) { return [d.registrationStartDate, +d.prize]; })
+
+        // Table of registrations
+        newChallengesTable.width(960).height(800)
+            .dimension(dimension)
+            .group(function (d) { return '<b>Project Id:</b> <a href=\"tasks.html?projectId=' + d.projectId +  '\">' + d.projectId + '</a>'})
+            //.showGroups(false)
+            .size(ndx.size())
+            .columns([
+                function (d) { return '<a href=\"challenge.html?challengeId=' + d.challengeId + '\">' + d.challengeName + '</a>'; },
+                function (d) { return d.registrationStartDate; },
+                function (d) { return d.submissionEndDate; },
+                function (d) { return d.challengeType; },
+                function (d) { return d.submitted != 0; },
+                function (d) { return d.prize; },
+                ])
+            .sortBy(function (d){ return d.dtgDate; })
+            .order(d3.ascending)
+
+        //updatePagination();
+
+        dc.renderAll();
+
+        var tableTitle = document.getElementById("new-challenges-title");
+        tableTitle.innerHTML = "New challenges on <b>" + dateVal + "</b>";
+
+        var new_challenges_table = $('#new-challenges-table');
+        new_challenges_table.show('slow');
+    });
 });
 
 

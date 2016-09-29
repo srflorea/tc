@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.sql.Date;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.SQLQuery;
@@ -46,7 +48,10 @@ public class ChallengeController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/challenges")
-	public List<Challenge> challenges(@RequestParam(value = "challengeId", required=false) Long challengeId) {
+	public List<Challenge> challenges(
+		@RequestParam(value = "challengeId", required=false) Long challengeId,
+		@RequestParam(value = "date", required=false) Date date
+		) {
 
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -54,6 +59,10 @@ public class ChallengeController {
 		Criteria criteria = session.createCriteria(Challenge.class);
 		if (challengeId != null) {
 			criteria.add(Restrictions.eq(Challenge.Fields.CHALLENGE_ID.getName(), challengeId));
+		}
+		if (date != null) {
+			criteria.add(Restrictions.le(Challenge.Fields.REGISTRATION_START_DATE.getName(), date));
+			criteria.add(Restrictions.ge(Challenge.Fields.SUBMISSION_END_DATE.getName(), date));
 		}
 
 		List<Challenge> challenges = criteria.list();
@@ -94,7 +103,10 @@ public class ChallengeController {
 	}
 
 	@RequestMapping("/registrations")
-	public List<Registration> registrations(@RequestParam(value="handle") String handle) {
+	public List<Registration> registrations(
+		@RequestParam(value="handle") String handle,
+		@RequestParam(value="date", required=false) Date date
+		) {
 
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -113,6 +125,16 @@ public class ChallengeController {
 		query.setResultTransformer(Transformers.aliasToBean(Registration.class));
 		@SuppressWarnings("unchecked")
 		List<Registration> list = query.list();
+
+		if (date != null) {
+			List<Registration> filteredList = new ArrayList<>();
+			for (Registration registration : list) {
+				if (date.after(registration.getRegistrationStartDate()) && date.before(registration.getSubmissionEndDate())) {
+					filteredList.add(registration);
+				}
+			}
+			list = filteredList;
+		}
 	
 		return list;
 	}
