@@ -33,23 +33,21 @@ $(document).ready(function() {
     $('select').chosen( { width: '50%' } );
 });
 
+var registrationsTable = dc.dataTable("#dc-reg-table");
 $("#button-run").on('click', function (e) {
     worker = $(".chosen-select").val();
     if (worker == "") {
         return;
     }
 
-    handle = "isv";
     var wsUrl = getWebServerURL();
     var registrationsUrl =  wsUrl + "/registrations?handle=" + worker;
-
-    var dataTable = dc.dataTable("#dc-reg-table");
 
     d3.json(registrationsUrl, function (data) {
         var mdyFormat = d3.time.format("%m/%d/%Y");
         var ymdFormat = d3.time.format("%Y-%m-%d");
 
-        var dateVal = $("#date-picker-3").val();
+        var dateVal = $("#date-picker-1").val();
         if (dateVal != "") {
             var date = new Date(mdyFormat.parse(dateVal))
 
@@ -65,7 +63,7 @@ $("#button-run").on('click', function (e) {
         dimension = ndx.dimension(function (d) { return [d.dtgDate, +d.prize]; })
 
         // Table of registrations
-        dataTable.width(960).height(800)
+        registrationsTable.width(960).height(800)
             .dimension(dimension)
             .group(function (d) { return '<b>Project Id:</b> <a href=\"tasks.html?projectId=' + d.projectId +  '\">' + d.projectId + '</a>'})
             //.showGroups(false)
@@ -81,9 +79,57 @@ $("#button-run").on('click', function (e) {
             .sortBy(function (d){ return d.dtgDate; })
             .order(d3.ascending)
 
+        updatePagination();
+
         dc.renderAll();
 
-        var hidden_table = $('#dc-reg-table');
-        hidden_table.show('slow');
-    })
+        var tableTitle = document.getElementById("registrations-title");
+        tableTitle.innerHTML = "Registrations for <a href=\"worker.html?handle=" + worker + '\">' + worker + '</a>';
+        if (dateVal != "") {
+            tableTitle.innerHTML += " on <b>" + dateVal + "</b>";
+        }
+
+        var registrations_table = $('#registrations-table');
+        registrations_table.show('slow');        
+    });
 });
+
+$("#button-get-chal").on('click', function (e) {
+    
+});
+
+
+var ofs = 0, pag = 5;
+function updatePagination() {
+    ofs = 0;
+    updateDataTable()
+}
+
+function display() {
+    var length = registrationsTable.dimension().top(Number.POSITIVE_INFINITY).length
+    console.log(length)
+  d3.select('#begin')
+      .text(ofs);
+  d3.select('#end')
+      .text(ofs + pag - 1 > length ? length : ofs + pag - 1);
+  d3.select('#last')
+      .attr('disabled', ofs - pag < 0 ? 'true' : null);
+  d3.select('#next')
+      .attr('disabled', ofs + pag >= length ? 'true' : null);
+  d3.select('#size').text(length);
+}
+function updateDataTable() {
+    registrationsTable.beginSlice(ofs);
+    registrationsTable.endSlice(ofs+pag);
+    display();
+}
+function next() {
+  ofs += pag;
+  updateDataTable();
+  registrationsTable.redraw();
+}
+function last() {
+  ofs -= pag;
+  updateDataTable();
+  registrationsTable.redraw();
+}

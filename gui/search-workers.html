@@ -31,7 +31,13 @@
 		#button-run {
 			width: 30%;
 			height: 34px;
-			float: none;
+			float: right;
+		}
+
+		#button-get-chal {
+			width: 30%;
+			height: 34px;
+			float: left;
 		}
 
 		.chosen-container-single .chosen-single {
@@ -50,11 +56,13 @@
 <body>
 	<div class="container" align="center">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<h2>Worker's registrations at different moments of time</h2>
 			</div>
-			<div class="col-sm-6">
-				<br>
+		</div>
+
+		<div class="row">
+		<div class="col-sm-12">
 				<div id="button-info">
 					<div id="button_info" class="button" type="Button">Open Info</div>
 				</div>
@@ -72,39 +80,48 @@
 		<div class="row">
 			<div class="col-sm-3"> </div>
 			<div class="col-sm-6">
-				<h4>Choose a worker</h4>
-				<select id="projectSelectorDropdown" data-placeholder="Choose a Worker..." class="chosen-select" tabindex="2">
-					<option value=""></option>
-	            </select>
-	        </div>
-	    </div>
-	    <br>
-	    <div class="row">
-	    	<div class="col-sm-3"> </div>
-	        <div class="col-sm-6">
-				<h4>Choose a date</h4>
-				<div class="date-form">
-					<div class="control-group">
-       					<div class="controls">
-            				<div class="input-group">
-	                			<input id="date-picker-3" type="text" class="date-picker form-control" placeholder="MM/DD/YYYY" style="text-align:center"/>
-            					<label for="date-picker-3" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-            				</div>
-        				</div>
-   					 </div>
+				<div class="row">
+					<h4>Choose a worker</h4>
+					<select id="projectSelectorDropdown" data-placeholder="Choose a Worker..." class="chosen-select" tabindex="2">
+						<option value=""></option>
+		            </select>
+		        </div>
+		        <br>
+		       	<div class="row">
+					<h4>Choose a date</h4>
+					<div class="date-form">
+						<div class="control-group">
+	       					<div class="controls">
+	            				<div class="input-group">
+		                			<input id="date-picker-1" type="text" class="date-picker form-control" placeholder="MM/DD/YYYY" style="text-align:center"/>
+	            					<label for="date-picker-1" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+	            				</div>
+	        				</div>
+	   					 </div>
+					</div>
 				</div>
-	        </div>
+		    </div>
 		</div>
+
 		<br>
 		<div class="row">
-			<div class="col-sm-3"> </div>
-	        <div class="col-sm-6">
-				<div id="button-run" class="btn btn-primary btn-default" type="Button">Get worker info</div>
+			<div class="col-sm-6">
+				<div id="button-run" class="btn btn-primary btn-default" type="Button">Get worker registrations</div>
+			</div>
+			<div class="col-sm-6">
+				<div id="button-get-chal" class="btn btn-primary btn-default" type="Button">Get new challenges</div>
 			</div>
 		</div>
+
 		<br> <br>
-		<div class="row">
-			<table class='table table-hover' id='dc-reg-table' style="display: none;">
+		<div class="row" style="display: none;" id="registrations-table">
+			<h3 id="registrations-title"></h3>
+			<div id="paging" style="float:right">
+	            Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+	            <input id="last" class="btn btn-secondary" type="button" value="Previous" onclick="javascript:last()" />
+	            <input id="next" class="btn" type="button" value="    Next    " onclick="javascript:next()"/>
+          	</div>
+			<table class='table table-hover' id='dc-reg-table'>
             <thead>
               <tr class='header'>
                 <th>Challenge Name</th>
