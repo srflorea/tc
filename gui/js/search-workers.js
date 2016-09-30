@@ -1,3 +1,7 @@
+var tables = {};
+var offsets = {};
+var pag = 5;
+
 var wsUrl = getWebServerURL();
 var handlesUrl =  wsUrl + "/handlesNames";
 
@@ -33,14 +37,13 @@ $(document).ready(function() {
     $('select').chosen( { width: '50%' } );
 });
 
-var registrationsTable;
 $("#button-run").on('click', function (e) {
     worker = $(".chosen-select").val();
     if (worker == "") {
         return;
     }
 
-    registrationsTable = dc.dataTable("#dc-reg-table");
+    var registrationsTable = dc.dataTable("#dc-reg-table");
 
     var wsUrl = getWebServerURL();
     var registrationsUrl =  wsUrl + "/registrations?handle=" + worker;
@@ -71,7 +74,9 @@ $("#button-run").on('click', function (e) {
             .sortBy(function (d){ return d.dtgDate; })
             .order(d3.ascending)
 
-        updatePagination();
+        tables["reg"] = registrationsTable;
+        offsets["reg"] = 0;
+        updateDataTable("reg");
 
         dc.renderAll();
 
@@ -86,7 +91,6 @@ $("#button-run").on('click', function (e) {
     });
 });
 
-var newChallengesTable;
 $("#button-get-chal").on('click', function (e) {
     var dateVal = $("#date-picker-1").val();
     console.log(dateVal)
@@ -94,7 +98,7 @@ $("#button-get-chal").on('click', function (e) {
         return
     }
 
-    newChallengesTable = dc.dataTable("#dc-new-challenges-table");
+    var newChallengesTable = dc.dataTable("#dc-new-challenges-table");
 
     var wsUrl = getWebServerURL();
     var registrationsUrl =  wsUrl + "/challenges?date=" + dateVal;
@@ -123,7 +127,9 @@ $("#button-get-chal").on('click', function (e) {
             .sortBy(function (d){ return d.dtgDate; })
             .order(d3.ascending)
 
-        //updatePagination();
+        tables["chl"] = newChallengesTable;
+        offsets["chl"] = 0;
+        updateDataTable("chl");
 
         dc.renderAll();
 
@@ -135,38 +141,39 @@ $("#button-get-chal").on('click', function (e) {
     });
 });
 
+function updateDataTable(tableName) {
+    var table = tables[tableName];
+    var ofs = offsets[tableName];
 
-var ofs = 0, pag = 5;
-function updatePagination() {
-    ofs = 0;
-    updateDataTable()
+    table.beginSlice(ofs);
+    table.endSlice(ofs + pag);
+    display(tableName);
 }
 
-function display() {
-    var length = registrationsTable.dimension().top(Number.POSITIVE_INFINITY).length
-    console.log(length)
-  d3.select('#begin')
-      .text(ofs);
-  d3.select('#end')
-      .text(ofs + pag - 1 > length ? length : ofs + pag - 1);
-  d3.select('#last')
-      .attr('disabled', ofs - pag < 0 ? 'true' : null);
-  d3.select('#next')
-      .attr('disabled', ofs + pag >= length ? 'true' : null);
-  d3.select('#size').text(length);
+function display(tableName) {
+    var table = tables[tableName];
+    var ofs = offsets[tableName];
+
+    var length = table.dimension().top(Number.POSITIVE_INFINITY).length
+
+    d3.select('#begin-' + tableName)
+        .text(ofs);
+    d3.select('#end-' + tableName)
+        .text(ofs + pag - 1 > length ? length : ofs + pag - 1);
+    d3.select('#last-' + tableName)
+        .attr('disabled', ofs - pag < 0 ? 'true' : null);
+    d3.select('#next-' + tableName)
+        .attr('disabled', ofs + pag >= length ? 'true' : null);
+    d3.select('#size-' + tableName).text(length);
 }
-function updateDataTable() {
-    registrationsTable.beginSlice(ofs);
-    registrationsTable.endSlice(ofs+pag);
-    display();
+
+function next(tableName) {
+    offsets[tableName] += pag;
+    updateDataTable(tableName);
+    tables[tableName].redraw();
 }
-function next() {
-  ofs += pag;
-  updateDataTable();
-  registrationsTable.redraw();
-}
-function last() {
-  ofs -= pag;
-  updateDataTable();
-  registrationsTable.redraw();
+function last(tableName) {
+    offsets[tableName] -= pag;
+    updateDataTable(tableName);
+    tables[tableName].redraw();
 }
