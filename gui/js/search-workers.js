@@ -121,7 +121,7 @@ $("#button-get-chal").on('click', function (e) {
                 function (d) { return d.registrationStartDate; },
                 function (d) { return d.submissionEndDate; },
                 function (d) { return d.challengeType; },
-                function (d) { return d.submitted != 0; },
+                function (d) { return d.numRegistrants; },
                 function (d) { return d.prize; },
                 ])
             .sortBy(function (d){ return d.dtgDate; })

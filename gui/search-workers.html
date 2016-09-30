@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Welcome</title>
+	<title>Workers searching</title>
 
 	<script src='js/libs/d3.v3.js' type='text/javascript'></script>
 	<script src='js/libs/crossfilter.js' type='text/javascript'></script>
@@ -57,7 +57,7 @@
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-sm-12">
-				<h2>Worker's registrations at different moments of time</h2>
+				<h2>Worker's information at different moments of time</h2>
 			</div>
 		</div>
 
@@ -72,6 +72,24 @@
 		<div class="row">
 			<div id="info_hidden" style="display: none;" align="center">
 				<p> You have reached the workers searching level! </p>
+				<p>
+					This page is a fast way to access information about a worker. It provides two types of information:
+				</p>
+				<p>
+					<b>The worker's registrations</b> can be accessed by clicking the first button: <i>Get worker registrations</i>.
+					Previously, the user needs to click on the dropdown box and select a worker. If no date is selected from the second box,
+					then all worker's registrations are going to be pulled out. If a date is selected, only the challenges that the user was
+					registered for at that date will be showed up.
+				</p>
+				<p>
+					<b>The available challenges</b> for the worker can be accessed by clicking the second button: <i>Get new challenges</i>.
+					Previously, the user needs to click on the datetime box and select a date. The result will be a table containing all
+					the available challenges at the chosen date.
+				</p>
+				<p>
+					From this page the user can navigate to the project page, challenge page and worker page by clicking on different links
+					provided once the information is pulled out as explained before.
+				</p>
 			</div>
 		</div>
 
@@ -150,7 +168,7 @@
 						<th>Registration Start Date</th>
 						<th>Submission End Date</th>
 						<th>Challenge Type</th>
-						<th>Submitted</th>
+						<th>Number of registrants</th>
 						<th>Prize</th>
 					</tr>
 				</thead>
