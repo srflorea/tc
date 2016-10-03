@@ -28,7 +28,7 @@
       font-size:14px;
       font-weight:normal;
       }
-    h4, h2 {
+    h4, h2, h3 {
       text-align: center;
     }
     #button_info {
@@ -186,6 +186,29 @@
       </h4>
     </div> 
   </div>
+
+  <div class="row">
+    <div class="span12" style="height:50px;"></div>
+      <h3>Challenges on TopCoder grouped by project</h3>
+      <div class='span12'>
+          <div id="paging" style="float:right">
+            Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+            <input id="last" class="btn" type="Button" value="Previous" onclick="javascript:last()" />
+            <input id="next" class="btn" type="button" value="    Next    " onclick="javascript:next()"/>
+          </div>
+          <table class='table table-hover' id='dc-table-graph'>
+            <thead>
+              <tr class='header'>
+                <th>Challenge Name</th>
+                <th>Registration Start Date</th>
+                <th>Submission End Date</th>
+                <th>Challenge Type</th>
+                <th>Prize</th>
+              </tr>
+            </thead>
+          </table>
+      </div>
+    </div>
 </div>
 
 <script src="js/statistics.js"></script>

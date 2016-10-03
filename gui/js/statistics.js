@@ -19,6 +19,7 @@ var dayOfWeekChart = dc.rowChart("#dc-dayweek-chart");
 var statusChart = dc.pieChart("#dc-status-chart");
 var timeChart = dc.lineChart("#dc-time-chart");
 var challengeTypeChart = dc.pieChart("#dc-challengeType-chart");
+var dataTable = dc.dataTable("#dc-table-graph");
 
 // load data from a csv file
 d3.json("http://tcws.herokuapp.com/challenges", function (data) {
@@ -169,7 +170,60 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .title(function(d){return d.key;})
     .group(challengeTypeGroup);
 
+  // Table of registrations
+  dataTable.width(960).height(800)
+    .dimension(numRegValue)
+    .group(function(d) { return '<b>Project Id:</b> <a href=\"tasks.html?projectId=' + d.projectId +  '\">' + d.projectId + '</a>'})
+    //.showGroups(false)
+    .size(facts.size())
+    .columns([
+      function(d) { return '<a href=\"challenge.html?challengeId=' + d.challengeId + '\">' + d.challengeName + '</a>'; },
+      function(d) { return d.registrationStartDate; },
+      function(d) { return d.submissionEndDate; },
+      function(d) { return d.challengeType; },
+      function(d) { return d.prize; },
+      ])
+    .sortBy(function(d){ return d.dtgDate; })
+    .order(d3.ascending)
+
+  updatePagination()
+
   // Render the Charts
   dc.renderAll();
   
 });
+
+var ofs = 0, pag = 10;
+function updatePagination() {
+  ofs = 0;
+  updateDataTable()
+}
+
+function display() {
+  var length = dataTable.dimension().top(Number.POSITIVE_INFINITY).length
+  console.log(length)
+  d3.select('#begin')
+      .text(ofs);
+  d3.select('#end')
+      .text(ofs + pag - 1 > length ? length : ofs + pag - 1);
+  d3.select('#last')
+      .attr('disabled', ofs - pag < 0 ? 'true' : null);
+  d3.select('#next')
+      .attr('disabled', ofs + pag >= length ? 'true' : null);
+  d3.select('#size').text(length);
+}
+function updateDataTable() {
+  dataTable.beginSlice(ofs);
+  dataTable.endSlice(ofs+pag);
+  display();
+}
+function next() {
+  ofs += pag;
+  updateDataTable();
+  dataTable.redraw();
+}
+function last() {
+  ofs -= pag;
+  updateDataTable();
+  dataTable.redraw();
+}
