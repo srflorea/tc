@@ -18,7 +18,7 @@ var numSubmissionsChart = dc.barChart("#dc-numSubmissions-chart");
 var dayOfWeekChart = dc.rowChart("#dc-dayweek-chart");
 var statusChart = dc.pieChart("#dc-status-chart");
 var timeChart = dc.lineChart("#dc-time-chart");
-var challengeTypeChart = dc.pieChart("#dc-challengeType-chart");
+var challengeTypeChart = dc.rowChart("#dc-challengeType-chart");
 var dataTable = dc.dataTable("#dc-table-graph");
 
 // load data from a csv file
@@ -101,8 +101,10 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     
   // Magnitide Bar Graph Counted
   numRegistrantsChart.width(480)
-    .height(150)
-    .margins({top: 10, right: 10, bottom: 20, left: 40})
+    .height(190)
+    .margins({top: 10, right: 10, bottom: 30, left: 35})
+    .xAxisLabel('Number of registrations')
+    .yAxisLabel('Frequency')
     .dimension(numRegValue)
     .group(numRegValueGroupCount)
     .transitionDuration(500)
@@ -113,12 +115,14 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
 
   // Depth bar graph
   numSubmissionsChart.width(480)
-    .height(150)
-    .margins({top: 10, right: 10, bottom: 20, left: 40})
+    .height(190)
+    .margins({top: 10, right: 10, bottom: 30, left: 40})
+    .xAxisLabel('Number of submissions')
+    .yAxisLabel('Frequency')
     .dimension(numSubValue)
     .group(numSubValueGroup)
     .transitionDuration(500)
-    .centerBar(true)	
+    .centerBar(true)
     .gap(1)  
     .x(d3.scale.linear().domain([0, 50]))
     .elasticY(true)
@@ -127,9 +131,11 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
   // time graph
   timeChart.renderArea(true)
     .width(960)
-    .height(150)
+    .height(200)
+    .margins({top: 10, right: 10, bottom: 30, left: 30})
+    .xAxisLabel('Time')
+    .yAxisLabel('Number of challenges')
     .transitionDuration(500)
-    .margins({top: 10, right: 10, bottom: 20, left: 40})
     .dimension(volumeByDay)
     .group(volumeByDayGroup)
     //.mouseZoomable(true)
@@ -139,9 +145,10 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .xAxis();
 
   // row chart day of week
-  dayOfWeekChart.width(300)
-    .height(220)
-    .margins({top: 5, left: 10, right: 10, bottom: 20})
+  dayOfWeekChart
+    .width(300)
+    .height(230)
+    .margins({top: 5, left: 10, right: 10, bottom: 30})
     .dimension(dayOfWeek)
     .group(dayOfWeekGroup)
     .colors(d3.scale.category10())
@@ -153,8 +160,8 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .xAxis().ticks(4);
 
   // status pie chart
-  statusChart.width(250)
-    .height(220)
+  statusChart.width(300)
+    .height(270)
     .radius(100)
     .innerRadius(30)
     .dimension(status)
@@ -162,13 +169,16 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
     .group(statusGroup);
 
   // challenge type pie chart
-  challengeTypeChart.width(250)
-    .height(220)
-    .radius(100)
-    .innerRadius(30)
+  challengeTypeChart
+    .width(300)
+    .height(240)
+    .margins({top: 10, left: 10, right: 10, bottom: 35})
     .dimension(challengeType)
-    .title(function(d){return d.key;})
-    .group(challengeTypeGroup);
+    .rowsCap(6)
+    .title(function(d){return d.value;})
+    .group(challengeTypeGroup)
+    .elasticX(true)
+    .xAxis().ticks(4);
 
   // Table of registrations
   dataTable.width(960).height(800)
@@ -190,7 +200,9 @@ d3.json("http://tcws.herokuapp.com/challenges", function (data) {
 
   // Render the Charts
   dc.renderAll();
-  
+
+  AddXAxis(challengeTypeChart, "Frequency");
+  AddXAxis(dayOfWeekChart, "Frequency");
 });
 
 var ofs = 0, pag = 10;
@@ -201,7 +213,7 @@ function updatePagination() {
 
 function display() {
   var length = dataTable.dimension().top(Number.POSITIVE_INFINITY).length
-  console.log(length)
+
   d3.select('#begin')
       .text(ofs);
   d3.select('#end')

@@ -34,6 +34,10 @@
     #button_info {
         float: right;
     }
+
+    .dc-chart g.row text {
+      fill: black;
+    }
   </style>
 </head>
 
@@ -42,7 +46,7 @@
 <div class='container' style='font: 12px sans-serif;'>
   <div class="row">
     <div class="span6">
-      <h2>TopCoder Platform Statistics</h2>
+      <h2>Platform's challenges statistics</h2>
     </div>
     <div class="span6">
       <br>
@@ -63,18 +67,18 @@
         </p>
         <p>
           <b>Registered challenges per day</b> is a line chart that shows how the challenges got added to the platform
-          during the entire period that exists in the database. On the horizantal axis, the time is represented while the
+          during the entire period that exists in the database. On the horizontal axis, the time is represented while the
           vertical one shows the number of challenges that have been added on a specific day. The visualization can be filtered
           out by dragging regions with the mouse.
         </p>
         <p>
           <b>Number of challenges by number of registrants</b> is a barchart that represents a histogram showing how many
-          people are usually registering for challenges. The horizantal axis shows how many people registered for a challenge while
-          on the vertical one is represented the number of occurances for that specific number of registrations.
+          people are usually registering for challenges. The horizontal axis shows how many people registered for a challenge while
+          on the vertical one is represented the number of occurrences for that specific number of registrations.
         </p>
         <p>
           <b>Number of challenges by number of submissions</b> is a similar barcharr to the previous one but representing the
-          number of submmisions for challenges on the horizantal axis. 
+          number of submissions for challenges on the horizantal axis. 
         </p>
         <p>
           <b>Registered challenges per day of the week</b> is a rowchart that basically shows the same information as the
@@ -82,12 +86,15 @@
           day of the week.
         </p>
         <p>
-          <b>Challenges' status</b> is a piechart that shows how many challenges have been completed or not. It can be filtered out
+          <b>Challenges' statuses</b> is a piechart that shows how many challenges have been completed or not. It can be filtered out
           by clicking on different pie chart chunks. 
         </p>
         <p>
-          <b>Challenge's type</b> is a piechart that shows how many challenges exist of what type. It can be also filtered out
+          <b>Challenges' types</b> is a piechart that shows how many challenges exist of what type. It can be also filtered out
           by clicking on different pie chart chunks.
+        </p>
+        <p>
+          <b>Challenges grouped by projects</b> is a data table containing all the challenges from the database where only the ones that the user applied filters for.
         </p>
       </div>
   </div>
@@ -188,8 +195,8 @@
   </div>
 
   <div class="row">
-    <div class="span12" style="height:50px;"></div>
-      <h3>Challenges on TopCoder grouped by project</h3>
+    <div class="span12" style="height:20px;"></div>
+      <h3>Challenges grouped by project</h3>
       <div class='span12'>
           <div id="paging" style="float:right">
             Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
@@ -211,6 +218,7 @@
     </div>
 </div>
 
+<script src="js/utils.js"></script>
 <script src="js/statistics.js"></script>
 
 </body>

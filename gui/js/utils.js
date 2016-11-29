@@ -17,3 +17,13 @@ function getQueryStrings() {
 function getWebServerURL() {
   return "http://tcws.herokuapp.com";
 }
+
+function AddXAxis(chartToUpdate, displayText) {
+  chartToUpdate.svg()
+    .append("text")
+    .attr("class", "x-axis-label")
+    .attr("text-anchor", "middle")
+    .attr("x", chartToUpdate.width()/2)
+    .attr("y", chartToUpdate.height()-3.5)
+    .text(displayText);
+}

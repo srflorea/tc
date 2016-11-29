@@ -99,7 +99,7 @@ d3.json(registrationsUrl, function (data) {
 	registrationsChart
 		.width(960)
 		.height(300)
-		.margins({top: 10, right: 10, bottom: 20, left: 40})
+		.margins({top: 10, right: 10, bottom: 30, left: 40})
 		.dimension(scatterDimension)
 		.group(scatterGroup)
 		.x(d3.time.scale().domain(d3.extent(data, function(d) { return d.dtgDate; })))
@@ -115,9 +115,12 @@ d3.json(registrationsUrl, function (data) {
 		});
 
 	// prize bar chart
-	prizeChart.width(300)
+	prizeChart
+		.width(300)
 		.height(220)
-		.margins({top: 10, right: 10, bottom: 20, left: 40})
+		.margins({top: 10, right: 10, bottom: 30, left: 30})
+		.yAxisLabel("Frequency")
+		.xAxisLabel("Prize")
 		.dimension(prize)
 		.group(prizeGroup)
 		.on("filtered", function (chart, filter) {
@@ -166,7 +169,7 @@ d3.json(registrationsUrl, function (data) {
 	// row chart challenge type
 	challengeTypeChart.width(300)
 		.height(220)
-		.margins({top: 5, left: 10, right: 10, bottom: 20})
+		.margins({top: 5, left: 10, right: 10, bottom: 30})
 		.dimension(challengeType)
 		.group(challengeTypeGroup)
 		.on("filtered", function (chart, filter) {
@@ -199,6 +202,8 @@ d3.json(registrationsUrl, function (data) {
 	updatePagination()
 
 	dc.renderAll();
+
+	AddXAxis(challengeTypeChart, "Frequency");
 });
 
 var ofs = 0, pag = 10;
