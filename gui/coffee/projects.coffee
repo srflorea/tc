@@ -2,7 +2,7 @@
 SmallMultiples = () ->
 	# variables accessible to
 	# the rest of the functions inside SmallMultiples
-	width = 150
+	width = 160
 	height = 120
 	margin = {top: 15, right: 10, bottom: 40, left: 35}
 	data = []
@@ -76,7 +76,7 @@ SmallMultiples = () ->
 			g.append("rect")
 				.attr("class", "mouse_preview")
 				.style("pointer-events", "all")
-				.attr("width", width + margin.right )
+				.attr("width", width )
 				.attr("height", height)
 				.on("click", showProject)
 
@@ -85,7 +85,7 @@ SmallMultiples = () ->
 				.style("pointer-events", "none")
 				.attr("class", "area-unf")
 				.attr("width", ((c) ->
-					c.tasksCancelled * width / c.noOfTasks + margin.right ))
+					c.tasksCancelled * width / c.noOfTasks))
 				.attr("height", height)
 
 			info = g.append("g")
